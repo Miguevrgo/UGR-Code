@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/pruebapegado.dir/rutas_aereas/src/pruebapegado.cpp.o -o pruebapegado  libimage.a 

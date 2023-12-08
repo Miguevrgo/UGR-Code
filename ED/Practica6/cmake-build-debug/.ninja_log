@@ -1,0 +1,12 @@
+# ninja log v5
+1	15	1700427792583813372	CMakeFiles/image.dir/rutas_aereas/src/punto.cpp.o	ebf6300a2a48e6aa
+1	221	1700427792791812054	CMakeFiles/image.dir/rutas_aereas/src/ruta_aerea.cpp.o	437339ccb3c8ac6f
+1	241	1700427792807811951	CMakeFiles/image.dir/rutas_aereas/src/ruta.cpp.o	c6a4848b5bf5580c
+0	252	1700427792819811876	CMakeFiles/image.dir/rutas_aereas/src/imagenES.cpp.o	d40ce3ba0466e21d
+2	256	1700427792823811851	CMakeFiles/pruebapegado.dir/rutas_aereas/src/pruebapegado.cpp.o	d3f7ef3b62771d5f
+0	269	1700427792835811774	CMakeFiles/image.dir/rutas_aereas/src/imagen.cpp.o	75b2da2a6444be31
+1	352	1700427792919811242	CMakeFiles/image.dir/rutas_aereas/src/almacen.cpp.o	f21365e37528e597
+352	376	1700427792943811089	libimage.a	336c0adba2976640
+376	457	1700427793023810582	pruebapegado	484bdfd2f66e0a25
+1	265	1700427803727739660	CMakeFiles/pruebarotacion.dir/rutas_aereas/src/pruebarotacion.cpp.o	3d3a3014064c5d93
+265	334	1700427803795739194	pruebarotacion	dd6e8f5d7dffbdc4
