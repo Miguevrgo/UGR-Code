@@ -1,5 +1,7 @@
 /**
  * @file imagen.h
+ * @author Miguel Angel De la Vega Rodriguez
+ * @author Joaquín Aviles De la Fuente
  * @brief Fichero cabecera para la clase Imagen
  */
 
@@ -27,14 +29,13 @@ struct Pixel{
      * @return Pixel& Referencia al píxel resultante media de los dos píxeles
      */
     Pixel& operator+(const Pixel &rhs){
-        r = (r + rhs.r)/2;
-        g = (g + rhs.g)/2;
-        b = (b + rhs.b)/2;
+        r = (r + rhs.r) >> 1;
+        g = (g + rhs.g) >> 1;
+        b = (b + rhs.b) >> 1;
         return *this;
     };
 };
 
-//TODO: Assert con herramientas definidas en un debug (Mirar C++ Primer en el capítulo anterior a clases)
 class Imagen{
 public:
     Imagen() : datos(nullptr), nfil(0), ncol(0) {};

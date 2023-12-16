@@ -22,9 +22,11 @@ int main(int argc, char* argv[]){
     }
 
     // Cargar el fichero de paises
-    
+    string fichero_paises = argv[1];
     // Cargar el mapa
+    string mapa = argv[2];
     // Cargar el directorio de banderas
+    string dir_banderas = argv[3];
     // Cargar el almacen de rutas
     // Cargar la imagen del avión
     // Cargar la máscara del avión

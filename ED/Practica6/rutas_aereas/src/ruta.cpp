@@ -1,3 +1,5 @@
+//TODO: Corregir iteradores y operador de entrada
+
 /**
  * @file ruta.cpp
  * @author Miguel Angel De la Vega Rodriguez

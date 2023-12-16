@@ -1,3 +1,12 @@
+/**
+ * @file imagen.cpp
+ * @author Miguel Angel De la Vega Rodriguez
+ * @author Joaquín Aviles De la Fuente
+ * @brief Fichero de implementación de los métodos de la clase Imagen
+ * 
+ */
+
+
 #include "imagen.h"
 
 Imagen::Imagen(const Imagen &rhs){
@@ -84,7 +93,6 @@ void Imagen::LeerImagen(const char *nimagen, std::string mascara){
                 datos[i][j].r = buffer[i*ncol+j];
                 datos[i][j].g = buffer[i*ncol+j];
                 datos[i][j].b = buffer[i*ncol+j];
-                //TODO: ¿Qué hacemos con los dos canales?
             }
         }
         delete[] buffer;

@@ -1,3 +1,6 @@
+// TODO: Corregir los iteradores, la definicion del operador de entrada.
+
+
 /**
  * @file ruta.cpp
  * @author Miguel Angel De la Vega Rodriguez
@@ -70,10 +73,43 @@ public:
     void RemovePunto(int pos);
     void Clear();
     void Append(const Ruta &rhs);
+    /**
+     * @brief Concatena dos rutas y devuelve una referencia a la ruta concatenada
+     * 
+     * @param rhs Ruta a concatenar
+     * @return Ruta& Referencia a la ruta concatenada
+     */
     Ruta& operator+(const Ruta &rhs) const;
+
+    /**
+     * @brief Le da la vuelta a la ruta
+     */
     void ReverseRuta();
+
+
     int GetSize() const { return ruta.size();};
+    
+    /**
+     * @brief Operador de salida de la ruta, imprime la ruta en el flujo de salida
+     * con el siguiente formato:
+     * ID: id_ruta
+     * TAM: num_puntos
+     * (lat,lon), (lat,lon), ..., (lat,lon)
+     * 
+     * @return iterator Iterador al principio de la ruta
+     */
     friend std::ostream& operator<<(std::ostream &os, const Ruta &ruta);
+
+    /**
+     * @brief Operador de entrada de la ruta, lee la ruta del flujo de entrada
+     * con el siguiente formato:
+     * ID: id_ruta
+     * TAM: num_puntos
+     * 
+     * @param is 
+     * @param ruta 
+     * @return std::istream& 
+     */
     friend std::istream& operator>>(std::istream &is, Ruta &ruta);
 
 private:
