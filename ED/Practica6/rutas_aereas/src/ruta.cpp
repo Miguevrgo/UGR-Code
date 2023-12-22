@@ -1,5 +1,3 @@
-//TODO: Corregir iteradores y operador de entrada
-
 /**
  * @file ruta.cpp
  * @author Miguel Angel De la Vega Rodriguez
@@ -19,13 +17,9 @@ Ruta &Ruta::operator=(const Ruta &rhs){
 }
 
 Punto Ruta::GetPunto(int pos) const{
-    std::list<Punto>::const_iterator it = ruta.begin();
+    auto it = ruta.begin();
     std::advance(it, pos);
     return *it;
-}
-
-int Ruta::GetNumPuntos() const{
-    return ruta.size();
 }
 
 bool Ruta::operator==(const Ruta &rhs) const{
@@ -49,10 +43,6 @@ void Ruta::RemovePunto(int pos){
     ruta.erase(std::next(ruta.begin(), pos));
 }
 
-void Ruta::Clear(){
-    ruta.clear();
-}
-
 void Ruta::Append(const Ruta &rhs)
 {
     ruta.insert(ruta.end(), rhs.ruta.begin(), rhs.ruta.end());
@@ -64,57 +54,11 @@ Ruta& Ruta::operator+(const Ruta &rhs) const{
     return aux;
 }
 
-void Ruta::ReverseRuta(){
-    ruta.reverse();
-}
-
-Ruta::const_iterator& Ruta::const_iterator::operator=(const Ruta::const_iterator &rhs)
-{
-    if(this != &rhs){
-        it = rhs.it;
-    }
-    return *this;
-}
-
-Ruta::const_iterator& Ruta::const_iterator::operator++() {
-    ++it;
-    return *this;
-}
-
-Ruta::const_iterator Ruta::const_iterator::operator++(int) {
-    const_iterator tmp(*this);
-    ++it;
-    return tmp;
-}
-
-Ruta::const_iterator &Ruta::const_iterator::operator--() {
-    --it;
-    return *this;
-}
-
-Ruta::const_iterator Ruta::const_iterator::operator--(int) {
-    const_iterator tmp(*this);
-    --it;
-    return tmp;
-}
-
-const Punto &Ruta::const_iterator::operator*() const {
-    return *it;
-}
-
-bool Ruta::const_iterator::operator==(const const_iterator &rhs) const {
-    return (it == rhs.it);
-}
-
-bool Ruta::const_iterator::operator!=(const const_iterator &rhs) const {
-    return !(*this == rhs);
-    }
-
 std::ostream &operator<<(std::ostream &os, const Ruta &ruta) {
     os << ruta.id << " ";
     os << ruta.GetSize() << " ";
-    for(auto it = ruta.ruta.begin(); it != ruta.ruta.end(); ++it){
-        os << " (" << *it << ") ";
+    for (std::list<Punto>::const_iterator it = ruta.cbegin(); it != ruta.cend(); ++it){
+        os << *it;
     }
     return os;    
 }
@@ -122,7 +66,7 @@ std::ostream &operator<<(std::ostream &os, const Ruta &ruta) {
 std::istream &operator>>(std::istream &is, Ruta &ruta) {
     int size;
     is >> ruta.id >> size;
-    for(int i = 0; i < size; ++i){
+    for (int i = 0; i < size; ++i){
         Punto aux;
         is >> aux;
         ruta.Insert(aux);

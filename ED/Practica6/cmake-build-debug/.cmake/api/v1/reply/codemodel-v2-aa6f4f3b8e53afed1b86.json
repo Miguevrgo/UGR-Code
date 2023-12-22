@@ -1,0 +1,96 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "practicafinal",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "doc_doxygen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-doc_doxygen-Debug-a716664b280fdfbe8aad.json",
+					"name" : "doc_doxygen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image-Debug-937e2d802e9ece96dc25.json",
+					"name" : "image",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pruebapegado::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pruebapegado-Debug-58ad3e576cc7855cb4d9.json",
+					"name" : "pruebapegado",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pruebarotacion::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pruebarotacion-Debug-0d9e4508b50f015d071c.json",
+					"name" : "pruebarotacion",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ruta_aerea::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ruta_aerea-Debug-6fef2e569d02c64d0ac4.json",
+					"name" : "ruta_aerea",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/miguevr/Github/Practicas_ED/Practica6/cmake-build-debug",
+		"source" : "/home/miguevr/Github/Practicas_ED/Practica6"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

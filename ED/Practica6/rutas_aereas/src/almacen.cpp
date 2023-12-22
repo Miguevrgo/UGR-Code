@@ -39,8 +39,8 @@ void Almacen::ModificarRuta(const std::string &id, const Ruta &newRuta){
 
 std::ostream &operator<<(std::ostream &os, const Almacen &almacen){
     os << "#Rutas" << std::endl;
-    for (Almacen::const_iterator it = almacen.begin(); it != almacen.end(); ++it){
-        os << *it << std::endl;
+    for (auto it = almacen.cbegin(); it != almacen.cend(); ++it){
+        os << it->first << " " << it->second << std::endl;
     }
     return os;
 }

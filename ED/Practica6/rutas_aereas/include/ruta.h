@@ -1,6 +1,3 @@
-// TODO: Corregir los iteradores, la definicion del operador de entrada.
-
-
 /**
  * @file ruta.cpp
  * @author Miguel Angel De la Vega Rodriguez
@@ -18,45 +15,47 @@
 #include "punto.h"
 
 
-
-
 class Ruta {
-    class const_iterator{
-    private:
-        friend class Ruta;
-        std::list<Punto>::const_iterator it;
-    public:
-        const_iterator() : it() {};
-        const_iterator(const const_iterator &rhs) : it(rhs.it) {};
-        const_iterator& operator=(const const_iterator &rhs);
-        ~const_iterator() = default;
-        const_iterator& operator++();
-        const_iterator operator++(int);
-        const_iterator& operator--();
-        const_iterator operator--(int);
-        const Punto& operator*() const;
-        bool operator==(const const_iterator &rhs) const;
-        bool operator!=(const const_iterator &rhs) const;
-    };
 
+    /**
+     * @brief Class iterator que permite recorrer la ruta y modificarla
+     */
+    std::list<Punto>::iterator begin() {return ruta.begin();};
+    std::list<Punto>::iterator end() {return ruta.end();};
     class iterator{
     private:
-        friend class Ruta;
-        friend class const_iterator;
+        std::list<Punto>::iterator it;
+    public:
+        iterator() = default;
+        iterator(const iterator &rhs) : it(rhs.it) {};
+        ~iterator() = default;
+        iterator &operator=(const iterator &rhs) {it = rhs.it; return *this;};
+        iterator &operator++() {++it; return *this;};
+        iterator &operator--() {--it; return *this;};
+        bool operator==(const iterator &rhs) const {return it == rhs.it;};
+        bool operator!=(const iterator &rhs) const {return !(*this == rhs);};
+    };
+
+    /**
+     * @brief Class const_iterator que permite recorrer la ruta sin modificarla 
+     */
+    std::list<Punto>::const_iterator cbegin() const {return ruta.cbegin();};
+    std::list<Punto>::const_iterator cend() const {return ruta.cend();};
+    class const_iterator{
+    private:
         std::list<Punto>::const_iterator it;
     public:
-        iterator() : it() {};
-        iterator(const iterator &rhs) : it(rhs.it) {};
-        iterator& operator=(const iterator &rhs);
-        ~iterator() = default;
-        iterator& operator++();
-        iterator operator++(int);
-        iterator& operator--();
-        iterator operator--(int);
-        Punto& operator*() const;
-        bool operator==(const iterator &rhs) const;
-        bool operator!=(const iterator &rhs) const;
+        const_iterator() = default;
+        const_iterator(const const_iterator &rhs) : it(rhs.it) {};
+        ~const_iterator() = default;
+        const_iterator &operator=(const const_iterator &rhs) {it = rhs.it; return *this;};
+        const_iterator &operator++() {++it; return *this;};
+        const_iterator &operator--() {--it; return *this;};
+        bool operator==(const const_iterator &rhs) const {return it == rhs.it;};
+        bool operator!=(const const_iterator &rhs) const {return !(*this == rhs);};
     };
+
+
 public:
     Ruta() : id(""), ruta() {};
     Ruta(std::string id, std::list<Punto> ruta) : id(id), ruta(ruta) {};
@@ -66,12 +65,13 @@ public:
     std::string GetId() const { return id;};
     void SetId(std::string id) { this->id = id;};
     Punto GetPunto(int pos) const;
-    int GetNumPuntos() const;
+    int GetSize() const { return ruta.size();};
+    int GetNumPuntos() const { return ruta.size();};
     bool operator==(const Ruta &rhs) const;
     bool operator!=(const Ruta &rhs) const;
     void Insert(const Punto &punto, int pos = -1);
     void RemovePunto(int pos);
-    void Clear();
+    void Clear() { ruta.clear();};
     void Append(const Ruta &rhs);
     /**
      * @brief Concatena dos rutas y devuelve una referencia a la ruta concatenada
@@ -84,17 +84,14 @@ public:
     /**
      * @brief Le da la vuelta a la ruta
      */
-    void ReverseRuta();
-
-
-    int GetSize() const { return ruta.size();};
+    void ReverseRuta() { ruta.reverse();};
     
     /**
      * @brief Operador de salida de la ruta, imprime la ruta en el flujo de salida
      * con el siguiente formato:
      * ID: id_ruta
      * TAM: num_puntos
-     * (lat,lon), (lat,lon), ..., (lat,lon)
+     * (lat,lon) (lat,lon) ... (lat,lon)
      * 
      * @return iterator Iterador al principio de la ruta
      */
@@ -105,6 +102,7 @@ public:
      * con el siguiente formato:
      * ID: id_ruta
      * TAM: num_puntos
+     * (lat,lon) (lat,lon) ... (lat,lon)
      * 
      * @param is 
      * @param ruta 

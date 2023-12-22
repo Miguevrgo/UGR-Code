@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "iterator": "cpp",
-        "memory": "cpp",
-        "iosfwd": "cpp",
-        "string": "cpp"
-    }
-}

@@ -7,7 +7,6 @@
 #define PRACTICAFINAL_PUNTO_H
 
 #include <fstream>
-//TODO 1: Implementar la clase Punto
 
 
 class Punto {
@@ -24,7 +23,21 @@ public:
     bool operator>(const Punto &rhs) const {return rhs < *this;};
     bool operator==(const Punto &rhs) const {return lat == rhs.lat && lon == rhs.lon;};
     bool operator!=(const Punto &rhs) const {return !(*this == rhs);};
+
+    /**
+     * @brief Sobrecarga del operador de salida, se imprime el punto en formato (lat, lon)
+     * @param os Flujo de salida
+     * @param punto Punto a imprimir
+     * @return Flujo de salida
+     */
     friend std::ostream &operator<<(std::ostream &os, const Punto &punto);
+
+    /**
+     * @brief Sobrecarga del operador de entrada, se lee el punto en formato (lat, lon)
+     * @param is Flujo de entrada
+     * @param punto Punto a leer
+     * @return Flujo de entrada
+     */
     friend std::istream &operator>>(std::istream &is, Punto &punto);
 private:
     double lat; // Latitud

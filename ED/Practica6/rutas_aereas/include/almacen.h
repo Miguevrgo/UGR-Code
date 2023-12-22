@@ -15,43 +15,44 @@
 
 
 class Almacen {
-    class const_iterator{ //TODO: Copiadas de ruta.h, cambiar si es necesario
-    private:
-        friend class Almacen;
-        std::map<std::string, Ruta>::const_iterator it;
-    public:
-        const_iterator() : it() {};
-        const_iterator(const const_iterator &rhs) : it(rhs.it) {};
-        const_iterator(const std::map<std::string, Ruta>::const_iterator &rhs) : it(rhs) {};
-        const_iterator& operator=(const const_iterator &rhs);
-        ~const_iterator() = default;
-        const_iterator& operator++();
-        const_iterator operator++(int);
-        const_iterator& operator--();
-        const_iterator operator--(int);
-        const Punto& operator*() const;
-        bool operator==(const const_iterator &rhs) const;
-        bool operator!=(const const_iterator &rhs) const;
-    };
-
+    /**
+     * @brief Class iterator que permite recorrer el almacen y modificarlo
+     */
+    std::map<std::string, Ruta>::iterator begin() {return rutas.begin();};
+    std::map<std::string, Ruta>::iterator end() {return rutas.end();};
     class iterator{
     private:
-        friend class Almacen;
-        friend class const_iterator;
         std::map<std::string, Ruta>::iterator it;
     public:
-        iterator() : it() {};
+        iterator() = default;
         iterator(const iterator &rhs) : it(rhs.it) {};
-        iterator& operator=(const iterator &rhs);
         ~iterator() = default;
-        iterator& operator++();
-        iterator operator++(int);
-        iterator& operator--();
-        iterator operator--(int);
-        Punto& operator*() const;
-        bool operator==(const iterator &rhs) const;
-        bool operator!=(const iterator &rhs) const;
+        iterator &operator=(const iterator &rhs) {it = rhs.it; return *this;};
+        iterator &operator++() {++it; return *this;};
+        iterator &operator--() {--it; return *this;};
+        bool operator==(const iterator &rhs) const {return it == rhs.it;};
+        bool operator!=(const iterator &rhs) const {return !(*this == rhs);};
     };
+
+    /**
+     * @brief Class const_iterator que permite recorrer el almacen sin modificarlo 
+     */
+    std::map<std::string, Ruta>::const_iterator cbegin() const {return rutas.cbegin();};
+    std::map<std::string, Ruta>::const_iterator cend() const {return rutas.cend();};
+    class const_iterator{
+    private:
+        std::map<std::string, Ruta>::const_iterator it;
+    public:
+        const_iterator() = default;
+        const_iterator(const const_iterator &rhs) : it(rhs.it) {};
+        ~const_iterator() = default;
+        const_iterator &operator=(const const_iterator &rhs) {it = rhs.it; return *this;};
+        const_iterator &operator++() {++it; return *this;};
+        const_iterator &operator--() {--it; return *this;};
+        bool operator==(const const_iterator &rhs) const {return it == rhs.it;};
+        bool operator!=(const const_iterator &rhs) const {return !(*this == rhs);};
+    };
+
 public:
     Almacen() = default;
     Almacen(const Almacen &rhs) { rutas = rhs.rutas; };
@@ -63,8 +64,6 @@ public:
     std::string GetId(){ return rutas.begin()->first; }
     void InsertarRuta(const Ruta &newRuta);
     void EliminarRuta(const std::string &id);
-    const_iterator begin() const { return const_iterator{rutas.begin()}; };
-    const_iterator end() const { return const_iterator{rutas.end()}; };
     void ModificarRuta(const std::string &id, const Ruta &newRuta);
     friend std::ostream& operator<<(std::ostream &os, const Almacen &almacen);
     friend std::istream& operator>>(std::istream &is, Almacen &almacen);   
