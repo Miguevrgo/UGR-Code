@@ -4,6 +4,7 @@
  */
 
 #include "almacen.h"
+#include <sstream>
 
 Almacen &Almacen::operator=(const Almacen &rhs){
     if (this != &rhs){
@@ -34,31 +35,60 @@ void Almacen::EliminarRuta(const std::string &id){
 
 void Almacen::ModificarRuta(const std::string &id, const Ruta &newRuta){
     rutas.at(id) = newRuta;
-    rutas.at(id).SetId(id); //TODO: Esto es necesario?
+    rutas.at(id).SetId(id);
 }
 
 std::ostream &operator<<(std::ostream &os, const Almacen &almacen){
-    os << "#Rutas" << std::endl;
     for (auto it = almacen.cbegin(); it != almacen.cend(); ++it){
-        os << it->first << " " << it->second << std::endl;
+        os << it->second << std::endl;
     }
     return os;
 }
 
-std::istream &operator>>(std::istream &is, Almacen &almacen){
+std::istream &operator>>(std::istream &is, Almacen &almacen) {
     std::string MAGIC;
-    is >> MAGIC;
-    if (MAGIC != "#Rutas"){
+    getline(is, MAGIC);
+    if (MAGIC != "#Rutas") {
         is.setstate(std::ios::failbit);
         return is;
     }
-    
-    while(!is.eof()){
-        Ruta ruta;
-        is >> ruta;
-        if (is.good()){
-            almacen.InsertarRuta(ruta);
+
+    std::string linea, nombreActual;
+    int tamActual = 0, puntosLeidos = 0;
+    std::list<Punto> puntosActuales;
+    bool esNuevaRuta = true;
+
+    while (getline(is, linea)) {
+        std::istringstream iss(linea);
+
+        if (linea[0] != 'R' && esNuevaRuta) {
+            // Leer la siguiente linea
+            continue;
+        }
+        if (esNuevaRuta) {
+            iss >> nombreActual >> tamActual;
+            puntosLeidos = 0;
+            esNuevaRuta = false;
+        }
+
+        while (puntosLeidos < tamActual && iss) {
+            char aux;
+            double primero, segundo;
+            if (!(iss >> aux >> primero >> aux >> segundo >> aux)) {
+                break; // Error de formato o fin de línea
+            }
+            puntosActuales.emplace_back(primero, segundo);
+            puntosLeidos++;
+        }
+
+        if (puntosLeidos == tamActual) {
+            almacen.InsertarRuta(Ruta(nombreActual, puntosActuales));
+            puntosActuales.clear();
+            esNuevaRuta = true; // Prepararse para la próxima ruta
         }
     }
+
     return is;
 }
+
+

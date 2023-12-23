@@ -112,6 +112,15 @@ build CMakeFiles/image.dir/rutas_aereas/src/pais.cpp.o: CXX_COMPILER__image_unsc
   TARGET_COMPILE_PDB = CMakeFiles/image.dir/image.pdb
   TARGET_PDB = libimage.pdb
 
+build CMakeFiles/image.dir/rutas_aereas/src/paises.cpp.o: CXX_COMPILER__image_unscanned_Debug /home/miguevr/Github/Practicas_ED/Practica6/rutas_aereas/src/paises.cpp || cmake_object_order_depends_target_image
+  DEP_FILE = CMakeFiles/image.dir/rutas_aereas/src/paises.cpp.o.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -I/home/miguevr/Github/Practicas_ED/Practica6/rutas_aereas/include
+  OBJECT_DIR = CMakeFiles/image.dir
+  OBJECT_FILE_DIR = CMakeFiles/image.dir/rutas_aereas/src
+  TARGET_COMPILE_PDB = CMakeFiles/image.dir/image.pdb
+  TARGET_PDB = libimage.pdb
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target image
@@ -120,7 +129,7 @@ build CMakeFiles/image.dir/rutas_aereas/src/pais.cpp.o: CXX_COMPILER__image_unsc
 #############################################
 # Link the static library libimage.a
 
-build libimage.a: CXX_STATIC_LIBRARY_LINKER__image_Debug CMakeFiles/image.dir/rutas_aereas/src/imagen.cpp.o CMakeFiles/image.dir/rutas_aereas/src/imagenES.cpp.o CMakeFiles/image.dir/rutas_aereas/src/ruta_aerea.cpp.o CMakeFiles/image.dir/rutas_aereas/src/punto.cpp.o CMakeFiles/image.dir/rutas_aereas/src/ruta.cpp.o CMakeFiles/image.dir/rutas_aereas/src/almacen.cpp.o CMakeFiles/image.dir/rutas_aereas/src/pais.cpp.o
+build libimage.a: CXX_STATIC_LIBRARY_LINKER__image_Debug CMakeFiles/image.dir/rutas_aereas/src/imagen.cpp.o CMakeFiles/image.dir/rutas_aereas/src/imagenES.cpp.o CMakeFiles/image.dir/rutas_aereas/src/ruta_aerea.cpp.o CMakeFiles/image.dir/rutas_aereas/src/punto.cpp.o CMakeFiles/image.dir/rutas_aereas/src/ruta.cpp.o CMakeFiles/image.dir/rutas_aereas/src/almacen.cpp.o CMakeFiles/image.dir/rutas_aereas/src/pais.cpp.o CMakeFiles/image.dir/rutas_aereas/src/paises.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles/image.dir
   POST_BUILD = :
@@ -255,6 +264,15 @@ build CMakeFiles/ruta_aerea.dir/rutas_aereas/src/pais.cpp.o: CXX_COMPILER__ruta_
   TARGET_COMPILE_PDB = CMakeFiles/ruta_aerea.dir/
   TARGET_PDB = ruta_aerea.pdb
 
+build CMakeFiles/ruta_aerea.dir/rutas_aereas/src/paises.cpp.o: CXX_COMPILER__ruta_aerea_unscanned_Debug /home/miguevr/Github/Practicas_ED/Practica6/rutas_aereas/src/paises.cpp || cmake_object_order_depends_target_ruta_aerea
+  DEP_FILE = CMakeFiles/ruta_aerea.dir/rutas_aereas/src/paises.cpp.o.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -I/home/miguevr/Github/Practicas_ED/Practica6/rutas_aereas/include
+  OBJECT_DIR = CMakeFiles/ruta_aerea.dir
+  OBJECT_FILE_DIR = CMakeFiles/ruta_aerea.dir/rutas_aereas/src
+  TARGET_COMPILE_PDB = CMakeFiles/ruta_aerea.dir/
+  TARGET_PDB = ruta_aerea.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ruta_aerea
@@ -263,7 +281,7 @@ build CMakeFiles/ruta_aerea.dir/rutas_aereas/src/pais.cpp.o: CXX_COMPILER__ruta_
 #############################################
 # Link the executable ruta_aerea
 
-build ruta_aerea: CXX_EXECUTABLE_LINKER__ruta_aerea_Debug CMakeFiles/ruta_aerea.dir/rutas_aereas/src/ruta_aerea.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/punto.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/ruta.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/almacen.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/pais.cpp.o | libimage.a || libimage.a
+build ruta_aerea: CXX_EXECUTABLE_LINKER__ruta_aerea_Debug CMakeFiles/ruta_aerea.dir/rutas_aereas/src/ruta_aerea.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/punto.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/ruta.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/almacen.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/pais.cpp.o CMakeFiles/ruta_aerea.dir/rutas_aereas/src/paises.cpp.o | libimage.a || libimage.a
   FLAGS = -g
   LINK_LIBRARIES = libimage.a
   OBJECT_DIR = CMakeFiles/ruta_aerea.dir

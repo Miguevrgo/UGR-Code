@@ -1,0 +1,25 @@
+# ninja log v5
+1	272	1703328302686281700	CMakeFiles/image.dir/rutas_aereas/src/punto.cpp.o	82fb0cd7aed416ee
+1	300	1703328302714282794	CMakeFiles/image.dir/rutas_aereas/src/pais.cpp.o	59638759fbeff73a
+0	303	1703328302718282949	CMakeFiles/image.dir/rutas_aereas/src/imagen.cpp.o	75e5eddddc7a3550
+2	304	1703328302718282949	CMakeFiles/ruta_aerea.dir/rutas_aereas/src/punto.cpp.o	69358f3d244b1a0b
+0	307	1703328302722283105	CMakeFiles/image.dir/rutas_aereas/src/imagenES.cpp.o	4aa2fde574c074d1
+1	364	1703328302778285292	CMakeFiles/image.dir/rutas_aereas/src/ruta.cpp.o	18f5daedf00b9157
+0	473	1703328302886289510	CMakeFiles/image.dir/rutas_aereas/src/ruta_aerea.cpp.o	e089b22dd0a44654
+1	486	1703328302902290134	CMakeFiles/image.dir/rutas_aereas/src/paises.cpp.o	2a5267803caa0e5a
+1	502	1703328302918290759	CMakeFiles/image.dir/rutas_aereas/src/almacen.cpp.o	8743c8597947d492
+2	508	1703328302922290915	CMakeFiles/ruta_aerea.dir/rutas_aereas/src/ruta_aerea.cpp.o	4f0dff58b4d6c908
+502	527	1703328302942291696	libimage.a	c35699979e635526
+303	569	1703328302986293414	CMakeFiles/ruta_aerea.dir/rutas_aereas/src/pais.cpp.o	e0ec3f7f17b08775
+273	624	1703328303038295443	CMakeFiles/ruta_aerea.dir/rutas_aereas/src/ruta.cpp.o	b8775366be59edbd
+304	679	1703328303094297627	CMakeFiles/ruta_aerea.dir/rutas_aereas/src/paises.cpp.o	bc6bff8d8cfed49
+300	700	1703328303114298407	CMakeFiles/ruta_aerea.dir/rutas_aereas/src/almacen.cpp.o	b27b23b5dc5bdedd
+700	763	1703328303178300902	ruta_aerea	2deb480d58cbeec9
+1	333	1703328341435757532	CMakeFiles/image.dir/rutas_aereas/src/ruta_aerea.cpp.o	e089b22dd0a44654
+1	348	1703328341447757978	CMakeFiles/ruta_aerea.dir/rutas_aereas/src/ruta_aerea.cpp.o	4f0dff58b4d6c908
+333	356	1703328341455758274	libimage.a	c35699979e635526
+356	415	1703328341515760504	ruta_aerea	2deb480d58cbeec9
+2	344	1703328416954437196	CMakeFiles/ruta_aerea.dir/rutas_aereas/src/ruta_aerea.cpp.o	4f0dff58b4d6c908
+2	358	1703328416966437603	CMakeFiles/image.dir/rutas_aereas/src/ruta_aerea.cpp.o	e089b22dd0a44654
+358	380	1703328416990438418	libimage.a	c35699979e635526
+380	441	1703328417050440449	ruta_aerea	2deb480d58cbeec9

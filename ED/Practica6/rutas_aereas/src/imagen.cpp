@@ -134,14 +134,14 @@ void Imagen::PutImagen(int i, int j, const Imagen &Ip, TipoPegado tipo){
         for (int l = 0; l < Ip.ncol; ++l){
             if (i+k < nfil && j+l < ncol){
                 if (tipo == OPACO){
-                    if (Ip(i+k,l+j).r != 0){
+                    if (Ip(k,l).r != 0){
                         datos[i+k][j+l] = Ip.datos[k][l];
                     }
                 }
                 else if (tipo == BLENDING){
                     // La sobrecarga del operador suma calcula la media de los dos píxeles
                     // Que tiene mas sentido que simplemente sumar los valores de los canales
-                    if (Ip(i+k,l+j).r != 0) {
+                    if (Ip(i,l).r != 0) {
                         datos[i+k][j+l] = (Ip.datos[k][l] + datos[i+k][j+l]);
                     }
                 }
@@ -151,17 +151,21 @@ void Imagen::PutImagen(int i, int j, const Imagen &Ip, TipoPegado tipo){
 }
 
 void Imagen::PutImagen(int i, int j, const Imagen &Ip, char blend){
-    for (int k = 0; k < Ip.nfil; ++k){
-        for (int l = 0; l < Ip.ncol; ++l){
-            if (i+k < nfil && j+l < ncol){
-                if (Ip(i+k,l+j).r != 0){
-                    datos[i+k][j+l].r = (Ip.datos[k][l].r*(blend/100) + datos[i+k][j+l].r*((100-blend)/100))/2;
-                    datos[i+k][j+l].g = (Ip.datos[k][l].g*(blend/100) + datos[i+k][j+l].g*((100-blend)/100))/2;
-                    datos[i+k][j+l].b = (Ip.datos[k][l].b*(blend/100) + datos[i+k][j+l].b*((100-blend)/100))/2;
+    for (int k = 0; k < Ip.nfil; ++k) {
+        for (int l = 0; l < Ip.ncol; ++l) {
+            if (i + k < nfil && j + l < ncol) {
+                if (Ip(i + k, l + j).r != 0) {
+                    datos[i + k][j + l].r =
+                            (Ip.datos[k][l].r * (blend / 100) + datos[i + k][j + l].r * ((100 - blend) / 100)) / 2;
+                    datos[i + k][j + l].g =
+                            (Ip.datos[k][l].g * (blend / 100) + datos[i + k][j + l].g * ((100 - blend) / 100)) / 2;
+                    datos[i + k][j + l].b =
+                            (Ip.datos[k][l].b * (blend / 100) + datos[i + k][j + l].b * ((100 - blend) / 100)) / 2;
                 }
             }
         }
     }
+
 }
 
 void Imagen::AllocateMemory(int filas, int columnas){

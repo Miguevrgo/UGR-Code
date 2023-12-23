@@ -76,6 +76,9 @@ TipoImagen LeerTipoImagen(const char nombre[], int& filas, int& columnas)
   TipoImagen tipo;
   filas=columnas=0;
   ifstream f(nombre);
+  if (!f.is_open()) {
+      throw std::ios_base::failure("Error: no se pudo abrir el archivo");
+  }
 
   tipo=LeerTipo(f);
   if (tipo!=IMG_DESCONOCIDO)

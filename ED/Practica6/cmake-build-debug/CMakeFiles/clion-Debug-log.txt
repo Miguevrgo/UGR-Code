@@ -11,7 +11,8 @@
 -- Check for working CXX compiler: /usr/bin/g++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
+-- Found Doxygen: /usr/bin/doxygen (found version "1.9.1") found components: doxygen missing components: dot
 Doxygen build started
--- Configuring done (0.4s)
+-- Configuring done (0.3s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/miguevr/Github/Practicas_ED/Practica6/cmake-build-debug

@@ -6,6 +6,7 @@
  */
 
 #include "punto.h"
+#include <sstream>
 
 std::ostream &operator<<(std::ostream &os, const Punto &punto){
     os << " (" << punto.lat << "," << punto.lon << ")";
@@ -13,7 +14,17 @@ std::ostream &operator<<(std::ostream &os, const Punto &punto){
 }
 
 std::istream &operator>>(std::istream &is, Punto &punto){
-    char aux;
-    is >> aux >> punto.lat >> aux >> punto.lon >> aux;
+    while (is.peek() == ' ' || is.peek() == '(' || is.peek() == '\t' || is.peek() == '\n'){
+        is.ignore();
+    }
+    is >> punto.lat;
+
+    while (is.peek() == ' ' || is.peek() == ',' || is.peek() == '\t' || is.peek() == '\n'){
+        is.ignore();
+    }
+    is >> punto.lon;
+    while (is.peek() == ' ' || is.peek() == ')' || is.peek() == '\t' || is.peek() == '\n'){
+        is.ignore();
+    }
     return is;
 }
