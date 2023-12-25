@@ -24,10 +24,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="211925ea-f6fd-479e-aa22-2373600bd3e9" name="Changes" comment="Finish, solo falta rotar la mascara">
-      <change beforePath="$PROJECT_DIR$/rutas_aereas/src/ruta_aerea.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rutas_aereas/src/ruta_aerea.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/salida_img/mapa.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/salida_img/mapa.ppm" afterDir="false" />
-    </list>
+    <list default="true" id="08a0318a-c435-4f37-81d0-f850c13fbd2b" name="Changes" comment="Se meten los iteradores en las clases. No se si van asi" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,40 +40,38 @@
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2023" />
-    <option name="minorVersion" value="3.2" />
+    <option name="minorVersion" value="2.2" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="2ZutUyGNSVdYe1VuJqQpyCor5Ro" />
+  <component name="ProjectId" id="2YPVriddvVa4fUHypctCQ6gwb84" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;CMake Application.pruebapegado.executor&quot;: &quot;Run&quot;,
-    &quot;CMake Application.pruebarotacion.executor&quot;: &quot;Run&quot;,
-    &quot;CMake Application.ruta_aerea.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/miguevr/Github/Practicas_ED/Practica6/CMakeLists.txt&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/miguevr/UGR/2º/Primer Cuatrimestre/ED/Retos/Reto5",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="CMake Application.ruta_aerea">
+}]]></component>
+  <component name="RunManager" selected="CMake Application.pruebapegado">
     <configuration name="doc_doxygen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="practicafinal" TARGET_NAME="doc_doxygen" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -87,17 +82,17 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pruebapegado" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="practicafinal" TARGET_NAME="pruebapegado" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="practicafinal" RUN_TARGET_NAME="pruebapegado">
+    <configuration name="pruebapegado" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="./datos/imagenes/banderas/espana_reshigh.ppm ./datos/imagenes/aviones/avion2.ppm ./datos/imagenes/aviones/mascara_avion2.pgm ./salida_img/espana_avion2_opaco.ppm 0 0 0" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$ContentRoot$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="practicafinal" TARGET_NAME="pruebapegado" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="practicafinal" RUN_TARGET_NAME="pruebapegado">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pruebarotacion" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="practicafinal" TARGET_NAME="pruebarotacion" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="practicafinal" RUN_TARGET_NAME="pruebarotacion">
+    <configuration name="pruebarotacion" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="./datos/imagenes/aviones/avion1.ppm 45 ./salida_img/avion45.ppm" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$ContentRoot$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="practicafinal" TARGET_NAME="pruebarotacion" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="practicafinal" RUN_TARGET_NAME="pruebarotacion">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ruta_aerea" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="./datos/paises.txt ./datos/imagenes/mapas/mapa1.ppm ./datos/imagenes/banderas/ ./datos/almacen_rutas.txt ./datos/imagenes/aviones/avion1.ppm ./datos/imagenes/aviones/mascara_avion1.pgm" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$ContentRoot$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="practicafinal" TARGET_NAME="ruta_aerea" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="practicafinal" RUN_TARGET_NAME="ruta_aerea">
+    <configuration name="ruta_aerea" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="practicafinal" TARGET_NAME="ruta_aerea" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="practicafinal" RUN_TARGET_NAME="ruta_aerea">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -113,106 +108,64 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="211925ea-f6fd-479e-aa22-2373600bd3e9" name="Changes" comment="" />
-      <created>1703283812331</created>
+      <changelist id="08a0318a-c435-4f37-81d0-f850c13fbd2b" name="Changes" comment="" />
+      <created>1700427402826</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1703283812331</updated>
-      <workItem from="1703283814315" duration="4580000" />
-      <workItem from="1703288431728" duration="959000" />
-      <workItem from="1703290167107" duration="4457000" />
-      <workItem from="1703319647125" duration="526000" />
-      <workItem from="1703320180654" duration="8264000" />
+      <updated>1700427402826</updated>
+      <workItem from="1700427405666" duration="560000" />
+      <workItem from="1700490618909" duration="2228000" />
+      <workItem from="1700492868465" duration="49000" />
+      <workItem from="1700493513684" duration="22000" />
+      <workItem from="1700500575453" duration="4000" />
+      <workItem from="1700500879005" duration="18000" />
+      <workItem from="1700572046027" duration="166000" />
+      <workItem from="1700573577880" duration="4000" />
+      <workItem from="1701410085373" duration="17000" />
+      <workItem from="1702748987070" duration="883000" />
+      <workItem from="1702750275921" duration="2000" />
+      <workItem from="1703092285742" duration="56000" />
     </task>
-    <task id="LOCAL-00001" summary="Dios Sabe lo que le pasa a este codigo">
+    <task id="LOCAL-00001" summary="Funciona el pruebapegado y se añade un metodo para que se haga un pegado de 0-100">
       <option name="closed" value="true" />
-      <created>1703288733261</created>
+      <created>1700492910186</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1703288733261</updated>
+      <updated>1700492910186</updated>
     </task>
-    <task id="LOCAL-00002" summary="Dios Sabe lo que le pasa a este codigo y yo a medias">
+    <task id="LOCAL-00002" summary="Funciona el pruebapegado y se añade un metodo para que se haga un pegado de 0-100">
       <option name="closed" value="true" />
-      <created>1703290758758</created>
+      <created>1700493530621</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1703290758758</updated>
+      <updated>1700493530621</updated>
     </task>
-    <task id="LOCAL-00003" summary="Dios Sabe lo que le pasa a este codigo y yo a medias">
+    <task id="LOCAL-00003" summary="Se meten los iteradores en las clases. No se si van asi">
       <option name="closed" value="true" />
-      <created>1703290959406</created>
+      <created>1700572205323</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1703290959406</updated>
+      <updated>1700572205324</updated>
     </task>
-    <task id="LOCAL-00004" summary="Toma">
-      <option name="closed" value="true" />
-      <created>1703291771919</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1703291771919</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Toma">
-      <option name="closed" value="true" />
-      <created>1703292615370</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1703292615370</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Toma">
-      <option name="closed" value="true" />
-      <created>1703293002644</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1703293002644</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Finish, solo falta dibujar aviones">
-      <option name="closed" value="true" />
-      <created>1703323441081</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1703323441081</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Finish, solo falta rotar la mascara">
-      <option name="closed" value="true" />
-      <created>1703325975896</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1703325975896</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Finish, solo falta rotar la mascara">
-      <option name="closed" value="true" />
-      <created>1703327433667</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1703327433667</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
-    <isAutomaticReloadCMake value="true" />
+    <isAutomaticFoundErrors value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Dios Sabe lo que le pasa a este codigo" />
-    <MESSAGE value="Dios Sabe lo que le pasa a este codigo y yo a medias" />
-    <MESSAGE value="Toma" />
-    <MESSAGE value="Finish, solo falta dibujar aviones" />
-    <MESSAGE value="Finish, solo falta rotar la mascara" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish, solo falta rotar la mascara" />
+    <MESSAGE value="Texto mas legible" />
+    <MESSAGE value="Funciona el pruebapegado y se añade un metodo para que se haga un pegado de 0-100" />
+    <MESSAGE value="Se meten los iteradores en las clases. No se si van asi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se meten los iteradores en las clases. No se si van asi" />
   </component>
 </project>
