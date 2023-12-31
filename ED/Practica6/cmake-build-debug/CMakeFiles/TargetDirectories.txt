@@ -1,7 +1,0 @@
-/home/miguevr/GitHub/Practicas_ED/Practica6/cmake-build-debug/CMakeFiles/image.dir
-/home/miguevr/GitHub/Practicas_ED/Practica6/cmake-build-debug/CMakeFiles/pruebarotacion.dir
-/home/miguevr/GitHub/Practicas_ED/Practica6/cmake-build-debug/CMakeFiles/pruebapegado.dir
-/home/miguevr/GitHub/Practicas_ED/Practica6/cmake-build-debug/CMakeFiles/ruta_aerea.dir
-/home/miguevr/GitHub/Practicas_ED/Practica6/cmake-build-debug/CMakeFiles/doc_doxygen.dir
-/home/miguevr/GitHub/Practicas_ED/Practica6/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/miguevr/GitHub/Practicas_ED/Practica6/cmake-build-debug/CMakeFiles/rebuild_cache.dir

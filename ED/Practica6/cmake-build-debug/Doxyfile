@@ -1,6 +1,0 @@
-PROJECT_NAME           = "Práctica Final: Rutas Aereas"
-OUTPUT_DIRECTORY       = /home/miguevr/GitHub/Practicas_ED/Practica6/cmake-build-debug/doc_doxygen/
-INPUT                  = /home/miguevr/GitHub/Practicas_ED/Practica6/rutas_aereas/include /home/miguevr/GitHub/Practicas_ED/Practica6/rutas_aereas/src /home/miguevr/GitHub/Practicas_ED/Practica6/rutas_aereas/doc
-GENERATE_LATEX         = NO
-IMAGE_PATH             = /home/miguevr/GitHub/Practicas_ED/Practica6/rutas_aereas/doc
-EXTRACT_PRIVATE        = NO
