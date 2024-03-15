@@ -1,0 +1,1733 @@
+
+
+*******************************************************************************
+Sun Mar 10 23:26:50 2024
+
+
+FIT:    data read from "Resultados/Salida1burbuja.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 1.3460545282e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 2.0783360103e-02  -1.95e-02  4.24e-04    1.413153e-09  -1.369099e-05   1.272277e-01
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.0207834
+rel. change during last iteration : -1.95195e-07
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0307359
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000944698
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.41315e-09      +/- 5.299e-12    (0.375%)
+a1              = -1.3691e-05      +/- 7.097e-07    (5.184%)
+a2              = 0.127228         +/- 0.02002      (15.74%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.971  1.000 
+a2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:26:50 2024
+
+
+FIT:    data read from "Resultados/Salida2burbuja.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*x+b1*x+b2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0            b1            b2           
+   0 1.3460545272e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 1.1624252995e-02  -3.43e-02  4.24e-04    1.822986e-09  -1.981111e-05   1.348667e-01
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.0116243
+rel. change during last iteration : -3.42912e-07
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0229864
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000528375
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 1.82299e-09      +/- 3.963e-12    (0.2174%)
+b1              = -1.98111e-05     +/- 5.308e-07    (2.679%)
+b2              = 0.134867         +/- 0.01497      (11.1%)
+
+correlation matrix of the fit parameters:
+                b0     b1     b2     
+b0              1.000 
+b1             -0.971  1.000 
+b2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:26:50 2024
+
+
+FIT:    data read from "Resultados/Salida3burbuja.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*x+c1*x+c2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0            c1            c2           
+   0 1.3460545273e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 4.3920029385e-02  -8.88e-03  4.24e-04    1.820754e-09  -2.029601e-05   1.441776e-01
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.04392
+rel. change during last iteration : -8.88149e-08
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0446807
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00199636
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 1.82075e-09      +/- 7.704e-12    (0.4231%)
+c1              = -2.0296e-05      +/- 1.032e-06    (5.083%)
+c2              = 0.144178         +/- 0.02911      (20.19%)
+
+correlation matrix of the fit parameters:
+                c0     c1     c2     
+c0              1.000 
+c1             -0.971  1.000 
+c2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:26:50 2024
+
+
+FIT:    data read from "Resultados/Salida4burbuja.txt"
+        format = z
+        #datapoints = 20
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 7.6431601242e+21   0.00e+00  1.13e+10    1.000000e+00   1.000000e+00   1.000000e+00
+  14 1.0973214827e-01  -8.06e-08  1.13e-04    1.262810e-09  -4.039161e-06   8.342217e-02
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.109732
+rel. change during last iteration : -8.05738e-13
+
+degrees of freedom    (FIT_NDF)                        : 17
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.080342
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00645483
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 1.26281e-09      +/- 6.064e-12    (0.4802%)
+d1              = -4.03916e-06     +/- 1.338e-06    (33.13%)
+d2              = 0.0834222        +/- 0.0625       (74.92%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.795 -0.897  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:28:07 2024
+
+
+FIT:    data read from "Resultados/Salida1seleccion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 1.3460545313e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 5.9261504227e-03  -8.65e-02  4.24e-04    1.273396e-10   3.127396e-07   1.882605e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.00592615
+rel. change during last iteration : -8.65175e-07
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0164125
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00026937
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.2734e-10       +/- 2.83e-12     (2.222%)
+a1              = 3.1274e-07       +/- 3.79e-07     (121.2%)
+a2              = 0.018826         +/- 0.01069      (56.79%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.971  1.000 
+a2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:28:07 2024
+
+
+FIT:    data read from "Resultados/Salida2seleccion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*x+b1*x+b2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0            b1            b2           
+   0 1.3460545310e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 2.5288330386e-03  -2.18e-01  4.24e-04    2.313095e-10   1.478095e-06  -1.834126e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.00252883
+rel. change during last iteration : -2.184e-06
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0107213
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000114947
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 2.31309e-10      +/- 1.849e-12    (0.7992%)
+b1              = 1.4781e-06       +/- 2.476e-07    (16.75%)
+b2              = -0.0183413       +/- 0.006984     (38.08%)
+
+correlation matrix of the fit parameters:
+                b0     b1     b2     
+b0              1.000 
+b1             -0.971  1.000 
+b2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:28:07 2024
+
+
+FIT:    data read from "Resultados/Salida3seleccion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*x+c1*x+c2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0            c1            c2           
+   0 1.3460545311e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 7.6884396464e-04  -6.87e-01  4.24e-04    1.940454e-10  -1.002238e-07   4.471207e-03
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.000768844
+rel. change during last iteration : -6.86522e-06
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00591164
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.49475e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 1.94045e-10      +/- 1.019e-12    (0.5253%)
+c1              = -1.00224e-07     +/- 1.365e-07    (136.2%)
+c2              = 0.00447121       +/- 0.003851     (86.13%)
+
+correlation matrix of the fit parameters:
+                c0     c1     c2     
+c0              1.000 
+c1             -0.971  1.000 
+c2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:28:07 2024
+
+
+FIT:    data read from "Resultados/Salida4seleccion.txt"
+        format = z
+        #datapoints = 20
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 7.6431601244e+21   0.00e+00  1.13e+10    1.000000e+00   1.000000e+00   1.000000e+00
+  14 2.7229697602e-01  -2.03e-08  1.13e-04    1.272158e-09  -8.807801e-06   2.335267e-01
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.272297
+rel. change during last iteration : -2.03047e-13
+
+degrees of freedom    (FIT_NDF)                        : 17
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.12656
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0160175
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 1.27216e-09      +/- 9.552e-12    (0.7508%)
+d1              = -8.8078e-06      +/- 2.108e-06    (23.93%)
+d2              = 0.233527         +/- 0.09846      (42.16%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.795 -0.897  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:29:19 2024
+
+
+FIT:    data read from "Resultados/Salida1insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 1.3460545305e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 3.9050565365e-03  -1.27e-01  4.24e-04    4.196448e-10  -8.070797e-07   3.465850e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.00390506
+rel. change during last iteration : -1.27092e-06
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.013323
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000177503
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 4.19645e-10      +/- 2.297e-12    (0.5474%)
+a1              = -8.0708e-07      +/- 3.076e-07    (38.12%)
+a2              = 0.0346585        +/- 0.008679     (25.04%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.971  1.000 
+a2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:29:19 2024
+
+
+FIT:    data read from "Resultados/Salida2insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*x+b1*x+b2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0            b1            b2           
+   0 1.3460545304e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 1.3513073849e-02  -3.57e-02  4.24e-04    4.911540e-10  -1.813635e-06   4.782249e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.0135131
+rel. change during last iteration : -3.57327e-07
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0247837
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000614231
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 4.91154e-10      +/- 4.273e-12    (0.87%)
+b1              = -1.81363e-06     +/- 5.723e-07    (31.55%)
+b2              = 0.0478225        +/- 0.01614      (33.76%)
+
+correlation matrix of the fit parameters:
+                b0     b1     b2     
+b0              1.000 
+b1             -0.971  1.000 
+b2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:29:19 2024
+
+
+FIT:    data read from "Resultados/Salida3insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*x+c1*x+c2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0            c1            c2           
+   0 1.3460545304e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  14 4.2383328776e-04  -2.03e-09  4.24e-01    4.827629e-10  -1.651873e-07   4.775639e-03
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.000423833
+rel. change during last iteration : -2.03368e-14
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00438921
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.92651e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 4.82763e-10      +/- 7.568e-13    (0.1568%)
+c1              = -1.65187e-07     +/- 1.014e-07    (61.35%)
+c2              = 0.00477564       +/- 0.002859     (59.87%)
+
+correlation matrix of the fit parameters:
+                c0     c1     c2     
+c0              1.000 
+c1             -0.971  1.000 
+c2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:29:19 2024
+
+
+FIT:    data read from "Resultados/Salida4insercion.txt"
+        format = z
+        #datapoints = 20
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 7.6431601432e+21   0.00e+00  1.13e+10    1.000000e+00   1.000000e+00   1.000000e+00
+  15 1.1799606057e-10   0.00e+00  1.13e-05    1.565493e-16   2.646242e-09   2.528721e-06
+
+After 15 iterations the fit converged.
+final sum of squares of residuals : 1.17996e-10
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 17
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.63457e-06
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.94094e-12
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 1.56549e-16      +/- 1.988e-16    (127%)
+d1              = 2.64624e-09      +/- 4.388e-11    (1.658%)
+d2              = 2.52872e-06      +/- 2.05e-06     (81.05%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.795 -0.897  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:30:24 2024
+
+
+FIT:    data read from "Resultados/Salida1mergesort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 2.6033979842e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 2.0967506913e-03   0.00e+00  1.02e+04    8.087196e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.00209675
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0093469
+variance of residuals (reduced chisquare) = WSSR/ndf   : 8.73646e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 8.0872e-09       +/- 1.832e-10    (2.265%)
+
+
+*******************************************************************************
+Sun Mar 10 23:30:24 2024
+
+
+FIT:    data read from "Resultados/Salida2mergesort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0           
+   0 2.6033979775e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 2.9791199826e-04  -2.37e-10  1.02e+02    9.382255e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.000297912
+rel. change during last iteration : -2.36557e-15
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00352321
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.2413e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 9.38225e-09      +/- 6.905e-11    (0.736%)
+
+
+*******************************************************************************
+Sun Mar 10 23:30:24 2024
+
+
+FIT:    data read from "Resultados/Salida3mergesort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0           
+   0 2.6033979749e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 1.9977496240e-03   0.00e+00  1.02e+02    9.884882e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.00199775
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00912357
+variance of residuals (reduced chisquare) = WSSR/ndf   : 8.32396e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 9.88488e-09      +/- 1.788e-10    (1.809%)
+
+
+*******************************************************************************
+Sun Mar 10 23:30:24 2024
+
+
+FIT:    data read from "Resultados/Salida4mergesort.txt"
+        format = z
+        #datapoints = 20
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 7.6431601432e+21   0.00e+00  1.13e+10    1.000000e+00   1.000000e+00   1.000000e+00
+  14 9.2952398388e-06  -1.14e-03  1.13e-04    2.724142e-13   1.679079e-07   3.308675e-04
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 9.29524e-06
+rel. change during last iteration : -1.14094e-08
+
+degrees of freedom    (FIT_NDF)                        : 17
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.000739445
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.46779e-07
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 2.72414e-13      +/- 5.581e-14    (20.49%)
+d1              = 1.67908e-07      +/- 1.232e-08    (7.335%)
+d2              = 0.000330868      +/- 0.0005753    (173.9%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.795 -0.897  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:32:10 2024
+
+
+FIT:    data read from "Resultados/Salida1quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 2.6033979952e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 1.1428754456e-03   0.00e+00  1.02e+11    5.981829e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.00114288
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00690071
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.76198e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 5.98183e-09      +/- 1.352e-10    (2.261%)
+
+
+*******************************************************************************
+Sun Mar 10 23:32:10 2024
+
+
+FIT:    data read from "Resultados/Salida2quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0           
+   0 2.6033979925e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 1.2711397982e-03   0.00e+00  1.02e+02    6.504459e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.00127114
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00727765
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.29642e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 6.50446e-09      +/- 1.426e-10    (2.193%)
+
+
+*******************************************************************************
+Sun Mar 10 23:32:10 2024
+
+
+FIT:    data read from "Resultados/Salida3quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0           
+   0 2.6033979926e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 1.4719034360e-03  -1.47e-11  1.02e+04    6.471553e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0014719
+rel. change during last iteration : -1.4732e-16
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0078313
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.13293e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 6.47155e-09      +/- 1.535e-10    (2.372%)
+
+
+*******************************************************************************
+Sun Mar 10 23:32:10 2024
+
+
+FIT:    data read from "Resultados/Salida4quicksort.txt"
+        format = z
+        #datapoints = 17
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 3.4956320186e+21   0.00e+00  8.28e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  14 2.6774015157e-01  -3.79e-09  8.28e-05    6.215078e-10   4.512070e-06   3.873265e-02
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.26774
+rel. change during last iteration : -3.79418e-14
+
+degrees of freedom    (FIT_NDF)                        : 14
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.138291
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0191243
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 6.21508e-10      +/- 1.571e-11    (2.527%)
+d1              = 4.51207e-06      +/- 2.979e-06    (66.03%)
+d2              = 0.0387326        +/- 0.1198       (309.4%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.802 -0.902  1.000 
+
+
+*******************************************************************************
+Sun Mar 10 23:33:24 2024
+
+
+FIT:    data read from "Resultados/Salidafloyd.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: fl(x)
+	fl(x) = a0*x*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 1.5607520631e+19   0.00e+00  7.90e+08    1.000000e+00
+   5 7.8759526053e-03  -1.56e-09  7.90e+03    2.320434e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.00787595
+rel. change during last iteration : -1.56382e-14
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0181153
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000328165
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 2.32043e-09      +/- 4.585e-12    (0.1976%)
+
+
+*******************************************************************************
+Sun Mar 10 23:34:24 2024
+
+
+FIT:    data read from "Resultados/Salidafibonacci.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: fi(x)
+	fi(x) = b0*((1+sqrt(5))/2)**x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0           
+   0 9.2737268851e+20   0.00e+00  6.09e+09    1.000000e+00
+   5 2.9121260982e-02  -2.17e-08  6.09e+04    1.983206e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0291213
+rel. change during last iteration : -2.16712e-13
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0348337
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00121339
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 1.98321e-09      +/- 1.144e-12    (0.05768%)
+
+
+*******************************************************************************
+Sun Mar 10 23:34:24 2024
+
+
+FIT:    data read from "Resultados/Salidahanoi.txt"
+        format = z
+        #datapoints = 31
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*2**x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0           
+   0 9.8382634533e+19   0.00e+00  1.78e+09    1.000000e+00
+   5 1.0857403339e-02  -9.91e-10  1.78e+04    2.675095e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0108574
+rel. change during last iteration : -9.90595e-15
+
+degrees of freedom    (FIT_NDF)                        : 30
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.019024
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000361913
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 2.67509e-09      +/- 1.918e-12    (0.0717%)
+
+
+*******************************************************************************
+Mon Mar 11 02:52:11 2024
+
+
+FIT:    data read from "Resultados/Salida1insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*((1+sqrt(5))/2)**x
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 1 out of 25
+x               = 1              
+z               = 0.0202083      
+
+Current set of parameters
+=========================
+a0              = 1              
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Mar 11 02:53:25 2024
+
+
+FIT:    data read from "Resultados/Salida1insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*2**x
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 1 out of 25
+x               = 1              
+z               = 0.0202083      
+
+Current set of parameters
+=========================
+a0              = 1              
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Mar 11 02:54:21 2024
+
+
+FIT:    data read from "Resultados/Salida1insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 1.5607520706e+31   0.00e+00  4.56e+14    1.000000e+00   1.000000e+00   1.000000e+00
+   5 2.2040708986e+10  -2.12e-06  4.56e+09   -8.623932e-11   1.000000e+00   1.000000e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 2.20407e+10
+rel. change during last iteration : -2.11827e-11
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 31652
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.00185e+09
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = -8.62393e-11     +/- 2.763e-11    (32.04%)
+a1              = 1                +/- 0.4504       (45.04%)
+a2              = 1                +/- 1.798e+04    (1.798e+06%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.921  1.000 
+a2              0.688 -0.881  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:54:21 2024
+
+
+FIT:    data read from "Resultados/Salida2insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*x*x+b1*x+b2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0            b1            b2           
+   0 1.5607520706e+31   0.00e+00  4.56e+14    1.000000e+00   1.000000e+00   1.000000e+00
+   5 2.2040616709e+10  -2.12e-06  4.56e+09   -8.623874e-11   1.000000e+00   1.000000e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 2.20406e+10
+rel. change during last iteration : -2.11827e-11
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 31652
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.00185e+09
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = -8.62387e-11     +/- 2.763e-11    (32.04%)
+b1              = 1                +/- 0.4504       (45.04%)
+b2              = 1                +/- 1.798e+04    (1.798e+06%)
+
+correlation matrix of the fit parameters:
+                b0     b1     b2     
+b0              1.000 
+b1             -0.921  1.000 
+b2              0.688 -0.881  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:54:21 2024
+
+
+FIT:    data read from "Resultados/Salida3insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*x*x+c1*x+c2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0            c1            c2           
+   0 1.5607520706e+31   0.00e+00  4.56e+14    1.000000e+00   1.000000e+00   1.000000e+00
+   5 2.2040598444e+10  -2.12e-06  4.56e+09   -8.623871e-11   1.000000e+00   1.000000e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 2.20406e+10
+rel. change during last iteration : -2.11826e-11
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 31651.9
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.00185e+09
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = -8.62387e-11     +/- 2.763e-11    (32.04%)
+c1              = 1                +/- 0.4504       (45.04%)
+c2              = 1                +/- 1.798e+04    (1.798e+06%)
+
+correlation matrix of the fit parameters:
+                c0     c1     c2     
+c0              1.000 
+c1             -0.921  1.000 
+c2              0.688 -0.881  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:54:21 2024
+
+
+FIT:    data read from "Resultados/Salida4insercion.txt"
+        format = z
+        #datapoints = 20
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 2.3412336203e+32   0.00e+00  1.98e+15    1.000000e+00   1.000000e+00   1.000000e+00
+   5 4.7289851064e+10  -2.42e-07  1.98e+10   -3.264567e-11   1.000000e+00   1.000000e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 4.72899e+10
+rel. change during last iteration : -2.42386e-12
+
+degrees of freedom    (FIT_NDF)                        : 17
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 52742.4
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.78176e+09
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = -3.26457e-11     +/- 1.222e-11    (37.43%)
+d1              = 1                +/- 0.5355       (53.55%)
+d2              = 1                +/- 3.525e+04    (3.525e+06%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.924  1.000 
+d2              0.707 -0.892  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:55:57 2024
+
+
+FIT:    data read from "Resultados/Salida1quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 2.5854602787e+27   0.00e+00  1.02e+13    1.000000e+00
+   5 1.0662314310e-02  -1.47e-01  1.02e+08    5.687584e-15
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0106623
+rel. change during last iteration : -1.46807e-06
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0210775
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000444263
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 5.68758e-15      +/- 4.145e-16    (7.288%)
+
+
+*******************************************************************************
+Mon Mar 11 02:55:57 2024
+
+
+FIT:    data read from "Resultados/Salida2quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0           
+   0 2.5854602787e+27   0.00e+00  1.02e+13    1.000000e+00
+   5 1.1628326565e-02  -1.35e-01  1.02e+08    6.212534e-15
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0116283
+rel. change during last iteration : -1.34611e-06
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0220117
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000484514
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 6.21253e-15      +/- 4.329e-16    (6.968%)
+
+
+*******************************************************************************
+Mon Mar 11 02:55:57 2024
+
+
+FIT:    data read from "Resultados/Salida3quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0           
+   0 2.5854602787e+27   0.00e+00  1.02e+13    1.000000e+00
+   5 1.1353290688e-02  -1.38e-01  1.02e+08    6.192710e-15
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0113533
+rel. change during last iteration : -1.37871e-06
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0217498
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000473054
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 6.19271e-15      +/- 4.277e-16    (6.907%)
+
+
+*******************************************************************************
+Mon Mar 11 02:55:57 2024
+
+
+FIT:    data read from "Resultados/Salida4quicksort.txt"
+        format = z
+        #datapoints = 17
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 3.4956320186e+21   0.00e+00  8.28e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  14 2.6774015157e-01  -3.79e-09  8.28e-05    6.215078e-10   4.512070e-06   3.873265e-02
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.26774
+rel. change during last iteration : -3.79418e-14
+
+degrees of freedom    (FIT_NDF)                        : 14
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.138291
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0191243
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 6.21508e-10      +/- 1.571e-11    (2.527%)
+d1              = 4.51207e-06      +/- 2.979e-06    (66.03%)
+d2              = 0.0387326        +/- 0.1198       (309.4%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.802 -0.902  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:57:20 2024
+
+
+FIT:    data read from "Resultados/Salida1insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 1.3460545305e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 3.9050565365e-03  -1.27e-01  4.24e-04    4.196448e-10  -8.070797e-07   3.465850e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.00390506
+rel. change during last iteration : -1.27092e-06
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.013323
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000177503
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 4.19645e-10      +/- 2.297e-12    (0.5474%)
+a1              = -8.0708e-07      +/- 3.076e-07    (38.12%)
+a2              = 0.0346585        +/- 0.008679     (25.04%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.971  1.000 
+a2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:57:20 2024
+
+
+FIT:    data read from "Resultados/Salida2insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*x+b1*x+b2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0            b1            b2           
+   0 1.3460545304e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 1.3513073849e-02  -3.57e-02  4.24e-04    4.911540e-10  -1.813635e-06   4.782249e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.0135131
+rel. change during last iteration : -3.57327e-07
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0247837
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000614231
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 4.91154e-10      +/- 4.273e-12    (0.87%)
+b1              = -1.81363e-06     +/- 5.723e-07    (31.55%)
+b2              = 0.0478225        +/- 0.01614      (33.76%)
+
+correlation matrix of the fit parameters:
+                b0     b1     b2     
+b0              1.000 
+b1             -0.971  1.000 
+b2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:57:20 2024
+
+
+FIT:    data read from "Resultados/Salida3insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*x+c1*x+c2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0            c1            c2           
+   0 1.3460545304e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  14 4.2383328776e-04  -2.03e-09  4.24e-01    4.827629e-10  -1.651873e-07   4.775639e-03
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.000423833
+rel. change during last iteration : -2.03368e-14
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00438921
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.92651e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 4.82763e-10      +/- 7.568e-13    (0.1568%)
+c1              = -1.65187e-07     +/- 1.014e-07    (61.35%)
+c2              = 0.00477564       +/- 0.002859     (59.87%)
+
+correlation matrix of the fit parameters:
+                c0     c1     c2     
+c0              1.000 
+c1             -0.971  1.000 
+c2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:57:20 2024
+
+
+FIT:    data read from "Resultados/Salida4insercion.txt"
+        format = z
+        #datapoints = 20
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 7.6431601432e+21   0.00e+00  1.13e+10    1.000000e+00   1.000000e+00   1.000000e+00
+  15 1.1799606057e-10   0.00e+00  1.13e-05    1.565493e-16   2.646242e-09   2.528721e-06
+
+After 15 iterations the fit converged.
+final sum of squares of residuals : 1.17996e-10
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 17
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.63457e-06
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.94094e-12
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 1.56549e-16      +/- 1.988e-16    (127%)
+d1              = 2.64624e-09      +/- 4.388e-11    (1.658%)
+d2              = 2.52872e-06      +/- 2.05e-06     (81.05%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.795 -0.897  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 02:58:30 2024
+
+
+FIT:    data read from "Resultados/Salidafloyd.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: fl(x)
+	fl(x) = a0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 6.4299486914e+08   0.00e+00  5.07e+03    1.000000e+00
+   4 1.0520458601e+01  -2.31e-08  5.07e-01    3.380386e-04
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 10.5205
+rel. change during last iteration : -2.31153e-13
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.662082
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.438352
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 0.000338039      +/- 2.61e-05     (7.721%)
+
+
+*******************************************************************************
+Mon Mar 11 02:59:30 2024
+
+
+FIT:    data read from "Resultados/Salidafibonacci.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: fi(x)
+	fi(x) = a0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0           
+   0 3.6359182139e+03   0.00e+00  0.00e+00    1.000000e+00
+BREAK: Singular matrix in Givens()
+
+*******************************************************************************
+Mon Mar 11 03:02:14 2024
+
+
+FIT:    data read from "Resultados/Salidafloyd.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: fl(x)
+	fl(x) = a0*x*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 1.5607520631e+19   0.00e+00  7.90e+08    1.000000e+00
+   5 7.8759526053e-03  -1.56e-09  7.90e+03    2.320434e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.00787595
+rel. change during last iteration : -1.56382e-14
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0181153
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000328165
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 2.32043e-09      +/- 4.585e-12    (0.1976%)
+
+
+*******************************************************************************
+Mon Mar 11 03:03:14 2024
+
+
+FIT:    data read from "Resultados/Salidafibonacci.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: fi(x)
+	fi(x) = b0*((1+sqrt(5))/2)**x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0           
+   0 9.2737268851e+20   0.00e+00  6.09e+09    1.000000e+00
+   5 2.9121260982e-02  -2.17e-08  6.09e+04    1.983206e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0291213
+rel. change during last iteration : -2.16712e-13
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0348337
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00121339
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 1.98321e-09      +/- 1.144e-12    (0.05768%)
+
+
+*******************************************************************************
+Mon Mar 11 03:03:14 2024
+
+
+FIT:    data read from "Resultados/Salidahanoi.txt"
+        format = z
+        #datapoints = 31
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*2**x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0           
+   0 9.8382634533e+19   0.00e+00  1.78e+09    1.000000e+00
+   5 1.0857403339e-02  -9.91e-10  1.78e+04    2.675095e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0108574
+rel. change during last iteration : -9.90595e-15
+
+degrees of freedom    (FIT_NDF)                        : 30
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.019024
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000361913
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 2.67509e-09      +/- 1.918e-12    (0.0717%)
+
+
+*******************************************************************************
+Mon Mar 11 03:03:44 2024
+
+
+FIT:    data read from "Resultados/Salida1quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 2.6033979952e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 1.1428754456e-03   0.00e+00  1.02e+11    5.981829e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.00114288
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00690071
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.76198e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 5.98183e-09      +/- 1.352e-10    (2.261%)
+
+
+*******************************************************************************
+Mon Mar 11 03:03:44 2024
+
+
+FIT:    data read from "Resultados/Salida2quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0           
+   0 2.6033979925e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 1.2711397982e-03   0.00e+00  1.02e+02    6.504459e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.00127114
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00727765
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.29642e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 6.50446e-09      +/- 1.426e-10    (2.193%)
+
+
+*******************************************************************************
+Mon Mar 11 03:03:44 2024
+
+
+FIT:    data read from "Resultados/Salida3quicksort.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*log(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0           
+   0 2.6033979926e+15   0.00e+00  1.02e+07    1.000000e+00
+   5 1.4719034360e-03  -1.47e-11  1.02e+04    6.471553e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0014719
+rel. change during last iteration : -1.4732e-16
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0078313
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.13293e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 6.47155e-09      +/- 1.535e-10    (2.372%)
+
+
+*******************************************************************************
+Mon Mar 11 03:03:44 2024
+
+
+FIT:    data read from "Resultados/Salida4quicksort.txt"
+        format = z
+        #datapoints = 17
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 3.4956320186e+21   0.00e+00  8.28e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  14 2.6774015157e-01  -3.79e-09  8.28e-05    6.215078e-10   4.512070e-06   3.873265e-02
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.26774
+rel. change during last iteration : -3.79418e-14
+
+degrees of freedom    (FIT_NDF)                        : 14
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.138291
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0191243
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 6.21508e-10      +/- 1.571e-11    (2.527%)
+d1              = 4.51207e-06      +/- 2.979e-06    (66.03%)
+d2              = 0.0387326        +/- 0.1198       (309.4%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.802 -0.902  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 15:51:56 2024
+
+
+FIT:    data read from "Resultados/Salidafibonacci.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: fi(x)
+	fi(x) = b0*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0           
+   0 3.4031026671e+07   0.00e+00  1.17e+03    1.000000e+00
+   3 2.3001303091e+03  -3.50e-01  1.17e+00    6.253074e-03
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 2300.13
+rel. change during last iteration : -3.4988e-06
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.78973
+variance of residuals (reduced chisquare) = WSSR/ndf   : 95.8388
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 0.00625307       +/- 0.001668     (26.67%)
+
+
+*******************************************************************************
+Mon Mar 11 15:55:42 2024
+
+
+FIT:    data read from "Resultados/Salida1insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 1.3460545305e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 3.9050565365e-03  -1.27e-01  4.24e-04    4.196448e-10  -8.070797e-07   3.465850e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.00390506
+rel. change during last iteration : -1.27092e-06
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.013323
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000177503
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 4.19645e-10      +/- 2.297e-12    (0.5474%)
+a1              = -8.0708e-07      +/- 3.076e-07    (38.12%)
+a2              = 0.0346585        +/- 0.008679     (25.04%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.971  1.000 
+a2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 15:55:42 2024
+
+
+FIT:    data read from "Resultados/Salida2insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b0*x*x+b1*x+b2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b0            b1            b2           
+   0 1.3460545304e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  13 1.3513073849e-02  -3.57e-02  4.24e-04    4.911540e-10  -1.813635e-06   4.782249e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.0135131
+rel. change during last iteration : -3.57327e-07
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0247837
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000614231
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b0              = 4.91154e-10      +/- 4.273e-12    (0.87%)
+b1              = -1.81363e-06     +/- 5.723e-07    (31.55%)
+b2              = 0.0478225        +/- 0.01614      (33.76%)
+
+correlation matrix of the fit parameters:
+                b0     b1     b2     
+b0              1.000 
+b1             -0.971  1.000 
+b2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 15:55:42 2024
+
+
+FIT:    data read from "Resultados/Salida3insercion.txt"
+        format = z
+        #datapoints = 25
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = c0*x*x+c1*x+c2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   c0            c1            c2           
+   0 1.3460545304e+21   0.00e+00  4.24e+09    1.000000e+00   1.000000e+00   1.000000e+00
+  14 4.2383328776e-04  -2.03e-09  4.24e-01    4.827629e-10  -1.651873e-07   4.775639e-03
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.000423833
+rel. change during last iteration : -2.03368e-14
+
+degrees of freedom    (FIT_NDF)                        : 22
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00438921
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.92651e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+c0              = 4.82763e-10      +/- 7.568e-13    (0.1568%)
+c1              = -1.65187e-07     +/- 1.014e-07    (61.35%)
+c2              = 0.00477564       +/- 0.002859     (59.87%)
+
+correlation matrix of the fit parameters:
+                c0     c1     c2     
+c0              1.000 
+c1             -0.971  1.000 
+c2              0.774 -0.884  1.000 
+
+
+*******************************************************************************
+Mon Mar 11 15:55:42 2024
+
+
+FIT:    data read from "Resultados/Salida4insercion.txt"
+        format = z
+        #datapoints = 20
+        residuals are weighted equally (unit weight)
+
+function used for fitting: p(x)
+	p(x) = d0*x*x+d1*x+d2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   d0            d1            d2           
+   0 7.6431601432e+21   0.00e+00  1.13e+10    1.000000e+00   1.000000e+00   1.000000e+00
+  15 1.1799606057e-10   0.00e+00  1.13e-05    1.565493e-16   2.646242e-09   2.528721e-06
+
+After 15 iterations the fit converged.
+final sum of squares of residuals : 1.17996e-10
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 17
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.63457e-06
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.94094e-12
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+d0              = 1.56549e-16      +/- 1.988e-16    (127%)
+d1              = 2.64624e-09      +/- 4.388e-11    (1.658%)
+d2              = 2.52872e-06      +/- 2.05e-06     (81.05%)
+
+correlation matrix of the fit parameters:
+                d0     d1     d2     
+d0              1.000 
+d1             -0.973  1.000 
+d2              0.795 -0.897  1.000 
