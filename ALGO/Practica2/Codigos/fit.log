@@ -1,0 +1,158 @@
+
+
+*******************************************************************************
+Wed Apr 10 17:06:06 2024
+
+
+FIT:    data read from "Salidas/ViajanteRandom.txt"
+        format = z
+        #datapoints = 43
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 2.7882251227e+19   0.00e+00  8.05e+08    1.000000e+00
+   4 4.2823777170e+03  -9.83e-02  8.05e+04    6.813875e-08
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 4282.38
+rel. change during last iteration : -9.8324e-07
+
+degrees of freedom    (FIT_NDF)                        : 42
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 10.0976
+variance of residuals (reduced chisquare) = WSSR/ndf   : 101.961
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 6.81387e-08      +/- 1.912e-09    (2.806%)
+
+
+*******************************************************************************
+<<<<<<< HEAD
+Wed Apr 10 14:27:42 2024
+
+
+FIT:    data read from "Salidas/ViajanteFB.txt"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x!*x
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Wed Apr 10 14:28:59 2024
+
+
+FIT:    data read from "Salidas/ViajanteFB.txt"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*Gamma(x+1)*x
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Wed Apr 10 14:29:11 2024
+
+
+FIT:    data read from "Salidas/ViajanteFB.txt"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*gamma(x+1)*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 6.5863419945e+21   0.00e+00  2.45e+10    1.000000e+00
+   5 1.3165704962e-01  -1.96e-05  2.45e+05    2.475429e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.131657
+rel. change during last iteration : -1.95747e-10
+
+degrees of freedom    (FIT_NDF)                        : 10
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.114742
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0131657
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 2.47543e-09      +/- 1.414e-12    (0.05711%)
+
+
+*******************************************************************************
+Wed Apr 10 18:08:13 2024
+
+
+FIT:    data read from "Salidas/ViajanteFB.txt"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*gamma(x+1)*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0           
+   0 6.5863419945e+21   0.00e+00  2.45e+10    1.000000e+00
+   5 1.3165704962e-01  -1.96e-05  2.45e+05    2.475429e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.131657
+rel. change during last iteration : -1.95747e-10
+
+degrees of freedom    (FIT_NDF)                        : 10
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.114742
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0131657
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 2.47543e-09      +/- 1.414e-12    (0.05711%)
+=======
+Wed Apr 10 17:06:16 2024
+
+
+FIT:    data read from "Salidas/ViajanteRandom.txt"
+        format = z
+        #datapoints = 43
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 2.7883889811e+19   0.00e+00  4.65e+08    1.000000e+00   1.000000e+00   1.000000e+00
+  11 4.2676635745e+03  -3.77e-01  4.65e-03    6.425777e-08   1.549782e-04  -7.305056e-01
+
+After 11 iterations the fit converged.
+final sum of squares of residuals : 4267.66
+rel. change during last iteration : -3.76938e-06
+
+degrees of freedom    (FIT_NDF)                        : 40
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 10.3292
+variance of residuals (reduced chisquare) = WSSR/ndf   : 106.692
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 6.42578e-08      +/- 1.145e-08    (17.81%)
+a1              = 0.000154978      +/- 0.0004983    (321.5%)
+a2              = -0.730506        +/- 4.535        (620.8%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.967  1.000 
+a2              0.730 -0.856  1.000 
+>>>>>>> 53e3c7a9f04be82924285e793f208217441a8deb

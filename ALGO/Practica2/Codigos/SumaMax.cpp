@@ -11,44 +11,21 @@
 using namespace std;
 
 
-struct SumaData{
-    int  max_izq;
-    int  max_dch;
-    int  sum;
-    int  max_sub;
-};
+/**
+ * @brief Kadane's algorithm to find the maximum subarray sum implementation
+ * 
+ * 
+ * @param arr array of integers
+ * @param low start index
+ * @param high end index
+ * @return maximum subarray sum
+ */
+int kadane(const int * const arr, int low, int high) {
+    int max_global = arr[low];
+    int max_current = arr[low];
 
-
-
-// 5 6 -1 1 1 -5 9 1 -5 -2 
-SumaData SumaMax (int *v, int inicio, int final){
-    SumaData result, d1, d2;
-    if (inicio==final){
-        result.max_izq = v[inicio];
-        result.max_dch = v[inicio];
-        result.sum = v[inicio];
-        result.max_sub = v[inicio];
-        return (result);
-    }
-
-    int mid = (final+inicio)/2;
-    (d1)=SumaMax(v, inicio, mid);
-    (d2)=SumaMax(v, mid+1, final);
-    
-    result.max_izq = max(d1.max_izq, d1.sum+d2.max_izq);
-    result.max_dch = max(d2.max_dch, d2.sum+d1.max_dch);
-    result.sum = d1.sum + d2.sum;
-    int max_cross = d1.max_dch + d2.max_izq;
-    result.max_sub = max(max(max_cross, d1.max_sub), d2.max_sub);
-    return (result);
-}
- 
-int kadane(int *a, int size){
-    int max_global = a[0];
-    int max_current = a[0];
-
-    for (int i = 1; i < size; i++) {
-        max_current = max(a[i], max_current + a[i]);
+    for (int i = low + 1; i <= high; ++i) {
+        max_current = max(arr[i], max_current + arr[i]);
         if (max_current > max_global) {
             max_global = max_current;
         }
@@ -56,33 +33,92 @@ int kadane(int *a, int size){
     return max_global;
 }
 
+
+/**
+ * @brief Calculates the maximum subarray sum using the divide and conquer 
+ * approach applying the Kadane's algorithm to the left and right subarrays
+ * and the sum of the maximum subarrays that cross the middle of the array.
+ * 
+ * @note Note that the functionality of crossLeftSum and crossRightSum is
+ * to find the biggest sum of the subarray that crosses the middle of the array,
+ * note that this sum does not skip the middle element. For example:
+ * 
+ * arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+ *                  |___________|
+ * Maximum subarray can only calculate intervals of the form provided above.
+ * 
+ * @param arr array of integers
+ * @param low start index 
+ * @param high end index
+ * @param threshold "UMBRAL" to apply Kadane's algorithm
+ * @return maximum subarray sum
+ */
+int maxSubArray(const int * const arr, int low, int high, int threshold) {
+    if (high - low + 1 <= threshold) {
+        return kadane(arr, low, high);
+    }
+
+    int mid = low + (high - low) / 2;
+
+    int leftSum = maxSubArray(arr, low, mid, threshold);
+    int rightSum = maxSubArray(arr, mid + 1, high, threshold);
+
+    int crossLeftSum = numeric_limits<int>::min();
+    int crossRightSum = numeric_limits<int>::min();
+    int sum = 0;
+
+    for (int i = mid; i >= low; --i) {
+        sum += arr[i];
+        crossLeftSum = max(crossLeftSum, sum);
+    }
+
+    sum = 0;
+    for (int i = mid + 1; i <= high; ++i) {
+        sum += arr[i];
+        crossRightSum = max(crossRightSum, sum);
+    }
+
+    int crossSum = crossLeftSum + crossRightSum;
+
+    return max({leftSum, rightSum, crossSum});
+}
+
+
 int main(int argc, char *argv[]) {
     int TAM= atoi(argv[1]);
+    int UMBRAL=atoi(argv[3]);
     srandom(TAM);
     int *v = new int [TAM];
     for (int i=0; i <TAM; i++){
         v[i] = rand() % 10 - (rand() % 10);
     }
     
-    if (strcmp(argv[2], "1") == 0) { // Time Test
+    if (strcmp(argv[2], "1") == 0) { // Time Test Kadane
+
         auto start = chrono::high_resolution_clock::now();
-        SumaMax(v, 0, TAM-1);
+        kadane(v, 0, TAM-1);
         auto end = chrono::high_resolution_clock::now();
-        std::cout << chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+        std::cout << chrono::duration_cast<chrono::nanoseconds>(end - start).count()<<endl;
+
+    } 
+    else if (strcmp(argv[2], "2") == 0) { // Time Test DyV
+        auto start = chrono::high_resolution_clock::now();
+        maxSubArray(v, 0, TAM-1,UMBRAL);
+        auto end = chrono::high_resolution_clock::now();
+        std::cout << chrono::duration_cast<chrono::nanoseconds>(end - start).count()<<endl;
     } 
     else{ // Correctness Test
         int *kadaneVector = new int[TAM];
         for (int i = 0; i < TAM; i++) {
             kadaneVector[i] = v[i];
         }
-        int res1 = SumaMax(v, 0, TAM-1).max_sub;
-        int res2 = kadane(kadaneVector, TAM);
-        
+
+        int res1 = maxSubArray(v, 0, TAM-1, UMBRAL);
+        int res2 = kadane(kadaneVector, 0, TAM-1);
         if (res1 != res2) {
             std::cout << "Error [" << TAM << "]: " << res1 << " != " << res2 << endl;
         }
         
     }
-
-    int kadaneResult = kadane(v,TAM);
+    return 0;
 }

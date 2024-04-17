@@ -1,6 +1,7 @@
 \documentclass[11pt,openany]{book}
 \input{assets/portada.tex}
 \usepackage{assets/formulas}
+\usepackage{float}
 \hbadness=10000 % Suppress Underfull \hbox warnings
 
 %========================================|Indice|===============================================%
@@ -14,37 +15,677 @@
 %======================================|Documento|==============================================%
 \chapter{Autores}
 \begin{itemize}
-    \item \textbf{Miguel Ángel De la Vega Rodríguez:} 20\%
-          \begin{itemize}
-              \item Plantilla y estructura del documento \LaTeX
-          \end{itemize}
-    \item \textbf{Joaquín Avilés De la Fuente:} 20\%
-          \begin{itemize}
-            \item Tarea
-          \end{itemize}
-    \item \textbf{Alberto De la Vera Sánchez: } 20\%
-          \begin{itemize}
-            \item Tarea
-          \end{itemize}
-    \item \textbf{Manuel Gomez Rubio} 20\%
-          \begin{itemize}
-            \item Tarea
-          \end{itemize}
-    \item \textbf{Pablo Linari Pérez:} 20\%
-          \begin{itemize}
-            \item Tarea
-          \end{itemize}
+      \item \textbf{Miguel Ángel De la Vega Rodríguez:} 20\%
+            \begin{itemize}
+                  \item Plantilla y estructura del documento \LaTeX
+                  \item Programación Viajante
+                  \item Programación SumaMax (DyV)
+                  \item Tests de eficiencia
+            \end{itemize}
+      \item \textbf{Joaquín Avilés De la Fuente:} 20\%
+            \begin{itemize}
+                  \item Programacion SumaMax (DyV)
+                  \item Programación Viajante (DyV)
+                  \item Estudio eficiencia teórica algoritmos específicos y DyV
+                  \item Tests de eficiencia
+            \end{itemize}
+      \item \textbf{Alberto De la Vera Sánchez: } 20\%
+            \begin{itemize}
+                  \item Redacción \LaTeX
+                  \item Estudio de umbrales teóricos y empíricos de DyV
+                  \item Graficas y ajustes
+            \end{itemize}
+      \item \textbf{Manuel Gomez Rubio} 20\%
+            \begin{itemize}
+                  \item Programacion SumaMax (Kadane)
+                  \item Programacion Losetas
+            \end{itemize}
+      \item \textbf{Pablo Linari Pérez:} 20\%
+            \begin{itemize}
+                  \item Programacion SumaMax (Kadane)
+                  \item Programacion Losetas
+            \end{itemize}
+\end{itemize}
+
+\chapter{Equipo de trabajo}
+
+\begin{itemize}
+      \item \textbf{Miguel Ángel De la Vega Rodríguez:} (Ordenador donde se ha realizado el computo)
+            \begin{itemize}
+                  \item AMD Ryzen 7 2700X 8-Core
+                  \item 16 GB RAM DDR4 3200 MHz
+                  \item NVIDIA GeForce GTX 1660 Ti
+                  \item 1 TB SSD NvMe
+            \end{itemize}
 \end{itemize}
 
 \chapter{Objetivos}
 En esta práctica, se pretende resolver problemas de forma eficiente aplicando la técnica de
 Divide y Vencerás. Para ello, se han planteado varios problemas cuya solución es conocida
-(excepto para el problema del viajante), y se han implementado algoritmos que los resuelven
-mediante el método convencional y mediante la técnica de Divide y Vencerás. Posteriormente, se ha buscado
-un umbral en el cual ambos tengan el mismo tiempo de ejecución, finalmente, se ha buscado el 
-umbral óptimo para cada problema. 
+(excepto para el problema del viajante), este último no tiene solución por ser un problema
+NP-duro. Para los problemas planteados, se han implementado dos algoritmos, uno que resuelve
+el problema de forma exacta con su algoritmo específico y otro que resuelve el problema usando
+la técnica de Divide y Vencerás. \\ \\ Para cada uno de los problemas planteados, se ha realizado un
+estudio de eficiencia teórica, empírica e híbrida, con el fin de comparar los resultados obtenidos
+y ver si se ajustan a la eficiencia teórica calculada. Además, este estudio nos ayuda a
+determinar el umbral óptimo para el cual el algoritmo de Divide y Vencerás es más eficiente que
+el algoritmo específico y obtenemos una solución más rápida.
 \chapter{Definicion Problema}
+Para esta práctica se han planteado tres problemas diferentes, cada uno de ellos con una solución conocida
+y que se ha implementado mediante la técnica de Divide y Vencerás. Los problemas planteados son los siguientes:
+\section{Problema 1: Subsecuencia de suma máxima}
+Dado un vector de enteros, se pide encontrar la subsecuencia de suma máxima, es decir, secuancia de elementos consecutivos
+tanto positivos como negativos cuya suma sea la suma máxima posible. Para ello, se han implementado dos algoritmos, uno
+que resuelve el problema mediante la técnica de Divide y Vencerás y otro que lo resuelve mediante el algoritmo de Kadane.
+\section{Problema 2: Enlosar un espacio}
+Dado un espacio de tamaño $n \times n$ (tomaremos una habitación cuadrada), donde $n=2^k \text{para algún } k \geq 1$ y un conjunto de losas en forma de \enquote{ele} , se pide encontrar la forma de enlosar
+dicho espacio con este tipo de losas teniendo en cuanta que debemos dejar un espacio de$2 \times 2$ tamaño $1 \times 1$ sin enlosar que será lo
+que llamaremos en este problema un sumidero. \\
+La posición del sumidero será proporcionada por el problema indicada así por la celda $A[i][j] \text{ tq } 0 \leq i,j \leq n-1$ de
+nuestra matriz. Para cada baldosa que coloquemos en la matriz le asociaremos un identificador (entero) distinto.
+\section{Problema 3: Viajante de comercio}
+Dado un conjunto de puntos en un plano, se pide encontrar el camino más corto que pase por todos los puntos y vuelva al punto de partida.
+La representación de este problema viene dada por un viajante que necesita recorrer una serie de ciudades marcadas con puntos en un mapa y debemos
+indicar el camino más corto para recorrerlos todos y volver a su casa. \\
+Para calcular la distancia entre dos puntos usaremos la distancia euclídea, es decir,
+dados los puntos $(x_1,y_1)$ y $(x_2,y_2)$ la distancia entre ellos será
+\begin{equation*}
+      dist((x_1,y_1), (x_2, y_2))=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
+\end{equation*}
+
+Para ello, se han implementado dos algoritmos, uno que resuelve el problema
+mediante la técnica de Divide y Vencerás, que divide el problema en subproblemas más pequeños y los resuelve de forma recursiva, y otro
+algoritmo de fuerza bruta que resuelve el problema de forma exacta, que como veremos más adelante en este documento no puede superar la cantidad de 12 puntos, pues
+al tener una eficiencia de $O(n!)$, para $n>12$ el tiempo de ejecución es inviable. \\ \\
+
+Para la mediciónde tiempos de ejecución, se han usado los siguientes tamaños de problema:
+\begin{itemize}
+      \item \textbf{Problema 1:} Tamaños de problema de 25000 a 5000000 con saltos de 25000
+      \item \textbf{Problema 2:} Tamaños de problema de 4 a 10
+      \item \textbf{Problema 3:} Tamaños de problema de 50 a 45000 con saltos de 1000. Destacar que hemos hecho otros tests con tamaños de problema mayores,
+            pero usando archivos de tipo texto donde se identifican ciudades de un país y sus coordenadas.
+\end{itemize}
+
 \chapter{Algoritmo Especifico}
-\chapter{Algoritmo Divide y Vencerás}
+En este apartado, estudiaremos la eficiencia teórica, empírica e híbrida de los algoritmos especificos
+de cada uno de los problemas.
+\section{Problema 1: Subsecuencia de suma máxima.}
+Para el primer problema, el algoritmo específico que empleamos es el algoritmo de Kadene.
+\subsection{Estudio teórico}
+\begin{lstlisting}
+      int kadane(int *a, int size){
+            int max_global = a[0];
+            int max_current = a[0];
+
+            for (int i = 1; i < size; i++) {
+                  max_current = max(a[i], max_current + a[i]);
+                  if (max_current > max_global) {
+                        max_global = max_current;
+                  }
+            }
+            return max_global;
+      }
+\end{lstlisting}
+Como podemos observar la eficiencia del codigo en las líneas 6-8, tienen eficiencia O(1). Por tanto,
+su tiempo de ejecución es constante y notaremos por a. Luego, el bucle for se ejecutará  $(size-1)-i+1 $
+veces, es decir, $size-i$ veces. Sabiendo que el resto de líneas del código tienen eficienciaa O(1), tenemos
+el siguiente resultado
+\begin{equation*}
+      \sum_{i=inicial}^{size-1} a
+\end{equation*}
+Tomaremos $size =  n$ e $inicial = 1$ para simplificar el cálculo y veamos que obtenemos ahora
+\begin{equation*}
+      \sum_{i=1}^{n-1} a = a \cdot \sum_{i=1}^{n-1} 1= a \cdot (n-1)
+\end{equation*}
+Es claro que $a \cdot (n-1) \in O(n)$ y por tanto la eficiencia teórica del algoritmo de kadane es $O(n)$.
+\subsection{Estudio empírico}
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/SumaMaxKadane.png}
+            \caption{Ejecución algoritmo SumaMaxKadane}
+            \label{fig:SumaMaxKadane}
+      \end{figure}
+\end{center}
+Podemos observar como la gráfica se asemeja mucho a una linea recta, es decir, a la función y=x, ya que efectivamente la eficiencia
+del algoritmo de Kadane es de $O(n)$
+\subsection{Estudio híbrido}
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/SumaMaxKadane_hib.png}
+            \caption{Ajuste hibrido}
+            \label{fig:SumaMaxKadanehibrido}
+      \end{figure}
+\end{center}
+Tras la interpretación de los datos empíricos en gnuplot y de la formula teorica del método, obtenemos que \\
+las constantes ocultas son:
+\begin{equation*}
+      T_{Kadane}=1.64263x + 0.996451
+\end{equation*}
+\section{Problema 2: Enlosar un espacio }
+Para el segundo problema el algoritmo específico que empleamos para resolver el problema es el siguiente :
+
+\begin{lstlisting}
+
+      void resuelve2(int i,int j,int n, vector<vector<int>> & mat){
+        losas++;
+        for(int l = 0; l< n; l++){
+            for(int k = 0; k<n; k++){
+                if(mat[i+l][j+k] == 0){
+                    mat[i+l][j+k] = losas;
+                }
+            }
+        }
+    
+}
+\end{lstlisting}
+El código consiste en rellenar las posiciones de una matriz 2x2 con un valor entero en las posiciones donde el valor sea 0.
+Podemos observar que hay dos bucles for anidados los cuales son $O(n)$ y el interior del bucle más profundo es $O(1)$ por tanto la eficiencia
+de este código es de $O(n^2)$
+
+\section{Problema 3: Viajante de comercio }
+Para el tercer problema el algoritmo específico que empleamos para resolver el problema es el siguiente :
+
+\subsection{Estudio teórico}
+\begin{lstlisting}
+
+      vector<Point> bruteForceTSP(const std::vector<Point>& points) {
+            std::vector<int> permutation(points.size());
+      
+            std::iota(permutation.begin(), permutation.end(), 0);
+        
+            double minDistance = std::numeric_limits<double>::max();
+            std::vector<int> bestPermutation;
+            do {
+                double distance = 0;
+                for (int i = 0; i < permutation.size() - 1; ++i) {
+                    distance += points[permutation[i]].distanceTo(points[permutation[i + 1]]);
+                }
+        
+                distance += points[permutation.back()].distanceTo(points[permutation.front()]);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    bestPermutation = permutation;
+                }
+            } while (std::next_permutation(permutation.begin(), permutation.end()));
+        
+            std::vector<Point> bestPath;
+        
+            for (int index : bestPermutation) {
+                bestPath.emplace_back(points[index]);
+            }
+        
+            return bestPath;
+        }
+\end{lstlisting}
+Destacar que hemos implementado una clase Point que no tiene nada en particular, pues solo se ha implementado
+como método útil el método \textbf{distanceTo(const \&Point p)} que calcula la distnacia entre dos puntos
+mediante la distnacia euclídea, veámoslo:
+\begin{lstlisting}
+      double distanceTo(const Point &p) const {
+            return sqrt(pow(x - p.x, 2) + pow(y - p.y, 2));
+        }
+\end{lstlisting}
+Para estudiar la eficiencia de dicho algoritmo hay que tener claro como funcionan ciertas funciones de las librerías de C++, así como
+su eficiencia teórica. En este caso, la función \textbf{std::iota} tiene eficiencia $O(n)$ y se encarga de rellenar un \textbf{vector<int>}
+con una permutación que se inicia en $0$ (último parámetro dado) y acaba en $n-1$ (tamaño del vector), definido a partir de los puntero al inicio
+y final del vector. \\
+Por otro lado, la función \textbf{std::next\_permutation} tiene eficiencia $O(n)$ y se encarga de generar la siguiente permutación posible, devolviendo
+false si ya ha devuelto todas las permutaciones posible. Por tanto, el bucle do-while se ejecutará $n!$ veces, donde $n$ es el tamaño del vector de puntos. \\ \\
+
+Por ahora tenemos una eficiencia de $O(n)$ en la llamda a la función \textbf{std::iota}, el bucle \textbf{do-while}, que acontinuación veremos su eficiencia, y el
+bucle for de la línea 24 que es claro que tiene eficiencia $O(n)$ pues recorre la mejor permutación con $n$ elementos, es decir, tenemos que la eficiencia teórica
+de dicha función es $max\{O(\text{bucle do-while}), O(n)\}$. \\
+Dentro del bucle \textbf{do-while} tenemos un bucle for que recorre la permutación de tamaño $n$ y realiza una operación de eficiencia $O(1)$, por tanto, la eficiencia
+del bucle for es $O(n)$. El resto de operaciones de dicho bucle son de eficiencia $O(1)$, por lo que la eficiencia del bucle \textbf{do-while} es $O(n\cdot n!)$, es decir,
+la eficiencia de la función es $O(n\cdot n!)$.
+\subsection{Estudio empírico}
+En esta parte el estudio empírico lo hemos realizado hasta el valor n=13 ya que sino el tiempo de ejecución pasaba a ser excesivo
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/ViajanteFB.png}
+            \caption{Ejecución algoritmo viajante fuerza bruta}
+            \label{fig:ViajanteFB}
+      \end{figure}
+\end{center}
+\subsection{Estudio híbrido}
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/ViajanteFB_hib.png}
+            \caption{Ajuste hibrido}
+            \label{fig:ViajanteFBhibrido}
+      \end{figure}
+\end{center}
+Tras la interpretación de los datos empíricos en gnuplot y de la formula teorica del método, obtenemos que \\
+las constantes ocultas son:
+\begin{equation*}
+      T_{ViajanteFB}=2.47543 \cdot 10^{-9}x!x
+\end{equation*}
+
+
+
+\chapter{Algoritmos Divide y Vencerás}
+En este apartado, estudiaremos la eficiencia teórica, empírica e híbrida de los algoritmos divide y vencerás
+de cada uno de los problemas.
+\section{Problema 1: Subsecuencia de suma máxima.}
+Para el primer problema, el algoritmo DyV que empleamos es el siguiente:
+\subsection{Estudio teórico}
+
+\begin{lstlisting}
+      int maxSubArray(const int * const arr, int low, int high, int threshold) {
+          if (high - low + 1 <= threshold) {
+              return kadane(arr, low, high);
+          }
+      
+          int mid = low + (high - low) / 2;
+      
+          int leftSum = maxSubArray(arr, low, mid, threshold);
+          int rightSum = maxSubArray(arr, mid + 1, high, threshold);
+      
+          int crossLeftSum = numeric_limits<int>::min();
+          int crossRightSum = numeric_limits<int>::min();
+          int sum = 0;
+      
+          for (int i = mid; i >= low; --i) {
+              sum += arr[i];
+              crossLeftSum = max(crossLeftSum, sum);
+          }
+      
+          sum = 0;
+          for (int i = mid + 1; i <= high; ++i) {
+              sum += arr[i];
+              crossRightSum = max(crossRightSum, sum);
+          }
+      
+          int crossSum = crossLeftSum + crossRightSum;
+      
+          return max(max(leftSum, rightSum), crossSum);
+      }
+\end{lstlisting}
+Este algoritmo hace usa de la técnica de \textbf{Divide y Vencerás} para resolver el problema de la subsecuencia de suma máxima, en el cual se divide el
+problema en subproblemas más pequeños y se resuelven de forma recursiva. Como se observa se usa el \textbf{algoritmo de Kadane} para resolver el caso base dado como el parámetro
+\textbf{threshold}.\\ \\
+El caso base solo usará cuando lleguemos a tamaños del problema menores o iguales a \textbf{threshold}, por lo que podemos obviar su eficiencia, ya que tardará
+un tiempo constante en resolverlo. Por otro lado, el resto de las operaciones son la mayoría de eficiencia $O(1)$, excepto los bucles for que tienen eficiencia $O(n/2)=O(n)$ y las llamadas
+recursivas al algoritmo con un tamaño $n/2$ (destacar que tomaremos $n=high-low$ como el tamaño del problema). Tomando estas ideas previas y usando la regla
+del máximo, veamos los calculos de la eficiencia teórica:
+
+\begin{equation*}
+      T(n)=2T\left(\frac{n}{2}\right)+n
+\end{equation*}
+Pasemos ahora a resolver dicha ecuación de recurrencia. Aplicando el siguiente cambio de variable $n=2^m$ obtenemos
+\begin{equation*}
+      T(2^m)=2T(2^{m-1})+2^m \Rightarrow T(2^m)-2T(2^{m-1})=2^m
+\end{equation*}
+Resolvamos la parte homógenea de la ecuación, es decir, la ecuación $T(2^m)-2T(2^{m-1})=0$. Obtenemos el polinomio
+característico de la parte homógenea que es $p_H(x)=x-2$ cuya raíz es $x=2$. \\
+Obtengamos ahora la parte no homógenea
+\begin{equation*}
+      2^m=b_1^m q_1(m) \Rightarrow b_1=2 \wedge q_1(m)=1 \text{ con grado } d_1=0
+\end{equation*}
+Tenemos entonces el siguiente polinómio característico
+\begin{equation*}
+      p(x)=(x-2)(x-b_1)^{d_1+1}=(x-2)^2
+\end{equation*}
+Por tanto la solución general es
+\begin{equation*}
+      t_m=c_{10}2^mm^0+c_{11}2^mm^1  \overset{*}{\Rightarrow}  t_n=c_{10}n+c_{11}n\log_2(n) \Rightarrow T(n)=c_{10}n+c_{11}n\log_2(n)
+\end{equation*}
+donde en ($*$) hemos deshecho el cambio de variable \\
+Aplicando la regla del máximo tenemos $T(n) \in O(n\log(n))$
+
+\subsection{Estudio empírico}
+\begin{center}
+      \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/SumaMaxDyV.png}
+            \caption{Ejecución algoritmo SumaMaxDyV}
+            \label{fig:SumaMaxDyV}
+      \end{figure}
+\end{center}
+Como podemos observar en la gráfica, el algoritmo de DyV
+\newpage
+\subsection{Estudio híbrido}
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/SumaMaxDyV_hib.png}
+            \caption{Ajuste híbrido algoritmo SumaMaxDyV}
+            \label{fig:sumaMax}
+      \end{figure}
+\end{center}
+Tras la interpretación de los datos empíricos en gnuplot y de la formula teorica del método, obtenemos que \\
+las constantes ocultas son:
+\begin{equation*}
+      T_{SumaMaxDyV}=7.48578x log(x)
+\end{equation*}
+\subsection{Cálculo del umbral teórico}
+
+Para el cálculo del umbral teórico tenemos que igualando las funciones obtenidas del ajuste híbrido obtenemos 
+una intersección tal que dicho punto de corte es el umbral teórico buscado, veámoslo
+
+\begin{equation*}
+      1.64263x+0.996451=7.48578xlog x \Leftrightarrow x \approx 1.941
+\end{equation*}
+
+Es cierto que se cortan en dicho punto, pero como podemos observar en la siguiente gráfica que muestra el algoritmo de Kadane y el que hace uso
+del DyV, el punto de corte se encuentra muy al inicio de los valores lo que surge de un problema de precisión al ajustar las gráficas, por lo que a excepción
+de dicho error (totalmente lógico al tratar con datos grandes y tener que hacer comparación con el ajuste híbrido), observamos que no se corta en ningún otro momento,
+deduciendo así que el umbral teórico se aleja de forma indefinida, es decir, el umbral teórico es $\infty$
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/SumaMax_Umbral.png}
+            \caption{Umbral SumaMax}
+            \label{fig:Umbral}
+      \end{figure}
+\end{center}
+
+\section{Problema 2: Enlosar un espacio }
+Para el segundo problema, el algoritmo DyV que empleamos es el siguiente:
+\subsection{Estudio teórico}
+\begin{lstlisting}
+      void resolver(int n,int i,int j,vector<vector<int>> &mat){
+            if(n == 2){
+                  resuelve2(i, j, n, mat);
+            }
+            else{
+                  getSumidero(i,j,mat,n);
+                  if(i_sumidero < i + n/2  && j_sumidero < j + n/2){
+                        enlosar(i+n/2-1,j+n/2,i+n/2,j+n/2-1,i+n/2,j+n/2,mat);
+                  }
+                  else if(i_sumidero >= i+n/2 && j_sumidero < j +n/2){ 
+                        enlosar(i+n/2-1,j+n/2 -1, i+n/2 -1 , j+n/2 , i+n/2 ,j + n/2 ,mat);
+                  }
+                  else if(i_sumidero < i +n/2 && j_sumidero >= n/2 + j){ //Superior izquierda
+                        enlosar(i+n/2-1,j+n/2 -1, i+n/2 , j+n/2-1 , i+n/2 ,j + n/2 ,mat);
+                  }
+                  else{
+                        enlosar(i+n/2-1,j+n/2 -1, i+n/2 , j+n/2-1 , i+n/2 -1 ,j + n/2 ,mat);
+                  }
+                  resolver(n/2,i,j,mat);
+                  resolver(n/2,i+n/2,j,mat);
+                  resolver(n/2,i,j+n/2,mat);
+                  resolver(n/2, i+n/2, j+n/2, mat);
+            }
+
+
+      }
+\end{lstlisting}
+
+Como el código se sustenta de la implementación de if/else anidados, su eficiencia teórica se calculará
+sobre el bloque de sentencias dentro de un if/else con peor eficiencia. Además, vemos que intervienen
+dos llamadas a funciones dentro del segundo else.
+
+\begin{lstlisting}
+      void getSumidero(int i , int j , vector<vector<int>> & mat ,int n){
+            for (int x = i; x< i + n; x++) {
+                  for (int y = j; y < j + n; y++) {
+                        if (mat[x][y] != 0)
+                              i_sumidero = x, j_sumidero = y;
+                  }   
+            }
+      }
+
+      void enlosar(int i1, int j1,int i2 , int j2 , int i3 , int j3,vector<vector<int>> &mat){
+            losas++;
+            mat[i1][j1] = losas;
+            mat[i2][j2] = losas;
+            mat[i3][j3] = losas;
+
+      }
+\end{lstlisting}
+De aquí, tenemos que la eficiencia de la función getSumidero es claramente $O(n^2)$. Mientras que la llamada
+a función enlosar $O(1)$. A partir de esto, podemos calcular la eficiencia total del codigo resuelve:
+
+\begin{gather*}
+      T(n)= 4T(\frac{n}{2})+n^2
+\end{gather*}
+Pasemos ahora a resolver dicha ecuación de recurrencia. Aplicando el siguiente cambio de variable $n=2^m$ obtenemos
+\begin{equation*}
+      T(2^m)=4T(2^{m-1})+4^m \Rightarrow T(2^m)-4T(2^{m-1})=4^m
+\end{equation*}
+Resolvamos la parte homógenea de la ecuación, es decir, la ecuación $T(2^m)-4T(2^{m-1})=0$. Obtenemos el polinomio
+característico de la parte homógenea que es $p_H(x)=x-4$ cuya raíz es $x=4$. \\
+Obtengamos ahora la parte no homógenea
+\begin{equation*}
+      4^m=b_1^m q_1(m) \Rightarrow b_1=4 \wedge q_1(m)=1 \text{ con grado } d_1=0
+\end{equation*}
+Tenemos entonces el siguiente polinómio característico
+\begin{equation*}
+      p(x)=(x-4)(x-b_1)^{d_1+1}=(x-4)^2
+\end{equation*}
+Por tanto la solución general es
+\begin{equation*}
+      t_m=c_{10}4^mm^0+c_{11}4^mm^1  {\Rightarrow}  t_m=c_{10}(2^{m})^2m^0+c_{11}(2^{m})^2m^1
+\end{equation*}
+Deshacemos el cambio de variable
+\begin{equation*}
+      t_n=c_{10}n^2+c_{11}n^2\log_2(n) \Rightarrow T(n)=c_{10}n^2+c_{11}n^2\log_2(n)
+\end{equation*}
+
+Aplicando la regla del máximo tenemos $T(n) \in O(n^2\log(n))$
+\subsection{Estudio empírico}
+
+A continuación  vemos la gráfica del algoritmo del problema 2 con una entrada de datos de matrices de dimensión $2^n$ con $2<=|n<=|17$ y con
+los sumideros colocados de forma aleatoria.
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/Losetas.png}
+            \caption{Ejecución algoritmo Losetas}
+            \label{fig:Viajante}
+      \end{figure}
+\end{center}
+
+\subsection{Estudio híbrido}
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/Losetas_hib.png}
+            \caption{Ajuste híbrido algoritmo Losetas}
+            \label{fig:Losetas}
+      \end{figure}
+\end{center}
+Tras la interpretación de los datos empíricos en gnuplot y de la formula teorica del método, obtenemos que \\
+las constantes ocultas son:
+\begin{equation*}
+      T_{Losetas}=0.549786x^2log(x)
+\end{equation*}
+\subsection{Cálculo del umbral teórico}
+
+
+\section{Problema 3: Problema del viajante de comercio.}
+Para el tercer problema, nos encontramos ante un problema de complejidad
+NP-duro, por lo que no podemos encontrar una solución exacta en tiempo polinómico.
+Sin embargo, podemos encontrar una solución aproximada aplicando la técnica de Divide y Vencerás.
+Para ello, usamos el algoritmo de fuerza bruta para encontrar la solución exacta para subconjuntos
+del problema total y luego unimos las soluciones parciales para obtener una solución que se optimiza
+para asegurar un cierto mínimo de precision.
+
+\subsection{Estudio teórico}
+Para el tercer problema, el algoritmo DyV que empleamos es el siguiente:
+\begin{lstlisting}
+      std::vector<Point> divideAndConquerTSP(const std::vector<Point>& points) {
+            if (points.size() <= UMBRAL) {
+                return bruteForceTSP(points);
+            }
+        
+            int mid = points.size() / 2;
+            std::vector<Point> left(points.begin(), points.begin() + mid);
+            std::vector<Point> right(points.begin() + mid, points.end());
+        
+            std::vector<Point> leftTour = divideAndConquerTSP(left);
+            std::vector<Point> rightTour = divideAndConquerTSP(right);
+        
+            std::vector<Point> combinedTour = leftTour;
+            combinedTour.insert(combinedTour.end(), rightTour.begin(), rightTour.end());
+        
+        
+            return optimizeTour(combinedTour);
+        }
+
+std::vector<Point> optimizeTour(const std::vector<Point>& tour) {
+      std::vector<Point> currentTour = tour;
+      bool improvement = true;
+
+      while (improvement) {
+            improvement = false;
+
+            for (int i = 1; i < currentTour.size() - 2; ++i) {
+                  for (int j = i + 2; j < currentTour.size(); ++j) {
+
+                  double originalDistance = currentTour[i - 1].distanceTo(currentTour[i]) +
+                                                currentTour[j - 1].distanceTo(currentTour[j]);
+                  double swappedDistance = currentTour[i - 1].distanceTo(currentTour[j - 1]) +
+                                          currentTour[i].distanceTo(currentTour[j]);
+
+                  if (swappedDistance < originalDistance) {
+                        std::reverse(currentTour.begin() + i, currentTour.begin() + j);
+                        improvement = true;
+                  }
+                  }
+            }
+      }
+
+      return currentTour;
+}
+\end{lstlisting}
+
+En primer lugar, destacar que obviaremos el caso base, pues su eficiencia es constante y no afecta al cálculo de la eficiencia, por tanto, nos centraremos en el
+resto del algoritmo. \\
+Como podemos observar, el algoritmo divide el problema en dos subproblemas de tamaño $n/2$ y los resuelve de forma recursiva. A continuación, se define un vector
+de puntos que será la solución y para combinar los resultados simplemente uniremos las soluciones parciales, mediante el \textbf{.insert} de la STL de C++, lo cual
+tiene una eficiencia $O(1)$ porque los insertamos al final.  \\ \\
+En cuanto a la función \textbf{optimizeTour}, resulta claro que se ejecuta
+$n-2$ veces el primer bucle y $n-1$ veces el segundo, estos nos da una eficiencia en el peor caso de
+$O(n^2)$, esta situación se da cuando en cada iteración del bucle, el cambio propuesto nos proporciona
+una mejora, por lo que el bucle \textit{while} se ejecuta mientras lo hagan los bucles \textit{for}. Veamos ahora los calculos para la eficiencia teórica del algoritmo
+implementado de DyV:
+\begin{equation*}
+      T(n)=2T\left(\frac{n}{2}\right)+n^2
+\end{equation*}
+
+Pasemos ahora a resolver dicha ecuación de recurrencia. Aplicando el siguiente cambio de variable $n=2^m$ obtenemos
+\begin{equation*}
+      T(2^m)=2T(2^{m-1})+2^{2m} \Rightarrow T(2^m)-2T(2^{m-1})=2^{2m}
+\end{equation*}
+Resolvamos la parte homógenea de la ecuación, es decir, la ecuación $T(2^m)-2T(2^{m-1})=0$. Obtenemos el polinomio
+característico de la parte homógenea que es $p_H(x)=x-2$ cuya raíz es $x=2$. \\
+Obtengamos ahora la parte no homógenea
+\begin{equation*}
+      2^{2m}=b_1^m q_1(m) \Rightarrow b_1=2^2=4 \wedge q_1(m)=1 \text{ con grado } d_1=0
+\end{equation*}
+Tenemos entonces el siguiente polinómio característico
+\begin{equation*}
+      p(x)=(x-2)(x-b_1)^{d_1+1}=(x-2)(x-4)
+\end{equation*}
+Por tanto la solución general es
+\begin{equation*}
+      t_m=c_{10}2^mm^0+c_{20}4^mm^0\overset{*}{\Rightarrow}  t_n=c_{10}n+c_{20}n^2 \Rightarrow T(n)=c_{10}n+c_{20}n^2
+\end{equation*}
+donde en ($*$) hemos deshecho el cambio de variable \\
+Aplicando la regla del máximo tenemos $T(n) \in O(n^2)$
+
+\subsection{Estudio Empírico}
+Para determinar el umbral con el que obtenemos la mejor relación entre eficiencia y precisión, hemos
+realizado una serie de pruebas con diferentes valores de umbral, a partir de tamaño 10, el algoritmo de
+fuerza bruta se vuelve completamente inviable, de forma similar, para tamaño menor a 4, el algoritmo
+no nos produce ninguna mejora en cuanto a eficiencia debido a la cantidad de llamadas recursivas que
+saturan la pila, y la precision disminuye de forma considerable. Por ello, hemos decidido realizar
+las pruebas para tamaños de 4 a 10, con distintas ciudades con solución ya conocida, para comparar
+los tiempos de ejecución y la precisión de los resultados obtenidos:
+\subsubsection*{Tiempo de ejecución y precisión}
+% Dos imagenes en una fila
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{assets/Img/P3PrecisionUmbral.png}
+            \caption{Umbral y precision Viajante}
+            \label{fig:P3UmbralPrec}
+      \end{figure}
+\end{center}
+
+Como se puede apreciar, los mejores resultados se han obtenido con los umbrales $\{4,8\}$.
+Para decidir cual de los dos umbrales es el mejor, nos fijamos en la precisión
+que nos proporciona cada uno de ellos, obtenemos ligeramente mejor precision en el umbral 8,
+como el tiempo de ejecución es similar, y lo que más nos interesa en este punto es 
+una mayor precisión, decidimos quedarnos con el umbral 8. 
+
+\subsection{Estudio híbrido}
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{assets/Img/ViajanteRandom_hib.png}
+            \caption{Ajuste híbrido algoritmo ViajanteDyV}
+            \label{fig:ViajanteDyV}
+      \end{figure}
+\end{center}
+Tras la interpretación de los datos empíricos en gnuplot y de la formula teorica del método, obtenemos que \\
+las constantes ocultas son:
+\begin{equation*}
+      T_{ViajanteDyV}=6.42578 \cdot 10^{-8} x^2 +0.000154978 x-0.730506
+\end{equation*}
+\subsection{Cálculo del umbral teórico}
+En cuanto al umbral teórico, hemos visto que las dos funciones se intersecan 
+para valores complejos y negativos, por lo que no tiene sentido lógico, esto se explica
+ya que gnuplot aproxima el ajuste de las funciones, esto junto con la gran diferencia entre
+el tamaño de ejecución de ambos algoritmos, hace que al graficar la función, para valores
+pequeños (los que trabaja el algoritmo de fuerza bruta) se ajuste de forma incorrecta, por lo que
+no se puede obtener de forma directa un umbral teórico.
+\\ \\
+La solución en este caso es ver la ejecución específica de cada algoritmo en 
+el rango sobre el que puede trabajar el algoritmo de fuerza bruta, ya que es claro
+que el umbral estará en ese rango, observando la gráfica de la ejecución de ambos algoritmos
+en dicho rango, podemos ver claramente que a partir del umbral establecido, el algoritmo 
+de DyV supera de forma drástica al algoritmo de fuerza bruta, por lo que podemos afirmar
+que el umbral teórico estará comprendido en dicho rango, una vez acotado el rango, nos fijamos
+en la ejecución anterior de los posibles umbrales, y vemos que el umbral 8 es el que nos proporciona
+mejores resultados, por lo que podemos afirmar que el umbral teórico es 8.
+\begin{center}
+      \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\linewidth]{assets/Img/Viajantechicodyv.jpeg}
+            \caption{Umbral Viajante}
+            \label{fig:ViajanteUmbral}
+      \end{figure}
+\end{center}
+
+
 \chapter{Conclusiones}
+
+Tras haber resuelto los problemas propuestos en la práctica hemos podido observar la eficacia
+de usar una técnica como la de divide y vencerás la cual hace que de un problema aparentemente
+extenso y con una gran variedad de casos se pueda resolver dividiendolo  en subproblemas hasta llegar
+a un caso base (umbral) donde resolvamos el problema con un algoritmo sencillo como es el caso de
+el problema 2 en el cual el caso base es tan simple com rellenar una matriz 2x2 . En otros casos como
+el problema de la suma máxima o  el viajero  el algoritmo base es más complejo pero esto hace que se pueda ver la esencia del
+divide y vencerás que con saber resolver un caso base , los demás casos son solo una ampliación de este por tanto podemos conseguir una
+eficiencia considerablemente buena con grandes cantidades de datos  aún usando algoritmos no tan eficientes con esa cantidad de  datos en el caso base.
+\\ \\
+En el caso particular del problema del viajante podemos ver, incluso, como es necesario aplicar
+la técnica de DyV para poder obtener una solución aproximada en un tiempo razonable, ya que
+el algoritmo de fuerza bruta se vuelve inviable a partir de un tamaño de 12 ciudades, y esto,
+en la práctica, es algo inservible.
+\\ \\
+También se ve reflejada la importancia de los umbrales los cuales pueden hacer que el problema sea mas o menos eficiente
+dependiendo de lo preciso que sea el umbral y la distinción entre casos que se hayan  hecho ya que una mala elección
+del umbral en el que se usa el algoritmo del caso base puede llevar a un gran lastre en la eficiencia de nuestro algoritmo
+ya que estaremos sometiendo al algoritmo  base a más datos de los necesarios para que sea eficiente .
+\\ \\
+Respecto a los umbrales calculados, hemos encontrado resultados sorprendentes al intentar
+calcular el umbral teórico, ya que en el caso del primer y tercer problema, el algoritmo
+de DyV ha quedado rápidamente por encima y por debajo respectivamente en cuanto al
+tiempo de ejecución, lo que nos ha llevado a no obtener un valor de umbral acorde al tamaño
+de los datos.
+\\ \\ 
+En resumen, hemos podido observar la potencia de la técnica DyV, asi como la importancia
+de estudiar cada caso particular para obtener los mejores resultados posibles, obteniendo
+para problemas distintos, que, en ocasiones, aplicar DyV nos proporcionará grandes beneficios,
+mientras que en otros casos, no será la mejor opción, y que, cuando se aplique, es necesario
+estudiar el umbral para obtener los mejores resultados posibles adecuados a cada problema.
+
 \end{document}
