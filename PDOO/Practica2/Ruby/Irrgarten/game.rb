@@ -9,7 +9,7 @@ require_relative 'game_character'
 require_relative 'orientation'
 
     class Game
-        @@MAX_ROUNDS = 10
+        @@MAX_ROUNDS = 10 # Variable para el combate
         
         #------------|Se personaliza el laberinto|---------------- 
         @@ROWS = 8
@@ -38,7 +38,7 @@ require_relative 'orientation'
         end
 
         def finished
-            return @labyrinth.have_a_winner #TODO: ¿? || @rounds >= @@MAX_ROUNDS
+            return @labyrinth.have_a_winner
         end
 
         def game_state

@@ -14,10 +14,10 @@ require_relative 'directions'
         @@COL = 1
 
         def initialize(n_rows, n_cols, exit_row, exit_col)
-            @n_rows     = n_rows.to_i # TODO: Check if it is necessary to convert to integer
-            @n_cols     = n_cols.to_i
-            @exit_row   = exit_row.to_i
-            @exit_col   = exit_col.to_i
+            @n_rows     = n_rows
+            @n_cols     = n_cols
+            @exit_row   = exit_row
+            @exit_col   = exit_col
 
             @monsters   = Array.new(@n_rows) { Array.new(@n_cols) }
             @players    = Array.new(@n_rows) { Array.new(@n_cols) }

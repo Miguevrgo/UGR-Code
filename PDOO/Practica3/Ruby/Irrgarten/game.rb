@@ -104,10 +104,12 @@ module Irrgarten
                 @labyrinth.add_block(orientation, row, col, size)
             end
 
+            i = 0
             @@MONSTERS_POS.each do |pos|
                 row, col = pos
-                @monsters.push(Monster.new("Monster " + pos.to_s, Dice.random_intelligence, Dice.random_strength))
+                @monsters.push(Monster.new("Monster #{i} ", Dice.random_intelligence, Dice.random_strength))
                 @labyrinth.add_monster(row, col, @monsters.last)
+                i += 1
             end
         end
 

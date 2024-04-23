@@ -152,8 +152,8 @@ public class Labyrinth {
      * @param col column of the position to be checked
      * @return true if the position is empty, false otherwise
      */
-    private boolean emptyPos(int row, int col) { //TODO: ¿posOK?
-        return posOK(row, col) && labyrinth[row][col] == EMPTY_CHAR; //TODO: Comprobar Jugadores
+    private boolean emptyPos(int row, int col) {
+        return labyrinth[row][col] == EMPTY_CHAR;
     }
 
     /**
@@ -164,7 +164,7 @@ public class Labyrinth {
      * @return true if the position is a monster, false otherwise
      */
     private boolean monsterPos(int row, int col) {
-        return posOK(row, col) && monsters[row][col] != null;
+        return monsters[row][col] != null;
     }
 
     /**
@@ -175,7 +175,7 @@ public class Labyrinth {
      * @return true if the position is the exit, false otherwise
      */
     private boolean exitPos(int row, int col) {
-        return posOK(row, col) && labyrinth[row][col] == EXIT_CHAR;
+        return labyrinth[row][col] == EXIT_CHAR;
     }
 
     /**
@@ -186,7 +186,7 @@ public class Labyrinth {
      * @return true if the position is a combat position, false otherwise
      */
     private boolean combatPos(int row, int col) {
-        return posOK(row,col) && labyrinth[row][col] == COMBAT_CHAR;
+        return labyrinth[row][col] == COMBAT_CHAR;
     }
 
     /**

@@ -84,8 +84,7 @@ public class Labyrinth {
             for (int j = 0; j < nCols; ++j) {
                 returnString += labyrinth[i][j] + " ";
             }
-            returnString += "║";
-            returnString += "\n";
+            returnString += "║\n";
         }
         
         returnString += "╚";

@@ -8,7 +8,7 @@ module Irrgarten
     class Player
         @@MAX_WEAPONS = 2
         @@MAX_SHIELDS = 3
-        @@INITIAL_HEALTH = 10
+        @@INITIAL_HEALTH = 5
         @@HITS2LOSE = 3
 
         @@INVALID_POS = 0
@@ -83,10 +83,18 @@ module Irrgarten
         end
 
         def to_s
-            "P[#{name}, " +
-            ("%.1f♥, %.3f, %.3f]\n" % [@health, @intelligence, @strength]) +
-            "\tWeapons: " + weapons.map(&:to_s).join("\t") + "\n" +
-            "\tShields: " + shields.map(&:to_s).join("\t")
+            return_string = "P[#{@name}, " +
+            ("%.1f♥, %.3f🧠, %.3f🗡]\n" % [@health, @intelligence, @strength])
+
+            return_string+="\nWeapons"
+            @weapons.each do |i|
+                return_string+=i.to_string +"\t"
+            end
+            return_string+="\nShields"
+            @shields.each do |i|
+                return_string+=i.to_string +"\t"
+            end
+            return return_string
         end
 
         private

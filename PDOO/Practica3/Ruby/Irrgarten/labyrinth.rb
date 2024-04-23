@@ -40,14 +40,26 @@ module Irrgarten
         end
 
         def to_s
-            result = ""
-            @labyrinth.each do |row|
-                row.each do |cell|
-                    result += cell.to_s
-                end
-                result += "\n"
+            return_string = "╔"
+            @n_cols.times do
+                return_string += "══"
             end
-            result
+            return_string += "╗\n"
+
+            @labyrinth.each do |row|
+                return_string += "║"
+                row.each do |cell|
+                    return_string += cell.to_s + " "
+                end
+                return_string += "║\n"
+            end
+
+            return_string += "╚"
+            @n_cols.times do
+                return_string += "══"
+            end
+            return_string += "╝"
+            return return_string
         end
 
         def add_monster(row, col, monster)

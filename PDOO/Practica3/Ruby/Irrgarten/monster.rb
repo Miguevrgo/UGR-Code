@@ -28,7 +28,10 @@ module Irrgarten
         end
 
         def to_s
-            return "M[#{@name}, #{@intelligence}, #{@strength}, #{@health}, #{@row}, #{@col}]"
+            return_string = "M[#{@name}, " +
+            ("%.1f♥, %.3f🧠, %.3f🗡]" % [@health, @intelligence, @strength])
+            return_string += " (#{@row}, #{@col}) ]"
+            return return_string
         end
 
         def got_wounded
