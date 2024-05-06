@@ -1,6 +1,7 @@
 /**
  * @file Dice.java
  * @author Miguel Angel De la Vega Rodríguez
+ * @author Alberto De la Vera Sanchez
  * @description This file contains the Dice class, which provides methods
  * to simulate the randomness of the game, such as generating random numbers
  */
@@ -11,9 +12,9 @@ import java.util.Random;
 
 public class Dice {
     private static final int MAX_USES = 5; // Maximum uses for both the weapons and shields
-    private static final float MAX_INTELLIGENCE = 10; // Maximum intelligence for the player and the enemy
-    private static final float MAX_STRENGTH = 10; // Maximum strength for the player and the enemy
-    private static final float RESURRECT_PROB = 0.3F; // Probability of resurrecting after each round
+    private static final float MAX_INTELLIGENCE = 10.0f; // Maximum intelligence for the player and the enemy
+    private static final float MAX_STRENGTH = 10.0f; // Maximum strength for the player and the enemy
+    private static final float RESURRECT_PROB = 0.3f; // Probability of resurrecting after each round
     private static final int WEAPONS_REWARD = 2; // Maximum number of weapons rewarded when winning a combat
     private static final int SHIELDS_REWARD = 3; // Maximum number of shields rewarded when winning a combat
     private static final int HEALTH_REWARD = 5; // Maximum health rewarded when winning a combat

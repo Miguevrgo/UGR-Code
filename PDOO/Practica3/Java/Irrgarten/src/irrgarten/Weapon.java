@@ -1,6 +1,7 @@
 /**
  * @file Weapon.java
  * @author Miguel Angel De la Vega Rodríguez
+ * @author Alberto De la Vera Sanchez
  * @description This file contains the Weapon class, which represents the weapons
  * that the player can use in the game against a monster
  */
@@ -49,7 +50,7 @@ public class Weapon {
      * @return string with the state
      */
     public String toString() {
-        return "🔫[" + power + ", " + uses + "]";
+        return "W[" + power + ", " + uses + "]";
     }
 
 }

@@ -1,6 +1,7 @@
 /**
  * @file Player.java
  * @author Miguel Angel De la Vega Rodríguez
+ * @author Alberto De la Vera Sanchez
  * @description This file contains the Player class, which provides methods to
  * manage the player.
  */
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class Player {
     private static final int MAX_WEAPONS = 2;
     private static final int MAX_SHIELDS = 3;
-    private static final int INITIAL_HEALTH = 5;
+    private static final int INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
 
     private String name = "Player #";
@@ -29,6 +30,8 @@ public class Player {
 
     public Player(char number, float intelligence, float strength) {
         this.consecutiveHits = 0;
+        this.row = 0;
+        this.col = 0;
         this.number = number;
         this.intelligence = intelligence;
         this.strength = strength;
@@ -143,12 +146,12 @@ public class Player {
         int wReward = Dice.weaponsReward();
         int sReward = Dice.weaponsReward();
 
-        for (int i = 1; i < wReward; ++i) {
+        for (int i = 1; i <= wReward; ++i) {
             Weapon wnew = newWeapon();
             receiveWeapon(wnew);
         }
 
-        for (int i = 1; i < sReward; ++i) {
+        for (int i = 1; i <= sReward; ++i) {
             Shield snew = newShield();
             receiveShield(snew);
         }
@@ -166,7 +169,7 @@ public class Player {
         String toReturn = "P[";
         toReturn += name + ", ";
 
-        toReturn += String.format("%.1f♥, %.3f🧠, %.3f🗡]\n", health, intelligence, strength);
+        toReturn += String.format("%.1f♥, %.3f, %.3f, %d ]\n", health, intelligence, strength,consecutiveHits);
 
         toReturn += "\tWeapons: ";
         for (Weapon weapon : weapons) {

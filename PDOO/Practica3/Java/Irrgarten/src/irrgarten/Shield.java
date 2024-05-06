@@ -1,6 +1,7 @@
 /**
  * @file Shield.java
  * @author Miguel Angel De la Vega Rodríguez
+ * @author Alberto De la Vera Sanchez
  * @brief This file contains the class that represents the shield which 
  * can be used by the player in the game to protect himself from a monster
  */
@@ -51,7 +52,7 @@ public class Shield {
      * @return a string with the current state of the shield
      */
     public String toString() {
-        return "🛡[" + protection + ", " + uses + "]";
+        return "S[" + protection + ", " + uses + "]";
     }
 
 }

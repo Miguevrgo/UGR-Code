@@ -1,6 +1,7 @@
 /**
  * @file Monster.java
  * @author Miguel Angel De la Vega Rodríguez
+ * @author Alberto De la Vera Sanchez
  * @description This file contains the Monster class, which provides methods
  * to manage the monsters
  */
@@ -32,7 +33,7 @@ public class Monster {
      * @return health <= 0
      */
     public boolean dead() {
-        return health <= 0;
+        return this.health <= 0;
     }
 
     /**
@@ -84,7 +85,7 @@ public class Monster {
     public String toString() {
         String toReturn = "M[";
         toReturn += name + ", ";
-        toReturn += String.format("%.1f♥, %.3f🧠, %.3f🗡", health, intelligence, strength);
+        toReturn += String.format("%.1f♥, %.3f, %.3f", health, intelligence, strength);
         toReturn += " (" + row + "," + col + ") ]";
         return toReturn;
     }

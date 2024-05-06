@@ -14,8 +14,8 @@ public class Game {
     private static final int MAX_ROUNDS = 10;
     
     /*----------------------------Custom Labyrinth----------------------------*/
-    private static final int ROWS = 15;
-    private static final int COLS = 15;
+    private static final int ROWS = 11;
+    private static final int COLS = 10;
     
     private static final int NMONSTERS = 5;
     private static final int[][] MONSTERS_POS = {{0,0},{1,6},{2,2},{5,5},{7,1}};
@@ -72,7 +72,7 @@ public class Game {
      * @return true if the game has finished, false otherwise
      */
     public boolean finished() {
-        return labyrinth.haveAWinner(); // ¿Consider MAX_ROUNDS?
+        return this.labyrinth.haveAWinner();
     }
 
     /**
@@ -202,7 +202,8 @@ public class Game {
                 lose = monster.defend(currentPlayer.attack());
             }
         }
-
+        
+        logRounds(rounds,MAX_ROUNDS);
         return winner;
     }
 
@@ -286,9 +287,9 @@ public class Game {
 
     /**
      * Appends to the end of the attribute log the message indicating
-     * that the game has finished after the maximum number of rounds
+     * the rounds 
      */
-    private void logRounds() {
-        log += "The game has finished after " + MAX_ROUNDS + " rounds\n";
+    private void logRounds(int rounds, int max) {
+        log += "Rounds: " + rounds + "|" + max + "\n";
     }
 }
