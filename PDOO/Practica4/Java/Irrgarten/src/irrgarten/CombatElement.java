@@ -1,6 +1,9 @@
 /**
  * @file CombatElement.java
- * @description This file contains the CombatElement class, which provides a //TODO
+ * @author Miguel Angel De la Vega Rodríguez
+ * @author Alberto De la Vera Sánchez
+ * @description This file contains the CombatElement class, which provides an
+ * abstraction for the elements used by a player in combat (weapon and shield)
  */
 package irrgarten;
 
@@ -11,6 +14,10 @@ abstract public class CombatElement {
     public CombatElement(float effect, int uses) {
         this.effect = effect;
         this.uses = uses;
+    }
+
+    public CombatElement(CombatElement other) {
+        this(other.effect,other.uses);
     }
 
     /**
@@ -43,6 +50,7 @@ abstract public class CombatElement {
      * 
      * @return string with the current state of the combat element
      */
+    @Override
     public String toString() {
         return "[" + effect + ", " + uses + "]";
     }

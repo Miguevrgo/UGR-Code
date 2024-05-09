@@ -13,17 +13,17 @@ require_relative 'player'
 require_relative 'weapon'
 
 module Irrgarten
-    class MainP3
-        @@NUM_PLAYERS = 1 # Number of players in the game
+  class MainP3
+    @@NUM_PLAYERS = 1 # Number of players in the game
 
-        def self.main
-            view = UI::TextUI.new
-            game = Game.new(@@NUM_PLAYERS)
+    def self.main
+      view = UI::TextUI.new
+      game = Game.new(@@NUM_PLAYERS)
 
-            controller = Control::Controller.new(game, view)
-            controller.play
-        end
+      controller = Control::Controller.new(game, view)
+      controller.play
     end
+  end
 
-    MainP3.main
+  MainP3.main
 end

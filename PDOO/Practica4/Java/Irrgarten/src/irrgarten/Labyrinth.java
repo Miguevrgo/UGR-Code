@@ -256,6 +256,15 @@ public class Labyrinth {
     }
 
     /**
+     * This method updates the position of the player who is turned into a fuzzy
+     * player when resurrected
+     * @param this Fuzzy player whose position has to be updated;
+     */
+    public void updatePos(FuzzyPlayer fuzzy) {
+        this.players[fuzzy.getRow()][fuzzy.getCol()] = fuzzy;
+    }
+
+    /**
      * This method only updates the position if the position provided is 
      * within the limits of the labyrinth if it's within the limits of the labyrinth,
      * it updates the old position of the player considering that a combat position

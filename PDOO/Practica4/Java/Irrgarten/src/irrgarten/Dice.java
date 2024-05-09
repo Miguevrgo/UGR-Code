@@ -165,14 +165,7 @@ public class Dice {
      * @return Direction for the next step
      */
     public static Directions nextStep(Directions preference, ArrayList<Directions> validMoves, float intelligence) {
-        float prob = (float) intelligence / MAX_INTELLIGENCE; //TODO: Se puede hacer con randomIntelligence() pero es un poco enrebesado e innecesrio
-
-        if (generator.nextFloat() <= prob) {
-            return preference;
-        }
-        else{
-            return validMoves.get(generator.nextInt(validMoves.size()));
-        }
+        return (intelligence >= randomIntelligence()) ? preference : validMoves.get(generator.nextInt(validMoves.size()));
     }
 
 }

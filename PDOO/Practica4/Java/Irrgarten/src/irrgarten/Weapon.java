@@ -10,6 +10,12 @@ package irrgarten;
 
 public class Weapon extends CombatElement {
 
+    /**
+     * Constructor for class Weapon
+     * 
+     * @param power Power of the weapon
+     * @param uses  Uses the weapon will have
+     */
     public Weapon(float power, int uses) {
         super(power, uses);
     }
@@ -26,10 +32,14 @@ public class Weapon extends CombatElement {
     }
 
     /**
-     * Returns a string with the current state of the weapon
+     * Returns a string with the current state of the weapon in the following
+     * format:
+     * 
+     * W[Power, Uses]
      * 
      * @return string with the state
      */
+    @Override
     public String toString() {
         return "W" + super.toString();
     }

@@ -230,6 +230,10 @@ public class Game {
         if (Dice.resurrectPlayer()) {
             currentPlayer.resurrect();
             logResurrected();
+
+            FuzzyPlayer fuzzy = new FuzzyPlayer(currentPlayer);
+            this.players.set(currentPlayerIndex, fuzzy);
+            this.labyrinth.updatePos(fuzzy);
         }
         else{
             logPlayerSkipTurn();

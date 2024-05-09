@@ -11,7 +11,7 @@ package irrgarten;
 public class Shield extends CombatElement{
     
     /**
-     * Constrctor for Shield class, receives protection value and amount of uses
+     * Constructor for Shield class, receives protection value and amount of uses
      * 
      * @param protection Protection provided by the shield
      * @param uses Uses of the shield
@@ -32,10 +32,14 @@ public class Shield extends CombatElement{
     }
 
     /**
-     * Returns a string with the current state of the shield
-     
+     * Returns a string with the current state of the shield in the following
+     * format:
+     * 
+     * S[Protection, Uses]
+     * 
      * @return a string with the current state of the shield
      */
+    @Override
     public String toString() {
         return "S" + super.toString();
     }

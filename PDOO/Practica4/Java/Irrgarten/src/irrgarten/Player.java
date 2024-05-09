@@ -10,8 +10,7 @@ package irrgarten;
 
 import java.util.ArrayList;
 
-
-public class Player extends LabyrinthCharacter{
+public class Player extends LabyrinthCharacter {
     private static final int MAX_WEAPONS = 2;
     private static final int MAX_SHIELDS = 3;
     private static final int INITIAL_HEALTH = 10;
@@ -22,8 +21,17 @@ public class Player extends LabyrinthCharacter{
     private ArrayList<Weapon> weapons;
     private ArrayList<Shield> shields;
 
+    // TODO: shieldCardDeck y weaponCardDeck que hacemos con ellos?
+
+    /**
+     * Constructor for Player class, it sets name to Player # and the number
+     * 
+     * @param number       of the player
+     * @param intelligence of the player
+     * @param strength     of the player
+     */
     public Player(char number, float intelligence, float strength) {
-        super("Player #", number, intelligence, strength);
+        super("Player #" + number, intelligence, strength, INITIAL_HEALTH);
         this.consecutiveHits = 0;
         this.number = number;
 
@@ -32,10 +40,23 @@ public class Player extends LabyrinthCharacter{
     }
 
     /**
+     * Copy constructor for Player class, uses Labyrinth Character class
+     * 
+     * @note Note that no weapons nor shields should be copied as this method
+     *       is only used
+     * @param other Player
+     */
+    public Player(Player other) {
+        super(other);
+
+        this.consecutiveHits = 0;
+        this.number = other.number;
+    }
+
+    /**
      * It resurrects the player, setting its health to the initial value,
      * resetting the number of consecutive hits and setting the player's weapons
      * and shields to empty lists
-     * 
      */
     public void resurrect() {
         this.setHealth(INITIAL_HEALTH);
@@ -54,18 +75,17 @@ public class Player extends LabyrinthCharacter{
     }
 
     /**
-     * Returns the direction of the move if the move is possible and 
+     * Returns the direction of the move if the move is possible and
      * the first move possible in validMoves otherwise
      * 
-     * @param direction Preferred direction to move
+     * @param direction  Preferred direction to move
      * @param validMoves Valid moves array
-     * @return The direction of the possible move 
+     * @return The direction of the possible move
      */
     public Directions move(Directions direction, ArrayList<Directions> validMoves) {
         if (validMoves.size() > 0 && !validMoves.contains(direction)) {
             return validMoves.get(0);
-        }
-        else{
+        } else {
             return direction;
         }
     }
@@ -76,8 +96,9 @@ public class Player extends LabyrinthCharacter{
      *
      * @return the attack value
      */
+    @Override
     public float attack() {
-        return sumWeapons()+this.getStrength();
+        return sumWeapons() + this.getStrength();
     }
 
     /**
@@ -86,6 +107,7 @@ public class Player extends LabyrinthCharacter{
      * @param receivedAttack the attack value received
      * @return manageHit(receivedAttack)
      */
+    @Override
     public boolean defend(float receivedAttack) {
         return manageHit(receivedAttack);
     }
@@ -114,11 +136,12 @@ public class Player extends LabyrinthCharacter{
     /**
      * Returns a string with the current state of the player, with the format:
      * P[number, health, intelligence, strength]
-     *      Weapons: Weapon1    Weapon2 ... WeaponN
-     *      Shields: Shield1    Shield2 ... ShieldN
+     * Weapons: Weapon1 Weapon2 ... WeaponN
+     * Shields: Shield1 Shield2 ... ShieldN
      *
      * @return Current state of the player
      */
+    @Override
     public String toString() {
         String toReturn = "P" + super.toString();
 
@@ -155,14 +178,14 @@ public class Player extends LabyrinthCharacter{
     }
 
     /**
-     * This method updates the shields of the player if any has to be 
+     * This method updates the shields of the player if any has to be
      * discarded and adds one shield if MAX_SHIELDS is not exceeded
      * 
      * @param s New shield to be added
      */
     private void receiveShield(Shield s) {
-        for (int i = 0; i < shields.size(); ++i){
-            if (shields.get(i).discard()){
+        for (int i = 0; i < shields.size(); ++i) {
+            if (shields.get(i).discard()) {
                 shields.remove(i);
                 --i;
             }
@@ -224,7 +247,7 @@ public class Player extends LabyrinthCharacter{
      * Returns the sum of the intelligence and the protection provided by the
      * shields
      *
-     * @return the sum 
+     * @return the sum
      */
     protected float defensiveEnergy() {
         return sumShields() + getIntelligence();
@@ -243,8 +266,7 @@ public class Player extends LabyrinthCharacter{
         if (defensiveEnergy() < receivedAttack) {
             gotWounded();
             incConsecutiveHits();
-        }
-        else{
+        } else {
             resetHits();
         }
 
