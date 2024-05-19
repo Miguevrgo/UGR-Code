@@ -1,0 +1,25 @@
+  0.000	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	 68.964	    INF	    INF	    INF	    INF	 78.645	 65.460	    INF	102.650	 28.601	    INF	
+    INF	  0.000	    INF	    INF	 36.497	    INF	    INF	    INF	    INF	    INF	    INF	 36.674	    INF	    INF	 30.676	    INF	    INF	    INF	    INF	 47.707	    INF	    INF	    INF	    INF	    INF	
+    INF	    INF	  0.000	    INF	    INF	 63.891	 19.235	    INF	    INF	 63.977	    INF	 34.132	    INF	    INF	 72.201	    INF	 18.439	    INF	 92.962	    INF	    INF	    INF	    INF	 42.059	    INF	
+    INF	    INF	    INF	  0.000	    INF	    INF	 61.855	    INF	    INF	    INF	    INF	    INF	 68.308	    INF	 24.515	    INF	    INF	 61.033	    INF	    INF	    INF	 41.110	    INF	    INF	    INF	
+    INF	 36.497	    INF	    INF	  0.000	    INF	    INF	    INF	    INF	    INF	 66.851	    INF	    INF	    INF	 65.123	    INF	    INF	    INF	115.966	    INF	    INF	    INF	    INF	    INF	    INF	
+    INF	    INF	 63.891	    INF	    INF	  0.000	    INF	 21.378	 72.201	    INF	    INF	    INF	    INF	    INF	 79.076	  9.899	    INF	 71.868	    INF	    INF	    INF	    INF	    INF	 88.640	    INF	
+    INF	    INF	 19.235	 61.855	    INF	    INF	  0.000	 30.806	    INF	    INF	    INF	    INF	 57.723	    INF	 81.345	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	
+    INF	    INF	    INF	    INF	    INF	 21.378	 30.806	  0.000	    INF	    INF	    INF	 77.473	    INF	    INF	 81.437	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	 78.447	    INF	
+    INF	    INF	    INF	    INF	    INF	 72.201	    INF	    INF	  0.000	 52.953	    INF	    INF	    INF	 42.942	 59.464	    INF	    INF	 26.907	    INF	    INF	    INF	 43.600	    INF	 24.042	    INF	
+    INF	    INF	 63.977	    INF	    INF	    INF	    INF	    INF	 52.953	  0.000	    INF	    INF	 60.008	 86.533	 10.770	    INF	    INF	 76.158	    INF	    INF	    INF	    INF	    INF	    INF	    INF	
+    INF	    INF	    INF	    INF	 66.851	    INF	    INF	    INF	    INF	    INF	  0.000	    INF	    INF	 49.010	 64.885	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	
+    INF	 36.674	 34.132	    INF	    INF	    INF	    INF	 77.473	    INF	    INF	    INF	  0.000	    INF	 56.089	 65.069	101.020	    INF	    INF	116.675	    INF	    INF	    INF	115.209	    INF	    INF	
+    INF	    INF	    INF	 68.308	    INF	    INF	 57.723	    INF	    INF	 60.008	    INF	    INF	  0.000	    INF	 70.064	    INF	 49.659	    INF	 25.612	    INF	    INF	    INF	    INF	    INF	    INF	
+    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	 42.942	 86.533	 49.010	 56.089	    INF	  0.000	 95.603	    INF	    INF	    INF	 97.124	    INF	 39.205	 56.294	    INF	    INF	 35.609	
+ 68.964	 30.676	 72.201	 24.515	 65.123	 79.076	 81.345	 81.437	 59.464	 10.770	 64.885	 65.069	 70.064	 95.603	  0.000	 85.212	 68.593	 84.119	 87.664	 37.643	 93.536	 50.567	 96.047	 49.092	 61.774	
+    INF	    INF	    INF	    INF	    INF	  9.899	    INF	    INF	    INF	    INF	    INF	101.020	    INF	    INF	 85.212	  0.000	 55.317	    INF	    INF	    INF	    INF	    INF	 14.213	    INF	    INF	
+    INF	    INF	 18.439	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	 49.659	    INF	 68.593	 55.317	  0.000	    INF	 74.793	 60.415	    INF	 27.166	 69.354	    INF	    INF	
+    INF	    INF	    INF	 61.033	    INF	 71.868	    INF	    INF	 26.907	 76.158	    INF	    INF	    INF	    INF	 84.119	    INF	    INF	  0.000	    INF	    INF	 51.039	    INF	    INF	    INF	    INF	
+    INF	    INF	 92.962	    INF	115.966	    INF	    INF	    INF	    INF	    INF	    INF	116.675	 25.612	 97.124	 87.664	    INF	 74.793	    INF	  0.000	    INF	    INF	    INF	    INF	    INF	    INF	
+ 78.645	 47.707	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	 37.643	    INF	 60.415	    INF	    INF	  0.000	    INF	    INF	 60.531	    INF	 65.276	
+ 65.460	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	 39.205	 93.536	    INF	    INF	 51.039	    INF	    INF	  0.000	    INF	    INF	    INF	    INF	
+    INF	    INF	    INF	 41.110	    INF	    INF	    INF	    INF	 43.600	    INF	    INF	    INF	    INF	 56.294	 50.567	    INF	 27.166	    INF	    INF	    INF	    INF	  0.000	 55.462	    INF	    INF	
+102.650	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	115.209	    INF	    INF	 96.047	 14.213	 69.354	    INF	    INF	 60.531	    INF	 55.462	  0.000	    INF	 87.207	
+ 28.601	    INF	 42.059	    INF	    INF	 88.640	    INF	 78.447	 24.042	    INF	    INF	    INF	    INF	    INF	 49.092	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	  0.000	    INF	
+    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	    INF	 35.609	 61.774	    INF	    INF	    INF	    INF	 65.276	    INF	    INF	 87.207	    INF	  0.000	

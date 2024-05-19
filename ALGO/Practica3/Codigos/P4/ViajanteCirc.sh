@@ -8,14 +8,14 @@ gcc -O2 ViajanteCirc.cpp -o Ejecutables/ViajanteCirc -lstdc++ -lm
 
 # ----------------------------|Variables de Test|------------------------------#
 
-opcion=1 # [1] Random test || [2] Made test
-size2=50000 
+opcion=2 # [1] Random test || [2] Made test
+size2=100
 files=(
     "Paises/Djibouti.txt" 
     "Paises/Uruguay.txt"
     "Paises/Oman.txt"
-    "Paises/Canada.txt"
     "Paises/Nicaragua.txt" 
+    "Paises/Canada.txt"
     "Paises/Egypt.txt" 
     "Paises/Greece.txt"
     "Paises/Japan.txt"
@@ -45,7 +45,7 @@ files=(
 if [ $opcion -eq 1 ]; then
     rm -f Instancias/EjecucionRandomCirc.txt
     
-        ./Ejecutables/ViajanteCirc 10 1 >> Instancias/EjecucionRandomCirc.txt
+        ./Ejecutables/ViajanteCirc $size2 1 >> Instancias/EjecucionRandomCirc.txt
 fi
 if [ $opcion -eq 2 ]; then
     rm -f Instancias/EjecucionPaisesCirc.txt

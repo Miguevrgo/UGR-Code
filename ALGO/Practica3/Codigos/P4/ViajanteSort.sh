@@ -9,13 +9,13 @@ gcc -O2 ViajanteSort.cpp -o Ejecutables/ViajanteSort -lstdc++ -lm
 # ----------------------------|Variables de Test|------------------------------#
 
 opcion=2 # [1] Random test || [2] Made test
-size2=50000 
+size2=50
 files=(
     "Paises/Djibouti.txt" 
     "Paises/Uruguay.txt"
     "Paises/Oman.txt"
-    "Paises/Canada.txt"
     "Paises/Nicaragua.txt" 
+    "Paises/Canada.txt"
     "Paises/Egypt.txt" 
     "Paises/Greece.txt"
     "Paises/Japan.txt"
@@ -44,10 +44,7 @@ files=(
 
 if [ $opcion -eq 1 ]; then
     rm -f Instancias/EjecucionRandomSort.txt
-    
-    for ((i=50; i <= $size2; i+=1000)) do
-        ./Ejecutables/ViajanteSort $i 1 >> Instancias/EjecucionRandomSort.txt
-    done
+        ./Ejecutables/ViajanteSort $size2 1 >> Instancias/EjecucionRandomSort.txt
 fi
 if [ $opcion -eq 2 ]; then
     rm -f Instancias/EjecucionPaisesSort.txt

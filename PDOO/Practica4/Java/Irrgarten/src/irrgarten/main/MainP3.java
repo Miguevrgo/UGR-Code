@@ -16,7 +16,7 @@ public class MainP3 {
     
     public static void main (String[] args) {
         
-        final int NUMPLAYERS = 1;
+        final int NUMPLAYERS = 2;
 
         TextUI view = new TextUI();
         Game game = new Game(NUMPLAYERS);

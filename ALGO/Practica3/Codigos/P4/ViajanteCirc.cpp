@@ -33,7 +33,7 @@ public:
     }
 
     bool operator<(const Point &p) const {
-        if (x  ==p.x){
+        if (x == p.x){
             return y < p.y;
         }
         else{
@@ -51,8 +51,6 @@ private:
 };
 
 
-
-
 /**
  * @brief Greedy algorithm that approximates the shortest path to visit all the 
  * points in a given tour. The metodology is to sort the points by their 
@@ -67,22 +65,37 @@ private:
  * @return std::vector<Point> 
  */
 std::vector<Point> CircTSP(const std::vector<Point>& points) {
-    std::vector<Point> sortedTour;
     std::vector<Point> tour;
-    sortedTour.reserve(points.size());
+    std::vector<Point> circularTour;
     tour.reserve(points.size());
-    std::copy(points.begin(), points.end(), std::back_inserter(sortedTour));
-    std::sort(sortedTour.begin(), sortedTour.end());
-    int corte = points.size() % 2 == 0 ? points.size() : points.size() - 1;
+    circularTour.reserve(points.size());
+    tour = points;
+    std::sort(tour.begin(), tour.end());
+    
+    int min = std::numeric_limits<int>::max();
+    int max = std::numeric_limits<int>::min();
 
-    for (int i = 0; i <= corte; i+=2) {
-        tour.emplace_back(sortedTour[i]);
-    }   
-    for (int i = corte; i >= 1; i-=2) {
-        tour.emplace_back(sortedTour[i]);
+    for (int i = 0; i < points.size(); ++i) {
+        min = std::min(min, points[i].getY());
+        max = std::max(max, points[i].getY());
+    }
+    
+    double mid = (max + min )/2;
+
+    for (int i = 0; i < points.size(); ++i) {
+        if (tour[i].getY() <= mid) {
+            circularTour.emplace_back(tour[i]);
+        }
     }
 
-    return tour;
+    for (int i = points.size(); i >= 0; --i) {
+        if (tour[i].getY() > mid) {
+            circularTour.emplace_back(tour[i]);
+        }
+    }
+
+    improve2Opt(circularTour);
+    return circularTour;
 }
 
 /**
@@ -106,23 +119,28 @@ int main(int argc, char* argv[]) {
     if (strcmp(argv[2],"1") == 0) { // Random or Graph Results
         const int VEC_SIZE = atoi(argv[1]);
         std::vector<Point> approximatePath; 
+        std::vector<Point> path;
         approximatePath.reserve(VEC_SIZE);
+        path.reserve(VEC_SIZE);
+        
         srand(time(NULL));
 
         for (int i = 0; i < VEC_SIZE; ++i) {
             int x = rand() % 100 - 50;
             int y = rand() % 100 - 50;
             approximatePath.emplace_back(Point(x, y));
+            path.emplace_back(Point(x, y));
         }
 
         /*------------------------|Para graficar los grafos|------------------*/
         std::ofstream outputFile("tsp_results.csv");
-        CircTSP(approximatePath);
+        path = CircTSP(approximatePath);
 
         outputFile << std::endl;
-        for (const Point& point : approximatePath) {
+        for (const Point& point : path) {
             outputFile << point.getX() << "," << point.getY() << std::endl;
         }
+
         //-----------------------|Fin graficar resultados|---------------------*/
     } 
     else if (strcmp(argv[2],"2") == 0){ // Get the distance of Cities

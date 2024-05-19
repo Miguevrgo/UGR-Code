@@ -51,7 +51,23 @@ private:
 };
 
 
-
+void improve2Opt(std::vector<Point>& path) {
+    bool improvement = true;
+    while (improvement) {
+        improvement = false;
+        int n = path.size();
+        for (int i = 0; i <= n - 2; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                double oldDistance = path[i].distanceTo(path[(i + 1) % n]) + path[j].distanceTo(path[(j + 1) % n]);
+                double newDistance = path[i].distanceTo(path[j]) + path[(i + 1) % n].distanceTo(path[(j + 1) % n]);
+                if (newDistance < oldDistance) {
+                    std::reverse(path.begin() + i + 1, path.begin() + j + 1);
+                    improvement = true;
+                }
+            }
+        }
+    }
+}
 
 /**
  * @brief Greedy algorithm that approximates the shortest path to visit all the 
@@ -72,6 +88,7 @@ std::vector<Point> orderedTSP(const std::vector<Point>& points) {
     std::copy(points.begin(), points.end(), std::back_inserter(tour));
     std::sort(tour.begin(), tour.end());
 
+    improve2Opt(tour);
     return tour;
 }
 
@@ -95,19 +112,31 @@ double totalDistance(const std::vector<Point>& points) {
 int main(int argc, char* argv[]) {
     if (strcmp(argv[2],"1") == 0) { // Random or Graph Results
         const int VEC_SIZE = atoi(argv[1]);
-        std::vector<Point> randomPoints;
-        randomPoints.reserve(VEC_SIZE);
-
+        std::vector<Point> approximatePath; 
+        std::vector<Point> path;
+        approximatePath.reserve(VEC_SIZE);
+        path.reserve(VEC_SIZE);
+        
         srand(time(NULL));
 
         for (int i = 0; i < VEC_SIZE; ++i) {
             int x = rand() % 100 - 50;
             int y = rand() % 100 - 50;
-            randomPoints.emplace_back(Point(x, y));
+            approximatePath.emplace_back(Point(x, y));
+            path.emplace_back(Point(x, y));
         }
 
-        std::cout << VEC_SIZE << " " << totalDistance(orderedTSP(randomPoints)) << std::endl;
-    } 
+        /*------------------------|Para graficar los grafos|------------------*/
+        std::ofstream outputFile("tsp_results.csv");
+        path = orderedTSP(approximatePath);
+
+        outputFile << std::endl;
+        for (const Point& point : path) {
+            outputFile << point.getX() << "," << point.getY() << std::endl;
+        }
+
+        //-----------------------|Fin graficar resultados|---------------------*/
+    }  
     else if (strcmp(argv[2],"2") == 0){ // Get the distance of Cities
         std::string file = argv[1];
         std::ifstream input(file);

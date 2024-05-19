@@ -17,11 +17,12 @@ public class Player extends LabyrinthCharacter {
     private static final int HITS2LOSE = 3;
 
     private char number;
-    private int consecutiveHits;
+    private int consecutiveHits=0;
     private ArrayList<Weapon> weapons;
     private ArrayList<Shield> shields;
 
-    // TODO: shieldCardDeck y weaponCardDeck que hacemos con ellos?
+    private ShieldCardDeck shieldCardDeck;
+    private WeaponCardDeck weaponCardDeck;
 
     /**
      * Constructor for Player class, it sets name to Player # and the number
@@ -32,26 +33,34 @@ public class Player extends LabyrinthCharacter {
      */
     public Player(char number, float intelligence, float strength) {
         super("Player #" + number, intelligence, strength, INITIAL_HEALTH);
-        this.consecutiveHits = 0;
         this.number = number;
 
         this.weapons = new ArrayList<Weapon>();
         this.shields = new ArrayList<Shield>();
+        
+        this.shieldCardDeck = new ShieldCardDeck();
+        this.weaponCardDeck = new WeaponCardDeck();
     }
 
     /**
-     * Copy constructor for Player class, uses Labyrinth Character class
+     * Copy constructor for Player class, uses LabyrinthCharacter class
      * 
      * @note Note that no weapons nor shields should be copied as this method
-     *       is only used
+     *       is only used to initialize a FuzzyPlayer 
+     * 
      * @param other Player
      */
     public Player(Player other) {
         super(other);
 
-        this.consecutiveHits = 0;
         this.number = other.number;
+        this.weapons = new ArrayList<Weapon>();
+        this.shields = new ArrayList<Shield>();
+
+        this.shieldCardDeck = new ShieldCardDeck();
+        this.weaponCardDeck = new WeaponCardDeck();
     }
+
 
     /**
      * It resurrects the player, setting its health to the initial value,
@@ -203,7 +212,7 @@ public class Player extends LabyrinthCharacter {
      * @return new weapon
      */
     private Weapon newWeapon() {
-        return new Weapon(Dice.weaponPower(), Dice.usesLeft());
+        return weaponCardDeck.nextCard();
     }
 
     /**
@@ -213,7 +222,7 @@ public class Player extends LabyrinthCharacter {
      * @return new shield
      */
     private Shield newShield() {
-        return new Shield(Dice.shieldPower(), Dice.usesLeft());
+        return shieldCardDeck.nextCard();
     }
 
     /**

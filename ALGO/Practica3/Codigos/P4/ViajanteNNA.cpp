@@ -97,18 +97,30 @@ double totalDistance(const std::vector<Point>& points) {
 int main(int argc, char* argv[]) {
     if (strcmp(argv[2],"1") == 0) { // Random or Graph Results
         const int VEC_SIZE = atoi(argv[1]);
-        std::vector<Point> randomPoints;
-        randomPoints.reserve(VEC_SIZE);
-
+        std::vector<Point> approximatePath; 
+        std::vector<Point> path;
+        approximatePath.reserve(VEC_SIZE);
+        path.reserve(VEC_SIZE);
+        
         srand(time(NULL));
 
         for (int i = 0; i < VEC_SIZE; ++i) {
             int x = rand() % 100 - 50;
             int y = rand() % 100 - 50;
-            randomPoints.emplace_back(Point(x, y));
+            approximatePath.emplace_back(Point(x, y));
+            path.emplace_back(Point(x, y));
         }
 
-        std::cout << VEC_SIZE << " " << totalDistance(nearestNeighborTSP(randomPoints)) << std::endl;
+        /*------------------------|Para graficar los grafos|------------------*/
+        std::ofstream outputFile("tsp_results.csv");
+        path = nearestNeighborTSP(approximatePath);
+
+        outputFile << std::endl;
+        for (const Point& point : path) {
+            outputFile << point.getX() << "," << point.getY() << std::endl;
+        }
+
+        //-----------------------|Fin graficar resultados|---------------------*/
     } 
     else if (strcmp(argv[2],"2") == 0){ // Get the distance of Cities
         std::string file = argv[1];
