@@ -16,11 +16,21 @@ public class TextUI implements UI{
     
     private static Scanner in = new Scanner(System.in);
     
+    /**
+     * Returns char pressed by the user representing movement
+     *
+     * @return which key was pressed 
+     */
     private char readChar() {
         String s = in.nextLine();     
         return s.charAt(0);
     }
     
+    /**
+     * Using input from readChar, it determines what the next direction is
+     * 
+     * @return direction the user wants to go 
+     */
     @Override
     public Directions nextMove() {
         System.out.print("Where? ");

@@ -140,11 +140,9 @@ public class Cursors extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
     private void setupKeyBindings() {
-        // Get the input map and action map for the dialog's root pane
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = getRootPane().getActionMap();
 
-        // Map the UP arrow key to the "moveUp" action
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "moveUp");
         actionMap.put("moveUp", new AbstractAction() {
             @Override
@@ -153,7 +151,6 @@ public class Cursors extends javax.swing.JDialog {
             }
         });
 
-        // Map the DOWN arrow key to the "moveDown" action
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "moveDown");
         actionMap.put("moveDown", new AbstractAction() {
             @Override
@@ -162,7 +159,6 @@ public class Cursors extends javax.swing.JDialog {
             }
         });
 
-        // Map the RIGHT arrow key to the "moveRight" action
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "moveRight");
         actionMap.put("moveRight", new AbstractAction() {
             @Override
@@ -171,7 +167,6 @@ public class Cursors extends javax.swing.JDialog {
             }
         });
 
-        // Map the LEFT arrow key to the "moveLeft" action
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "moveLeft");
         actionMap.put("moveLeft", new AbstractAction() {
             @Override

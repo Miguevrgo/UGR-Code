@@ -30,7 +30,7 @@ public class Controller {
             Directions direction = view.nextMove(); 
             endOfGame = game.nextStep(direction);
         }
-      view.showGame(game.getGameState());        
+        view.showGame(game.getGameState());        
     }
     
 }

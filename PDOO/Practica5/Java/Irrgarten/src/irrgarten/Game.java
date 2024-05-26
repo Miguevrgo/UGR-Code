@@ -14,17 +14,15 @@ public class Game {
     private static final int MAX_ROUNDS = 10;
     
     /*----------------------------Custom Labyrinth----------------------------*/
-    private static final int ROWS = 11;
-    private static final int COLS = 10;
+    private static final int ROWS = 5;
+    private static final int COLS = 5;
     
-    private static final int NMONSTERS = 5;
-    private static final int[][] MONSTERS_POS = {{0,0},{1,6},{2,2},{5,5},{7,1}};
+    private static final int NMONSTERS = 2;
+    private static final int[][] MONSTERS_POS = {{0,0},{1,4}};
     
-    private static final int NBLOCKS = 4;
-    private static final Object[][] BLOCKS_POS = {{Orientation.HORIZONTAL,0,1,4},
-                                                  {Orientation.HORIZONTAL,9,0,2},
-                                                  {Orientation.VERTICAL,2,8,7},
-                                                  {Orientation.VERTICAL,3,3,4}};
+    private static final int NBLOCKS = 2;
+    private static final Object[][] BLOCKS_POS = {{Orientation.HORIZONTAL,0,1,3},
+                                                  {Orientation.VERTICAL,2,3,2}};
     
     private int currentPlayerIndex;
     private Player currentPlayer;

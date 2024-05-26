@@ -16,7 +16,7 @@ public class MainP5 {
     
     public static void main (String[] args) {
         
-        final int NUMPLAYERS = 1;
+        final int NUMPLAYERS = 2;
 
         JFrameUI view = new JFrameUI();
         Game game = new Game(NUMPLAYERS);

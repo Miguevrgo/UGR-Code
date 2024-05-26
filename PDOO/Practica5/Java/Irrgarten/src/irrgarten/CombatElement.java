@@ -27,7 +27,7 @@ abstract public class CombatElement {
      * @return effect of the combat element
      */
     protected float produceEffect() {
-        if (uses >= 0) {
+        if (uses > 0) {
             --uses;
             return effect;
         }
