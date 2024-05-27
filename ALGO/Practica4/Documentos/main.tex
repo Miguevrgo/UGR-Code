@@ -1,0 +1,746 @@
+\documentclass[11pt,openany]{book}
+\input{assets/portada.tex}
+\usepackage{assets/formulas}
+\usepackage[mathscr]{euscript}
+\usepackage{bm}
+\usepackage{float}
+\hbadness=10000 % Suppress Underfull \hbox warnings
+
+%========================================|Indice|===============================================%
+
+\begin{document}
+\portada{Algorítmica}{2023-2024}{Miguel Ángel De la Vega Rodríguez}{https://github.com/Miguevrgo/}{github.png}
+\tableofcontents % Índice
+\newpage %Salto de pagina tras el Indice
+
+
+%======================================|Documento|==============================================%
+\chapter{Autores}
+\begin{itemize}
+      \item \textbf{Miguel Ángel De la Vega Rodríguez:} 20\%
+            \begin{itemize}
+                  \item Makefile | Organización Branch and Bound
+                  \item Programación Branch and Bound
+                  \item Branch and bound redacción
+            \end{itemize}
+      \item \textbf{Joaquín Avilés De la Fuente:} 20\%
+            \begin{itemize}
+                  \item Programación Branch and Bound
+                  \item Programación creación de casos (puntos y matrices de adyacencia)
+                  \item Programación de funciones de cota para Branch and Bound
+            \end{itemize}
+      \item \textbf{Alberto De la Vera Sánchez: } 20\%
+            \begin{itemize}
+                  \item Branch and bound redacción
+            \end{itemize}
+      \item \textbf{Manuel Gomez Rubio} 20\%
+            \begin{itemize}
+                \item Programacion Backtracking
+                \item Redacción Backtracking
+            \end{itemize}
+      \item \textbf{Pablo Linari Pérez:} 20\%
+            \begin{itemize}
+                  \item Programacion Backtracking
+                  \item Redacción Objetivos
+                  \item Redacción Backtracking
+            \end{itemize}
+\end{itemize}
+
+\chapter{Equipo de trabajo}
+
+\begin{itemize}
+      \item \textbf{Miguel Ángel De la Vega Rodríguez:} (Ordenador donde se ha realizado el computo)
+            \begin{itemize}
+                  \item AMD Ryzen 7 2700X 8-Core
+                  \item 16 GB RAM DDR4 3200 MHz
+                  \item NVIDIA GeForce GTX 1660 Ti
+                  \item 1 TB SSD NvMe
+                  \item Debian 12 Bookworm
+                  \item Compilador GCC 12.2.0
+            \end{itemize}
+\end{itemize}
+
+\chapter{Objetivos}
+    El objetivo de esta práctica es resolver el problema del viajante de comercio el cual viene descrito por el siguiente enunciado :\
+    Tenemos un conjunto de n ciudades (puntos en un plano), cada una definida por las coordenadas en el mapa $(x_i , y_i )$, con $i = 1, . . . , n$. La distancia entre dos ciudades viene dada por la
+    distancia euclídea entre sus coordenadas.
+    El problema de viajante de comercio consiste en encontrar el orden en el que un viajante,
+    partiendo de la ciudad de origen (por ejemplo $(x_1 , y_1 )$) pase por todas y cada una de las ciudades
+    una única vez, para volver a la ciudad de partida, formando un ciclo. \ 
+
+    Para ello usaremos dos diseños distintos de  algoritmos dedicados a la exploraciónde grafos , backtracking y brannch and bound 
+    con el objetivo de ver las diferencias entre la eficiencia de estos dos algoritmos. Además se probarán distintas funciones de cota 
+    para estudiar que influencia tienen en cada caso las distintas funciones.Por último se realizará un estudio tanto teórico como 
+    empírico de la eficiencia de los algoritmos implementados.
+\chapter{Backtracking}   
+\section{Diseño}   
+En esta sección analizaremos el algorimo de exploración de grafos llamado Backtracking, que consiste en recorrer todos los caminos en profundidad obteniendo todas
+las posibles soluciones al problema. \\
+Para seleccionar la solución más óptima del problema debemos ir comparando con la anterior posible solución  cada vez que obtenemos una nueva solución al problema, quedándonos con la que más nos
+convenga, en este caso, la que nos de un camino de menor distancia.
+\\ \\
+Hay varias formas de hacerlo:
+\begin{itemize}
+      \item La primera forma consiste en hacerlo mediante fuerza bruta, es decir, usar la definición al uso de Backtracking recorriendo todos los caminos sin preocuparnos
+      si estos nos permiten alcanzar una solución mejor que la obtenida anteriormente.
+      \item La otra forma es implementar una función de cota, esto nos permite decidir si seguimos explorando el camino seleccionado porque nos puede dar un resultado mejor
+      o si es mejor abandonarlo, ya que no se obtendrá una mejora.
+      Esta forma de realizarlo será, como es lógico, más eficiente.
+\end{itemize}
+
+Para la implementación del algoritmo, optamos por la segunda forma, usando diferentes funciones de cota que nos permitan aproximar si el camino seleccionado es bueno.A continuación
+veremos como se ha elegido cada cota .
+\subsection{Cota global}
+
+\begin{lstlisting}
+    vector<int> nearest_neighbourTSP(const vector<vector<double>>& distancias, int inicial) {
+    int num_puntos = distancias.size();
+    vector<int> camino;
+    vector<bool> visitados(num_puntos, false);
+    camino.reserve(num_puntos);
+    camino.push_back(inicial);
+    visitados[inicial] = true;
+
+    for (int i = 0; i < num_puntos - 1; ++i) {
+        int actual = camino.back();
+        int siguiente = -1;
+        double min_distancia = numeric_limits<double>::max();
+
+        for (int j = 0; j < num_puntos; ++j) {
+            if (!visitados[j] && distancias[actual][j] < min_distancia) {
+                min_distancia = distancias[actual][j];
+                siguiente = j;
+            }
+        }
+
+        camino.push_back(siguiente);
+        visitados[siguiente] = true;
+    }
+
+    camino.push_back(inicial);
+    return camino;
+}
+\end{lstlisting} 
+Esta funcion de la practica anterior la usaremos par obtener una cota global, ya que nos proporciona una solución al problema del viajante, aunque no sea la mejor, nos servirá para comparar
+Si la decision que toma nuestro algoritmo es mejor que la que nos proporciona esta función. 
+
+\subsection{Cota local}
+\textbf{Primera función de cota:} \\
+    La primera función de cota que hemos implementado consiste en calcular el mínimo valor de los arcos del grafo ,
+     se multiplica por el numero de nodos restantes y se suman al coste actual.
+    \begin{lstlisting}
+        double cota1(const vector<vector<double>> &graph, const vector<int> &solucion,double c_actual, double arco_menorpeso) {
+            return arco_menorpeso * (graph.size() - solucion.size() + 1) + c_actual;
+        }
+
+    \end{lstlisting}
+    \begin{lstlisting}
+        double encontrarArcoMenorPeso(const vector<vector<double>> &graph) {
+            double minPeso = numeric_limits<double>::max();
+          
+            for (int i = 0; i < graph.size(); ++i) {
+              for (int j = i + 1; j < graph[i].size(); ++j) {
+                if (graph[i][j] < minPeso) {
+                  minPeso = graph[i][j];
+                }
+              }
+            }
+          
+            return minPeso;
+          }
+          
+
+    \end{lstlisting}
+\textbf{Segunda función de cota:} \\
+    La segunda función de cota que hemos implementado consiste en calcular el mínimo valor de salir de todos los nodos del grafo que no 
+    han sido visitados y sumarle la distancia del recorrido actual.
+    En el siguiente codigo se recorre la matriz de adyacencia y se selecciona el menor valor de los arcos de los nodos que no han sido visitados 
+    y se suman al coste actual.
+    \begin{lstlisting}
+        double cota2(const vector<vector<double>> &graph, const vector<int> &solucion,=double c_actual) {
+            double cota = 0;
+            vector<double> v;
+            double min = numeric_limits<double>::max();
+            for (int i = 1; i < graph.size(); ++i) {
+                if ((find(solucion.begin(), solucion.end(), i) == solucion.end())) {
+                    v = graph[i];
+                    sort(v.begin(), v.end());
+                    cota += v[1];
+                }
+            }
+            return cota + c_actual;
+        }
+    \end{lstlisting}
+    \textbf{Tercera función de cota:} \\
+    La tercera función de cota que hemos implementado consiste en calcular el mínimo valor de salir y entrar  de todos los nodos del grafo que no 
+    han sido visitados ,hacer la media  y sumarle la distancia del recorrido actual.
+    El siguiente codigo busca en una matriz de adyacencia los valores de los arcos de los nodos que no han sido todavia visitados , se 
+    seleccionan todos ellos y se ordenande menor a mayor para seleccionar los dos menores y hacer la media de estos.
+    \begin{lstlisting}
+        double cota3(const vector<vector<double>> &graph, const vector<int> &solucion,double c_actual) {
+            double cota = 0;
+            vector<double> v;
+            double min = numeric_limits<double>::max();
+            for (int i = 1; i < graph.size(); ++i) {
+                if ((find(solucion.begin(), solucion.end(), i) == solucion.end())) {
+                    v = graph[i];
+                    sort(v.begin(), v.end());
+                    cota += (v[1] + v[2]) / 2;
+                }
+            }
+            return cota + c_actual;
+        }
+    \end{lstlisting}
+\subsection{Algoritmo Backtracking}
+A continuación se muestra el algoritmo de Backtracking implementado:
+
+\begin{lstlisting}
+/**
+ * @brief Funcion para resolver el tsp con backtracking .
+ * @param solucion vector de ciudades , la posicion de la ciudad indica el orden
+ * en el que es visitada
+ * @param graph graph de adyacencia
+ * @param c_mejor mejor coste encontrado
+ * @param s_mejor mejor solucion encontrada
+ * @param c_actual coste actual
+ * @param arco_menorpeso arco de menor peso del grafo (para no tener que calcularlo siempre)
+ *@param cota cota a utilizar
+ */
+ void tsp_backtracking(vector<int> &solucion,const vector<vector<double>> &graph, double &c_mejor,vector<int> &s_mejor, double c_actual, int arco_menorpeso,int cota) {
+  if (solucion.size() == graph.size()) {
+    c_actual += graph[solucion.back()][solucion[0]];
+    if (c_actual < c_mejor) {
+      c_mejor = c_actual;
+      s_mejor = solucion;
+    }
+  } else {
+    for (int i = 1; i < graph.size(); i++) {
+      if (find(solucion.begin(), solucion.end(), i) == solucion.end()) {
+        double acotacion;
+        double c_siguiente = c_actual + (solucion.empty() ? 0 : graph[solucion.back()][i]);
+        if (cota == 1) {
+            acotacion = cota1(graph, solucion, c_actual, arco_menorpeso);
+        } else if (cota == 2) {
+            acotacion = cota2(graph, solucion, c_actual);
+        } else if (cota == 3) {
+            acotacion = cota3(graph, solucion, c_actual);
+        } else {
+            acotacion = 0;
+        }
+        if (acotacion <= c_mejor) {
+            solucion.emplace_back(i);
+            tsp_backtracking(solucion, graph, c_mejor, s_mejor, c_siguiente,arco_menorpeso, cota);
+            solucion.pop_back();
+          }
+      }
+    }
+  }
+}
+
+  
+                
+    \end{lstlisting}
+    El algoritmo recibe como parámetros una matriz de adyacencia , un vector de enteros que representa la solución actual, un vector de enteros que representa la mejor solución encontrada, un double que representa el mejor coste encontrado, un double que representa el coste actual, un entero que representa el arco de menor peso del grafo y un entero que representa la cota a utilizar.
+    El vector de enteros solucion contiene el punto inicial sobre el que se aplica el algoritmo , si el vector solución está completo se comprueba si 
+    la solución obtenida es mejor que la que se tenía y se actualiza en caso de serlo. Si no está completo se calcula la cota local y se  añade un nuevo punto al vector solución y se llama a la función recursivamente hasta que encuentra un camino completo.
+    
+\section{Justificación}
+Para la justificación del Backtracking debemos comprobar que se obtiene la mejor solución posible, en nuestro caso, esa demostración la haremos usando reducción al absurdo:
+\begin{enumerate}
+    \item Llamaremos n al conjunto de todos los nodos
+    \item Llamaremos $C_l$ a la cota local 
+    \item Llamaremos C a la cota global
+    \item La solución óptima se obtendrá tras haber explorado todas las ramas llegando al final, o no, dependiendo de los valores de las cotas
+\end{enumerate}
+Para la demostración empezaremos del algorimo supondremos que la solución K obtenida no es la solución óptima, esto implica que existe otra forma de explorar el grafo teniéndose que $K>K'$ siendo K' la solución óptima.
+Al devolver nuestro algorimo K, la cota global contendrá precisamente este valor, cosa que nos lleva a una contradicción, ya que si una vez explorado todo el grafo hubiera una solución mejor que K, la cota global del programa deberá ser igual 
+a ella, que en nuestro caso no ocurre, o bien porque la $C_l$ ha hecho que se descarte la exploración de esa rama, o bien porque se exploró completamente sin mejorar la solución que ya teníamos.
+
+\section{Eficiencia teórica y empírica}
+\subsection{Eficiencia empírica}
+A continuación se mostrarán los resultados obtenidos en la ejecución del algoritmo Backtracking con las distintas funciones de cota y como afecta cada una de ellas a la generación de nodos y al tiempo de ejecución.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/Img/grafico_tiempos0.png}
+        \caption{Sin cota}
+        \label{fig:Sin cota}
+  \end{minipage}%
+    \begin{minipage}{.48\textwidth}
+          \centering
+          \includegraphics[width=1\linewidth]{assets/Img/grafico_tiempos1.png}
+          \caption{Cota 1}
+          \label{fig:Cota 1}
+    \end{minipage}%
+\end{figure}
+    
+\begin{figure}
+    \begin{minipage}{.48\textwidth}
+          \centering
+          \includegraphics[width=1\linewidth]{assets/Img/grafico_tiempos2.png}
+          \caption{Cota 2}
+          \label{fig:Cota 2}
+    \end{minipage}
+\begin{minipage}{.48\textwidth}
+      \centering
+      \includegraphics[width=1\linewidth]{assets/Img/grafico_tiempos3.png}
+      \caption{Cota 3}
+      \label{fig:Cota 3}
+\end{minipage}
+
+\end{figure}
+
+\newpage
+
+
+\subsection{Caminos generados y comparación de nodos generados}
+\textbf{Graficas de Caminos generados }
+Aquí podremos ver los caminos que han sido representados con el algoritmo usando las diferentes cotas al igual que una tabla con la comparación de los valores obtenidos de las ejecuciones
+
+\begin{figure}[H]
+    \centering
+
+    \begin{minipage}{.48\textwidth}
+          \centering
+          \includegraphics[width=1\linewidth]{assets/Img/cota1camino.png}
+          \caption{Cota 1}
+          \label{fig:Cota 1 camino }
+    \end{minipage}%
+\end{figure}
+\begin{figure}[H]
+    \begin{minipage}{.48\textwidth}
+          \centering
+          \includegraphics[width=1\linewidth]{assets/Img/cota2camino.png}
+          \caption{Cota 2 camino}
+          \label{fig:Cota 2 camino}
+    \end{minipage}
+\begin{minipage}{.48\textwidth}
+      \centering
+      \includegraphics[width=1\linewidth]{assets/Img/cota3camino.png}
+      \caption{Cota 3 camino}
+      \label{fig:Cota 3 camino}
+\end{minipage}
+\end{figure}
+
+\textbf{Comparación de nodos generados} \
+En las siguientes tablas se comparan el numero de nodos generados en cada ejecución del algoritmo con las distintas funciones de cota.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/Img/tablanodosbk.png}
+        \caption{Tabla nodos BK}
+        \label{Tabla nodos BK}
+  \end{minipage}%
+    \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/Img/graficonodos.png}
+        \caption{Sin cota}
+        \label{Tabla nodos BK}
+  \end{minipage}%
+\end{figure}
+Como podemos observar en el grafico de la creación de nodos la cota 2 y 3 generan muchos menos nodos que la cota 1 por tanto son mas eficientes 
+a la hora de completar el camino ya que descartan muchas ramas que no nos aportan una solución mejor que la que ya tenemos.
+Por otro lado la cota 1 disminuye los nodos en cuanto a usar el algoritmo sin cota pero sigue generando muchos nodos que no nos aportan una solución mejor que la que ya tenemos.
+\subsection{Eficiencia teórica}
+La eficiencia teórica del algorimo es factorial, puesto las dos funciones de cota de dentro del código son $O(n)$, la primera es constante y la llamada recursiva es n! luego al estar en el for ($O(n)$)
+obtenemos que la eficiencia teórica del algoritmo es de $O(n!)$
+\chapter{Branch and bound}
+Al igual que en el apartado anterior resolveremos el problema del viajante, solo que en vez de solucionar el problema mediante el bakctraking 
+lo resolveremos mediante Branch and bound. A continuación se mostrarán las funciones de cota al igual que el algoritmo principal que hemos usado:
+
+\section{Diseño}
+\subsection{Cota global}
+Para selecionar la cota global usaremos la función de nearest neighbour de la práctica anterior la cual 
+nos proporciona una cota principal con la que poder comparar las distintas soluciones que vaya obteniendo nuestro algoritmo.
+La idea se basa en dado un conjunto de puntos queremos encontrar el camino más corto que los recorra,
+para ello, elegimos un punto inicial y a partir de ese punto, en un proceso iterativo, elegimos en cada paso el
+siguiente punto más cercano al actual, o lo que es lo mismo, el punto para el cual la distancia al punto actual es
+la menor. Este proceso se repite hasta que todos los puntos han sido visitados.
+
+\begin{lstlisting}
+vector<int> nearest_neighbourTSP(const vector<vector<double>>& distancias, int inicial) {
+    int num_puntos = distancias.size();
+    vector<int> camino;
+    vector<bool> visitados(num_puntos, false);
+    camino.reserve(num_puntos);
+    camino.push_back(inicial);
+    visitados[inicial] = true;
+
+    for (int i = 0; i < num_puntos - 1; ++i) {
+      int actual = camino.back();
+      int siguiente = -1;
+      double min_distancia = numeric_limits<double>::max();
+
+      for (int j = 0; j < num_puntos; ++j) {
+          if (!visitados[j] && distancias[actual][j] < min_distancia) {
+              min_distancia = distancias[actual][j];
+              siguiente = j;
+          }
+      }
+
+      camino.push_back(siguiente);
+      visitados[siguiente] = true;
+    }
+
+    camino.push_back(inicial);
+    return camino;
+}
+
+\end{lstlisting} 
+
+      
+\subsection{Cota local}
+
+Además de esta cota global, hemos implementado tres funciones de cota local distintas:
+\\ 
+\begin{lstlisting}
+double cota_inferior_1(const std::vector<std::vector<double>>& matriz, const std::vector<int>& indices_a_ignorar = {}) {
+        double suma_minimos = 0.0;
+    
+    for (int i = 0; i < matriz.size(); ++i) {
+        
+        if (std::find(indices_a_ignorar.begin(), indices_a_ignorar.end(), i) != indices_a_ignorar.end()) {
+            continue;
+        }
+    
+        double minimo_fila = std::numeric_limits<double>::max();
+        for (int j = 0; j < matriz[i].size(); ++j) {
+                
+            bool condicion_2=find(indices_a_ignorar.begin(), indices_a_ignorar.end(), j) != indices_a_ignorar.end();
+               
+            if (!condicion_2 && matriz[i][j] > 0 && matriz[i][j] < minimo_fila) {
+                minimo_fila = matriz[i][j];
+            }
+        }
+    
+        suma_minimos += minimo_fila;
+    }
+    
+    return suma_minimos;
+}   
+\end{lstlisting}
+
+La primera función de cota consiste en a partir de los índices a ignorar que hemos pasado como parámetro se ignoran la fila y
+columna que lo contengan. Luego a partir de las filas restantes obtenemos el mínimo y se lo sumamos a la variable 
+$suma\_mínimos$. Repetimos este proceso hasta recorrerlas todas.
+
+
+\begin{lstlisting}    
+
+double cota_inferior_2(const std::vector<std::vector<double>>& matriz, const std::vector<int>& indices_a_ignorar = {}) {
+    double min_global = std::numeric_limits<double>::max();
+    int filas_contadas = 0;
+
+    for (int i = 0; i < matriz.size(); ++i) {
+        bool condicion_1=find(indices_a_ignorar.begin(), indices_a_ignorar.end(), i) != indices_a_ignorar.end();
+
+        
+        if (condicion_1) {
+            continue;
+        }
+
+        double minimo_fila = std::numeric_limits<double>::max();
+        for (int j = 0; j < matriz[i].size(); ++j) {
+            bool condicion_2=find(indices_a_ignorar.begin(), indices_a_ignorar.end(), j) != indices_a_ignorar.end();
+            
+            if (!condicion_2 && matriz[i][j] > 0 && matriz[i][j] < minimo_fila) {
+                minimo_fila = matriz[i][j];
+            }
+        }
+
+        if (minimo_fila < min_global) {
+                min_global = minimo_fila;
+        }
+        ++filas_contadas;
+    }
+
+    return  (min_global * filas_contadas);
+}
+\end{lstlisting}
+
+La segunda función de cota consiste principalmente en encontrar la mínima distancia de una matriz de adyacencia y depués multiplicar dicho valor por
+las filas restantes, suponiendo que ese camino será el mínimo para todos.
+\begin{lstlisting}          
+double cota_inferior_3(const std::vector<std::vector<double>>& matriz, const std::vector<int>& indices_a_ignorar = {}) {
+    double suma_costos = 0.0;
+
+    for (int i = 0; i < matriz.size(); ++i) {
+        
+        if (find(indices_a_ignorar.begin(), indices_a_ignorar.end(),i) != indices_a_ignorar.end()) {
+            continue;
+        }
+
+        std::vector<double> costos_fila;
+        for (int j = 0; j < matriz[i].size(); ++j) {
+            costos_fila.push_back(matriz[i][j]);
+        }
+
+        
+        if (costos_fila.size() < 2) {
+            continue;  
+        }
+
+        std::sort(costos_fila.begin(), costos_fila.end());
+
+        double costo1 = costos_fila[0];
+        double costo2 = costos_fila[1];
+
+        suma_costos += (costo1 + costo2) / 2.0;
+    }
+
+    return suma_costos;
+}
+
+\end{lstlisting}
+
+Por último, la tercera función de cota consiste en obviar las filas que se encuentran dentro de las filas a ignorar, en este caso, a diferencia de la cota 1 no obviamos 
+las columnas. De las filas disponibles se cogen los dos valores más pequeños a través del sort que las ordena, habiendo comprobado previamente que hay más de dos valores 
+disponibles para que no se produzcan errores. Con esos dos valores hace la media y se la suma a la variable $suma\_costos$.
+\\ \\
+Más adelante en el apartado de eficiencia seguiremos comparando dichas cotas.
+
+\subsection{Algoritmo Branch and Bound}
+Primero de todo, el struct con el que trabajaremos para almacenar la información sobre la cota mínima, el camino y la distancia recorrida será:
+
+\begin{lstlisting}
+      struct Nodo {
+            vector<int> path;
+            double distancia_recorrida; 
+            double cota_inferior; 
+        
+            Nodo(vector<int>& inicial, double dist_rec, double cota_inf) {
+                path = inicial;
+                distancia_recorrida = dist_rec;
+                cota_inferior = cota_inf;
+            }
+      };
+\end{lstlisting}
+
+Ahora, el algoritmo Brach and Bound que hemos implementado ha sido:
+
+\begin{lstlisting}
+vector<int> branch_and_bound_greedy(vector<int>& points, vector< vector<double>> &distancias, int inicial, int &nodos_desarrollados, 
+double (*funcion_cota)(const vector<vector<double>>& matriz, const std::vector<int>& indices_a_ignorar)){
+    priority_queue<Nodo, vector<Nodo>, Comparador> no_visitados;
+    vector<int> mejor_camino = {inicial};
+    vector <int> auxiliar={};
+    Nodo actual( mejor_camino, 0, funcion_cota(distancias, auxiliar));
+    no_visitados.push(actual);
+
+    double costo_minimo = calcularDistanciaTotal(distancias, nearest_neighborTSP(distancias, inicial));
+    mejor_camino.clear();
+
+    while (!no_visitados.empty()) {
+        actual = no_visitados.top();
+        no_visitados.pop();
+
+        if (actual.path.size() == points.size()-1) {
+            nodos_desarrollados++;
+            vector<int> faltantes= numeros_faltantes(actual.path, points.size()-1);
+            actual.distancia_recorrida += distancias[actual.path.back()][faltantes[0]];
+            actual.distancia_recorrida += distancias[faltantes[0]][inicial];
+            actual.path.push_back(faltantes[0]);
+            actual.path.push_back(inicial);
+            if (actual.distancia_recorrida <= costo_minimo) {
+                costo_minimo = actual.distancia_recorrida;
+                mejor_camino = actual.path;
+            }
+        } 
+        else { 
+            if (actual.cota_inferior <= costo_minimo ){
+                nodos_desarrollados++;
+                vector<int> faltantes = numeros_faltantes(actual.path, points.size()-1);
+                for (int i = 0; i < faltantes.size(); ++i) {
+                    Nodo nuevo= actual;
+                    nuevo.path.push_back(faltantes[i]);
+                    nuevo.distancia_recorrida += distancias[actual.path.back()][faltantes[i]];
+                    nuevo.cota_inferior = nuevo.distancia_recorrida + funcion_cota(distancias, nuevo.path);
+                    no_visitados.push(nuevo);
+                }
+            }
+        }
+    }
+
+    return mejor_camino;
+
+}
+\end{lstlisting}
+
+El funcionamiento de este método se basa en empezar creando un nodo con el punto inicial y agregarlo a la cola de prioridad (cuyo comparador
+consiste en comparar la distancia recorrida por un nodo a y un nodo b y ver qué distancia es menor).Luego calculamos una cota global inicial que nos ayudará
+a reducir considerablemente el número de caminos posibles. Mientras la cola no esté vacía, tomamos como nodo actual el menor de todos los disponibles en la cola de prioridad:
+
+·En el caso de que hayamos recorridos todos los puntos menos uno, agregamos la distancia del último nodo que tenemos al nodo faltante 
+y la distancia del nodo faltante al primero del camino, creando así un camino cerrado que recorra todos los puntos. En el caso de que este camino
+recorrido sea mejor que la cota global actualizamos la variable $mejor\_camino$ que es lo que devolveremos una vez termina el bucle y la cota global.
+
+·En el caso en que no hayamos recorridos todos los nodos menos uno, comparamos la cota inferior suministrada por el nodo actual con la cota global. En el caso
+de que dicha cota inferior sea menor podemos seguir ejecutando el código sino, podamos. Una vez visto que la cota inferior es menor que la cota global, añadimos 
+los nodos faltantes a la cola de prioridad y volvemos a realizar los mismos pasos cogiendo el nodo con mejor camino de la cola de prioridad. 
+\\ \\
+Cabe destacar que en nuestra función Branch and Bound hemos decidido pasar como parámetro una función que nos permita elegir entre las distintas cotas
+disponibles, lo cual nos proporciona un código más funcional.
+\\\\
+A continuación se mostrará la notación dada en teoría, aunque sigamos un esquema similar, hay ciertos ámbitos que pueden ser suprimidos.
+\\\\
+\textbf{Notación:}
+\begin{itemize}
+      \item \textbf{Solución parcial:} Vector path del Nodo actual.
+      \item \textbf{Función poda:} Momento en que la cota inferior supera al costo minimo,siendo este la cota global.
+      \item \textbf{Restricciones explícitas:}Que el siguiete nodo a seleccionar este dentro de los nodos faltantes
+      \item \textbf{Restricciones implícitas:}Que el camino del nodo actual sea menor que el costo minimo
+      \item \textbf{Árbol de estado:} El espacio solución con el que se trabaja es el Nodo actual, sin embargo, el 
+      vector mejor camino es el árbol de estado al encontrar la solución.
+      \item \textbf{Estado del problema:} Cada uno de los nodos del árbol
+      \item \textbf{Estado solución:} Nodo actual
+      \item \textbf{Estado respuesta:}Vector mejor camino
+      \item \textbf{Nodo vivo:} Nodos que todavia no hemos podado y pueden darnos una solución en el caso de que el nodo actual con el que
+      estamos trabajando supere el valor del costo mínimo 
+      \item \textbf{Nodo muerto:}Nodo podado o que hemos recorrido todo su camino
+      \item \textbf{e-nodo:}Nodo actual
+\end{itemize}
+
+
+\newpage
+
+
+\section{Eficiencia teórica y empírica}
+\subsection{Eficiencia teórica}
+
+En primer lugar, como ya calculamos en la práctica anterior, tenemos que la eficiencai de la cota global es de $O(n^2)$. En cuanto a las cotas locales tenemos
+que: \\\\
+·Para la primera cota tenemos una eficiencia de $O(n^3)$. Esto se debe a que el bucle for interno se ejecuta n veces, y en dicho bucle se realiza un if con 
+una función find que a su vez también tiene eficiencia $O(n)$, por lo que dicho bucle for tiene eficiencia $O(n^2)$. Además, tenemos que el bucle for exterior 
+se ejecuta n veces, por lo que finalmente obtenemos una eficiencia $O(n^3)$.\\\\
+·Para la segunda cota tenemos por el mismo razonamiento una eficiencia de $O(n^3)$.\\\\
+·Para la tercera cota a diferencia de las dos cotas anteriores tenemos una eficiencia de $O(n^2)$, que es fácil de observar.
+Ahora veamos la eficiencia del algoritmo Branch and Bound. Empezando por la parte más interna del código, tenemos una estructura if-else. En dicha estructura,
+el bloque de sentencias if tienen una eficiencia $O(nlog(n))$ debido a que llama a la funcion numeros faltantes cuya eficiencia se ve claramente, debido a que 
+se ejecuta en un bucle for n veces un if cuya condición es $O(log(n))$.
+
+
+\begin{lstlisting}
+vector<int> numeros_faltantes(const vector<int>& vec, int n) {
+            
+      set<int> presentes(vec.begin(), vec.end());
+        
+      vector<int> faltantes;
+      for (int i : views::iota(0, n + 1)) {
+            if (!presentes.contains(i)) {
+                faltantes.push_back(i);
+            }
+      }
+        
+      return faltantes;
+}
+\end{lstlisting}
+Por otro lado, tenemos para el else una eficiencia de $O(n^4)$ o $O(n^3)$, esto se debe a que hay un bucle for que se ejecuta n veces y en su cuerpo se llama a la función 
+cota inferior que tiene una eficiencia de $O(n^3)$ o $O(n^2)$. De aquí obtenemos que la eficiencia del bloque if-else es $O(n^4)$o $O(n^3)$. Sin embargo, calculamos como la condición del bucle while es $O(n!)$,
+tenemos que la eficiencia del método Branch and Bound es de $O(n!)$. 
+
+\subsection{Eficiencia empírica}
+En cuanto a la eficiencia empírica, podemos observar como las cotas 1 y 2 desarrollan muchos menos nodos que la cota 3. Sin embargo,
+debido a que la eficiencía de las cotas 1 y 2 es mayor que la de la cota 3 no se ven afectados los tiempos de ejecución de unas cotas
+respecto de la otra. A continuación, mostraremos distintas gráficas que lo demuestran.
+
+\begin{figure}[H]
+      \centering
+      \begin{minipage}{.48\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{assets/Img/comparacion_nodos_12.png}
+            \caption{Comparación nodos}
+            \label{fig:Comparacion nodos}
+      \end{minipage}%
+      \begin{minipage}{.48\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{assets/Img/comparacion_nodos_14.png}
+            \caption{Comparación nodos}
+            \label{fig:Comparacion nodos}
+      \end{minipage}
+      \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/Img/Cota_1_BB/Cota1_grafico_tiempos.png}
+        \caption{Cota 1 }
+        \label{fig:Tiempos}
+       \end{minipage}
+       \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/Img/Cota_2_BB/Cota2_grafico_tiempos.png}
+        \caption{Cota 2 }
+        \label{fig:Tiempos}
+       \end{minipage}
+       \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/Img/Cota_3_BB/Cota3_grafico_tiempos.png}
+        \caption{Cota 3 }
+        \label{fig:Tiempos}
+       \end{minipage}
+
+\end{figure}
+\newpage
+
+\section{Justificación}
+
+Para demostrar que el algoritmo Branch and Bound que hemos creado nos proporciona una solución óptima, realizaremos una
+demostración por reducción al absurdo. Proposiciones:
+\begin{enumerate}
+      \item Llamaremos N al conjunto de todos los nodos pertenecientes al último nivel
+      \item Llamaremo T al conjunto de todos los nodos pertenecientes a niveles superiores que están podados.
+      \item Llamaremos $N_A$ al nodo que nos devuelve nuestro algoritmo
+      \item Llamaremos $k_i$ al camino correspondiente de $N_i$
+      \item Llamaremos $c_i$ a la cota inferior local correspondiente de $N_i$
+      \item Llamaremos C a la cota global
+      \item Supondremos que una solución es la óptima cuando en el último nivel del árbol de estado exista
+      un camino tal que $k_i \leq k_j \ \ \ \forall N_j \in N$ y que cumpla que $k_i \leq c_{ln}  \ \ \ c_{ln} \in T $ donde 
+      n indica el nivel de su ultimo desarrollo, es decir, su rama esta podada 
+\end{enumerate}
+
+Procedemos ahora a realizar la reduccioón al absurdo.
+Empezamos suponiendo que la solución devuelta no es la óptima, entonces pueden ocurrir dos cosas:
+\begin{enumerate}
+    \item Existe un nodo en el último nivel al que llamaremos $N_j$ tal que $ N_j \in N$ que cumple que
+     $k_j < k_A  \ \ $  entonces  $ N_j$  sería una mejor solución que $N_A$. De hecho, en prticular, se cumpliría que
+     $ \exists N_j \in N \text{tal que } k_l \leq k_i  \ \ \forall N_i \in N $. Por tanto, nuestro algoritmo hubiera 
+     devuelto $N_j$ en vez de $N_A$ y llegamos a una contradicción
+    \item Existiría un nodo $N_{jm} \in T \text{tal que } c_{jm} < K_A = C$ del nivel m, donde la rama estaría podada
+    por lo que llegamos a una contradicción, ya que debería seguir desarrollandose al ser menor que la cota global. 
+\end{enumerate}
+
+Como podemos ver en ambos casos llegamos a contracción que es lo que buscábamos
+
+\newpage
+
+\section{Gráficas}
+Finalmente, mostraremos varias ejecuciones del algoritmo del viajante mediante el Branch and Bound. Mostraremos gráficas realizadas con ambas
+cotas aunque eso no se ve reflejado en el resultado final sino más bien en el tiempo de ejecución y el número de nodos desarrollados,como hemos mostrado previamente.
+
+\begin{figure}[H]
+      \centering
+      \begin{minipage}{.48\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{assets/Img/Cota_3_BB/grafico_6_1_cota3.png}
+            \caption{Cota 1}
+            \label{fig:Nodos}
+      \end{minipage}%
+      \centering
+      \begin{minipage}{.48\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{assets/Img/Cota_3_BB/grafico_10_1_cota3.png}
+            \caption{Cota 2}
+            \label{fig:Nodos}
+      \end{minipage}
+      \begin{minipage}{.48\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{assets/Img/Cota_3_BB/grafico_14_1_cota3.png}
+            \caption{Cota 3}
+            \label{fig:Nodos}
+      \end{minipage}
+\end{figure}
+
+
+A simple vista podemos apreciar que verdaderamenta obtenemos resultados correctos independientemente de la 
+cota utilizada.
+\end{document}
