@@ -19,30 +19,27 @@
 \begin{itemize}
       \item \textbf{Miguel Ángel De la Vega Rodríguez:} 20\%
             \begin{itemize}
-                  \item Makefile | Organización Branch and Bound
-                  \item Programación Branch and Bound
-                  \item Branch and bound redacción
+                  \item Estructura del documento
+                  \item Ejemplos de Uso
             \end{itemize}
       \item \textbf{Joaquín Avilés De la Fuente:} 20\%
             \begin{itemize}
-                  \item Programación Branch and Bound
-                  \item Programación creación de casos (puntos y matrices de adyacencia)
-                  \item Programación de funciones de cota para Branch and Bound
+                  \item Explicación del Modelo Oculto de Markov (HMM)
+                  \item Explicación del Algoritmo de Viterbi (incluyendo sus pasos)
+                  \item Documentación de la Introducción
             \end{itemize}
       \item \textbf{Alberto De la Vera Sánchez: } 20\%
             \begin{itemize}
-                  \item Branch and bound redacción
+                  \item Ejemplo corrección de errores en receptores SDR
+                  \item Connclusión
             \end{itemize}
       \item \textbf{Manuel Gomez Rubio} 20\%
             \begin{itemize}
-                \item Programacion Backtracking
-                \item Redacción Backtracking
+                \item Ejemploo del reconocimiento de voz
             \end{itemize}
       \item \textbf{Pablo Linari Pérez:} 20\%
             \begin{itemize}
-                  \item Programacion Backtracking
-                  \item Redacción Objetivos
-                  \item Redacción Backtracking
+                  \item Ejemplo de Codificación de Genes
             \end{itemize}
 \end{itemize}
 
@@ -59,5 +56,391 @@
                   \item Compilador GCC 12.2.0
             \end{itemize}
 \end{itemize}
+
+\chapter{Introducción}
+El algoritmo de Viterbi es un algoritmo de programación dinámica utilizado para encontrar la secuencia de estados más probable en un \textbf{modelo oculto de Markov 
+(HMM, Hidden Markov Model)}. El algoritmo de Viterbi es ampliamente utilizado en diversos campos, como el lenguaje, la ingeniería de comunicaciones, la robótica, la 
+biología, la medicina, la meteorología, etc. \\ \\
+En este documento, presentamos una descripción detallada del algoritmo de Viterbi, su implementación y ejemplos de uso 
+en diferentes campos, haciendo sobre todo énfasis en el uso de la programaciónn dinámica. 
+
+\chapter{Descripción del Algoritmo}
+Como bien hemos comentado en la introducción el algoritmo de Viterbi es un algoritmo de programación dinámica utilizado para encontrar la secuencia de estados más probable en un 
+modelo oculto de Markov (HMM, Hidden Markov Model), por lo que en primer lugar pasaremos a explicar dicho modelo así como los elementos que lo componen y su sintaxis matemática, 
+para poder comprender mejor el algoritmo de Viterbi y sus ejemplos.
+
+\section{Modelo Oculto de Markov (HMM)}
+Un modelo oculto de Markov (HMM) es un modelo estadístico que describe la secuencia de estados a través de la cual pasa un proceso estocástico. En un HMM, el proceso estocástico
+es un proceso de Markov, lo que significa que la probabilidad de que el sistema pase a un estado futuro depende únicamente del estado actual y no de los estados anteriores, de forma que 
+el calculo del estado más probables se hace mediante la probabilidad de transición entre estados y de la probabilidad de emisión de observaciones. \\ \\
+Un HHM se representa mediante una tupla $(Q, V, \pi, A, B,)$ y explicaremos a continuación sus componentes:
+\begin{itemize}
+      \item Un conjunto de estados $Q = \{q_1, q_2, \ldots, q_N\}$.
+      \item Un conjunto de estados observables $V = \{v_1, v_2, \ldots, v_L\}$.
+      \item Un conjunto de probabilidades de transición entre estados $A = \{a_{ij}\}$, donde $a_{ij} = P(q_t = j | q_{t-1} = i)$, es decir, la probabilidad de 
+      pasar de un estado $i$ en el instante de tiempo $t-1$ a un estado $j$ en el instante de tiempo $t$.
+      \item Un conjunto de probabilidades de las observaciones $B = \{b_j(v_k)\}$, donde $b_j(v_k) = P(o_t = v_k | q_t = j)$, es decir, la probailidad de observar
+      $v_k$ en el estado $j$ en el instante de tiempo $t$.
+      \item Un conjunto de probabilidades de estados iniciales $\pi = \{\pi_i\}$, donde $\pi_i = P(q_1 = i)$, es decir, la probabilidad de que en el instante $1$ (al inicio) se tenga
+      el estado $i$.
+\end{itemize}
+ 
+En dicho modelo, notaremos a la secuencia de observaciones como el conjunto $O=\{o_1, o_2, \ldots, o_L\}$ y al conjunto
+de estados ocultos con mayor probabilidad como $S = \{s_1, s_2, \ldots, s_L\}$, donde $L$ es el número de observaciones, por lo que como se podía deducir se tiene
+el mismo número de observaciones que estados ocultos en la secuencia con mayor probabilidad, pues estos estados serán consecuencia (en parte) de las observaciones dadas. \\ \\
+
+\section{Algoritmo de Viterbi}
+En esta sección procederemos a explicar el \textbf{Algoritmo de Viterbi}, donde daremos una explicación detallada de su funcionamiento y del uso de programación dinámica en el mismo. \\ \\
+El algoritmo de Viterbi se basa en la idea de que la probabilidad de la secuencia de estados más probable hasta el instante de tiempo $t$ se puede calcular a partir de la probabilidad
+de la secuencia de estados más probable hasta el instante de tiempo $t-1$. \\ \\
+El algoritmo de Viterbi se puede resumir en los siguientes pasos:
+\begin{itemize}
+      \item Inicialización: Calcular la probabilidad de la secuencia de estados más probable hasta el instante de tiempo $t=1$, es decir, obtener el estado inicial más probable 
+      \item Recursión: Calcular la probabilidad de la secuencia de estados más probable hasta el instante de tiempo $t$ a partir de la probabilidad de la secuencia de estados más probable
+      hasta el instante de tiempo $t-1$.
+      \item Terminación: Calcular la probabilidad de la secuencia de estados más probable hasta el instante de tiempo $T$.
+      \item Reconstrucción de la secuencia de estados: Reconstruir la secuencia de estados más probable a partir de las probabilidades calculadas.
+\end{itemize}
+
+El uso de programación dinámica en este caso es claro, tener una matriz de probabilidades donde se almacenen la probabilidad máxima de cada estado hasta el instante de tiempo $t$,
+lo que nos permitirá calcular la probabilidad máxima de cada estado hasta el instante de tiempo $t+1$ de forma eficiente. Por tanto tendremos una matriz $\mathscr{M}$ de $N$ filas 
+(una para cada estado $q_k$ donde $k\in N$) y $T=L$ columnas (una para cada instante de tiempo $t\in T=L$). Recordemos que teníamos la secuencia de observaciones $O=\{o_1, o_2, \ldots, o_L\}$.\\
+
+A continuación procederemos a explicar los pasos del algoritmo de Viterbi de forma más detallada. \\ \\ 
+\subsection{Inicialización}
+La matriz $\mathscr{M}$ se inicializa de la siguiente forma:
+\begin{itemize}
+      \item $\mathscr{M}[k][1] = \pi_k \cdot b_k(o_1) \forall k \in N$, es decir, la probabilidad de que el estado $k$ sea el estado inicial multiplicado por la probabilidad de que se observe
+      la primera observación en el estado $k$. Destacar que $N$ representa la cantidad de estados posibles ocultos en el modelo oculto de Markov.
+\end{itemize}
+
+\subsection{Recursión}
+Una vez inicializada la matriz $\mathscr{M}$, se procede a calcular las probabilidades de la secuencia de estados más probable hasta el instante de tiempo $t$ a partir de la probabilidad
+de la secuencia de estados más probable hasta el instante de tiempo $t-1$, es decir, para calcular los valores de la columnas $t$ usaremos los de la columna $t-1$, es aquí donde hacemos
+un uso claro de la programación dinámica. Para ello, se utiliza la siguiente fórmula:
+\begin{itemize}
+      \item $\mathscr{M}[j][t] = \max_{i=1}^{N} \left\{ \mathscr{M}[i][t-1] \cdot a_{ij} \cdot b_j(o_t) \right\}$, es decir, se multiplica la probabilidad máxima del estado $i$ en
+      el instante $t-1$ por la probabilidad de transición de $i$ a $j$ por la probabilidad de observar $o_t$ en el estado $j$, todo esto para todo $i\in N$ y se 
+      selecciona el máximo de estos valores. Tenemos así la máxima probabilidad de llegar al estado $j\in N$ en el instante de tiempo $t$.
+\end{itemize}
+\subsection{Terminación}
+En esta última fase el objetivo será obtener cual es la máxima probabilidad de llegar a un estado $k\in N$ en el instante de tiempo $t=T$, es decir, la probabilidad de la secuencia de estados
+más probable hasta el instante de tiempo $t=T$. Para ello, se utiliza la siguiente fórmula:
+\begin{itemize}
+      \item $P = \max_{i=1}^{N} \left\{ \mathscr{M}[i][T] \right\}$, es decir, se selecciona el máximo de las probabilidades de llegar a cada estado en el instante de tiempo $t=T$.
+\end{itemize}
+donde tenemos que $P$ almacena la probabilidad máxima de todos los posibles estados $k\in N$ en el instante de tiempo $t=T$.
+\subsection{Reconstrucción de la secuencia de estados}
+Una vez obtenida la probabilidad máxima de la secuencia de estados más probable hasta el instante de tiempo $t=T$, se procede a reconstruir la secuencia de estados más probable. 
+La idea a desarrolar es la siguiente: \\
+\begin{itemize}
+      \item En el instante $t=T$ se selecciona el estado $k$ que maximiza la probabilidad de llegar a uno de los estados en el instante de tiempo $t=T$, es decir,
+      se selecciona el estado $k$ tal que $\mathscr{M}[k][T] = P$, ya obtenido dicho valor obtendremos el estado $s$ en el instante $t-1$ que maximiza la probabilidad de llegar a $k$ en el instante
+      de tiempo $t=T$, es decir, se selecciona el estado $s$ tal que $\mathscr{M}[s][T-1] \cdot a_{sk} \cdot b_k(o_T) = \mathscr{M}[k][T] = P$, y así sucesivamente hasta llegar al instante de tiempo $t=1$.      
+\end{itemize}
+Tenemos ahora la idea con la que obtendremos dicha secuencia más probable de estados, es decir, la secuencia de estados $S = \{s_1, s_2, \ldots, s_L\}$ que maximiza la probabilidad de la secuencia de observaciones $O=\{o_1, o_2, \ldots, o_L\}$.
+Veamos por tanto como vamos a hacerlo:
+\begin{itemize}
+      \item En el instante de tiempo $t-1$ se selecciona el estado $i\in N$ y se multiplica dicho valor por la probabilidad de transición de $i$ a $k$ y por la probabilidad de observar $o_t$ en el estado $k$, 
+      si dicho valor nuevo obtenido coincide con el valor de la matriz $\mathscr{M}[k][T]=P$, entonces se selecciona el estado $i$ como el estado anterior a $k$ en la secuencia de estados más probable. En caso 
+      contrario se hace dicha comprobación para todos los estados $i\in N$, obteniendo así el estado $s$ en el instante $t-1$ de la secuencia de estados ocultos con mayor probabilidad.
+      \item Este proceso se repite para todo $t\in T$ hasta llegar al instante de tiempo $t=1$, obteniendo así la secuencia de estados ocultos con mayor probabilidad.
+\end{itemize}
+
+
+\chapter{Ejemplos de Uso}
+El algoritmo de Viterbi es ampliamente utilizado en diversos campos tales como 
+el lenguaje, la ingeniería de comunicaciones, la robótica, la biología, la medicina,
+la meteorología, etc. A continuación presentamos algunas de las aplicaciones específicas
+de este algoritmo en distintos campos.
+
+\section{Lenguaje}
+El algoritmo de Viterbi es utilizado en el reconocimiento de voz, en el reconocimiento
+de escritura a mano, en la corrección de errores en el texto, en la traducción automática,
+en la generación de texto, en la síntesis de voz, en la transcripción de audio, etc. Veamos
+un ejemplo de uso de Viterbi en el proceso de desambiguación de palabras en un texto.
+\subsection*{Definición del modelo oculto de Markov (HMM)}
+
+Cuando queremos procesar el lenguaje natural, es común encontrarnos con palabras que tienen
+múltiples significados. Por ejemplo, la palabra \textit{privado} está reconocida por la RAE como 
+un adjetivo, un sustantivo y un verbo. Para desambiguar estas palabras cuando procesamos
+un texto, podemos utilizar el algoritmo de Viterbi, en este caso particular, 
+los elementos del modelo oculto de Markov serían:
+\begin{itemize}
+      \boldmath
+      \item El conjunto $Q$ de estados ocultos (categorías gramaticales)
+      \item El conjunto $V$ de estados observables (palabras)
+      \item El conjunto $A$ de probabilidades de transición entre estados (probabilidades de cambio de categoría gramatical, por ejemplo, que un nombre vaya detras de un verbo)
+      \item El conjunto $B$ de probabilidades de emisión de observaciones (probabilidades de que una palabra pertenezca a una categoría gramatical, por ejemplo, 
+      que la palabra \textit{perro} sea un sustantivo es mucho mayor a que sea un adjetivo)
+\end{itemize}
+Mostramos un ejemplo para el texto \textit{quiero aprobar la asignatura}:
+\begin{center}
+\begin{tikzpicture}[every node/.style={draw, text height=1.5ex, text depth=.25ex}]
+      % Nodes
+      \node (s0) [rectangle, minimum width=1cm, minimum height=1cm] at (0,0) {estado 0};
+      \node (verb1) [rectangle, minimum width=1cm, minimum height=1cm, right=1cm of s0] {verbo};
+      \node (verb2) [rectangle, minimum width=1cm, minimum height=1cm, right=1cm of verb1] {verbo};
+      \node (noun) [rectangle, minimum width=1cm, minimum height=1cm, right=1cm of verb2] {nombre};
+      \node (noun2) [rectangle, minimum width=1cm, minimum height=1cm, right=1cm of noun] {nombre};
+      \node (s1) [rectangle, minimum width=1cm, minimum height=1cm, right=1cm of noun2] {estado 0};
+  
+      % Solid lines
+      \draw[->] (s0) -- (verb1);
+      \draw[->] (verb1) -- (verb2);
+      \draw[-, dashed] (verb2) -- (noun);
+      \draw[-, dashed] (noun) -- (noun2);
+      \draw[->] (noun2) -- (s1);
+  
+      % Text above nodes
+      \node[draw=none, above=0.1cm of verb1] {quiero};
+      \node[draw=none, above=0.1cm of verb2] {aprobar};
+      \node[draw=none, above=0.1cm of noun] {la};
+      \node[draw=none, above=0.1cm of noun2] {asignatura};
+      
+      % Possible transitions (dashed lines)
+      \node (adv) [rectangle, minimum width=1cm, minimum height=1cm, below=1.5cm of verb1] {adverbio};
+      \node (adj) [rectangle, minimum width=1cm, minimum height=1cm, below=1.5cm of noun] {adjetivo};
+      \node (det) [rectangle, minimum width=1cm, minimum height=1cm, below=1.5cm of adj] {determinante};
+
+      \draw[-, dashed] (s0) -- (adv);
+      \draw[->] (verb2) -- (det);
+      \draw[->] (det) -- (noun2);
+      \draw[-, dashed] (adv) -- (verb2);
+      \draw[-, dashed] (verb2) -- (adj);
+      \draw[-, dashed] (adj) -- (noun2);
+  \end{tikzpicture}
+\end{center}
+Donde, los observables son la secuencia de palabras \textit{quiero aprobar la asignatura} y los estados ocultos son las categorías gramaticales de las palabras,
+que como se puede ver, contemplan sólo un conjunto limitado de categorías gramaticales. Esto se debe a que 
+la probablidad de pertenencia de determinadas palabras a ciertas categorías gramaticales es 0, lo que simplifica
+y acelera el proceso de desambiguación.
+
+\subsubsection{Aplicación del Algoritmo de Viterbi}
+El algoritmo de Viterbi se utiliza para encontrar la secuencia más probable de estados ocultos (categorías gramaticales) dada una secuencia de observaciones (palabras). Para nuestro ejemplo, el proceso se desarrolla de la siguiente manera:
+
+\begin{itemize}
+      \item Inicialización:
+      \begin{itemize}
+            \item Definir los estados ocultos posibles. Por ejemplo, en nuestro caso, los estados posibles son verbo, nombre, determinante, etc.
+            \item Definir las probabilidades iniciales para cada estado oculto. Por ejemplo, es muy probable que la primera palabra quiero sea un verbo.
+            \item $\pi(\text{verb}) = P(\text{verb} | \text{estado}_0)$.
+      \end{itemize}
+      \item Recursión:
+      \begin{itemize}
+            \item Para cada palabra en la secuencia, calcular la probabilidad de que cada posible estado oculto (categoría gramatical) siga a cada estado anterior. Esto se hace utilizando las probabilidades de transición ($A$) y las probabilidades de emisión ($B$).
+            \item Ejemplo: Para la palabra aprobar, se calcularía $P(\text{verb}_2 | \text{verb}_1) \cdot P(\text{aprobar} | \text{verb}_2)$ para todas las categorías posibles de aprobar.
+            \item Se selecciona el estado que maximiza esta probabilidad.
+      \end{itemize}
+      \item Terminación:
+      \begin{itemize}
+            \item Una vez procesadas todas las palabras, se selecciona la secuencia de estados que maximiza la probabilidad total de la secuencia observada.
+            \item Esta secuencia representará las categorías gramaticales más probables para la oración.
+      \end{itemize}
+      \item Reconstrucción de la secuencia de estados:
+      \begin{itemize}
+            \item Utilizando las probabilidades calculadas, se reconstruye la secuencia de categorías gramaticales más probable.
+            \item Por ejemplo: quiero (verbo), aprobar (verbo), la (determinante), asignatura (nombre).
+      \end{itemize}
+\end{itemize}
+\section{Reconocimiento de voz}
+
+Dada una secuencia de observaciones acústicas, queremos predecir la secuencia de las palabras que se obtendrán.
+\subsection*{Definición del modelo oculto de Markov (HMM)}
+      \begin{itemize}
+            \item  Estados Ocultos (Q): Fonemas (sonidos básicos del habla)
+            \item  Observaciones (V): Características acústicas extraídas de la señal de voz (vectores de características como Mel-Frequency Cepstral Coefficients - MFCC)
+            \item  Probabilidades de Transición (A): Probabilidades de transición entre fonemas.
+            \item  Probabilidades de Emisión (B): Probabilidades de emitir una característica acústica específica dado un fonema.
+      \end{itemize}
+\subsection*{Aplicación del algoritmo}  
+    Mel-Frequency Cepstral Coefficients - MFCC estudia los diferentes tonos, acentuaciones, etc. que tienen las palabras dentro de los idiomas, lo que permite a las IAs aprender
+    con mayor precisión los lenguajes mediante señales de audio
+
+\begin{itemize}
+      \item Inicialización: \\ 
+      Definir Estados Ocultos posibles. En este caso, son los diferentes fonemas que se pueden emplear en los idiomas
+      
+      Definir las probabilidades de cada estado oculto. $\pi$ fonema: Probabilidad inicial de cada fonema. Estas probabilidades pueden estar basadas en la frecuencia de los fonemas al inicio de palabras en el idioma.
+      \item Recursión: \\
+      Seleccionado un elemento cualquiera, sin que sea el primero, de la secuencia, hay calcular la probabilidad para cada estado oculto pposible. Para cada segmento de la señal de voz (cada observación acústica), \\
+      calculamos la probabilidad de que cada posible estado oculto (fonema) siga a cada estado anterior utilizando las probabilidades de transición y de emisión.
+
+
+      y se seleccionará el estado que maximice la probabilidad.
+      \item Terminación: \\
+      Una vez procesados los fonemas que son empleados en las palabras, se selecciona la secuencia de estados que maximiza la probabilidad total de la secuencia obtenida. Obteniendo así, la secuencia de fonemas con mayor probabilidad
+      
+      \item Reconstrucción de la secuencia de estados: \\
+      Se usan las probabilidades calculadas para reconstruir la secuencia de fonemas más probables. \\ \\
+\end{itemize}
+Usamos las probabilidades calculadas para reconstruir la secuencia de fonemas más probable, y luego mapeamos estos fonemas a palabras usando un diccionario fonético. \\
+Ejemplo Práctico: \\
+Imaginemos que la secuencia de observaciones acústicas es O={o1,o2,o3}y los fonemas posibles son /k/, /ae/, /t/, que corresponden a las palabras $"cat"$.
+Se calcularán las probabilidades de que aparezcan en cada posición los distintos fonemas teniendo en cuenta las probabilidades de los fonemas seleccionados anteriormente en ese camino con la fórmula descrita. \\
+Tras esto podremos tomar la secuencia de estados que maximice la probablidad total de la secuencia y se reconstuirá usando esta, en este caso,la secuencia de fonemas más probable es /k/ -> /ae/ -> /t/, que mapeamos a la palabra $"cat"$. \\
+Este ejemplo muestra cómo el algoritmo de Viterbi se utiliza para convertir una secuencia de observaciones acústicas en una secuencia de fonemas, y luego en palabras, en el reconocimiento de voz.
+
+\section{Predicción de genes}
+
+En esta sección, presentamos un ejemplo de uso del algoritmo de Viterbi en la predicción de genes en secuencias de ADN. La predicción de genes es un problema importante en bioinformática,
+En general, la predicción de genes trata de localizar en las largas secuencias de ADN, y de forma automatizada, las subsecuencias de nucleótidos que conforman los diferentes genes.
+\subsection*{Explicación del problema}
+Existen cuatro tipos de nucleótidos, que se suelen representar por las letras A, C, G y T en función de la base nitrogenada
+que contengan: Adenina, Citosina, Guanina o Timina. Una cadena compuesta por estas cuatro letras representa la estructura primaria de una molécula de ADN.
+Por tanto el algoritmo se utiliza para identificar exones que poseen la información necesaria para la sintesis 
+de proteínas .Los modelos ocultos de Markov (HMM) son una herramienta común en la predicción de genes debido a su capacidad para manejar secuencias donde los estados exones e intrones (sirven de mensajeros para el codigo de los exones) 
+son ocultos y solo las secuencias de ADN observables están disponibles. 
+\subsection*{Definición del modelo oculto de Markov (HMM)}
+      Primero definimos los elementos del modelo oculto de Markov:
+      \begin{itemize}
+            \item El conjunto $Q$ de estados ocultos (exones e intrones)
+            \item El conjunto $V$ de estados observables (nucleótidos)
+            \item El conjunto $A$ de probabilidades de transición entre estados (probabilidades de cambio de exón a intrón y viceversa)
+            \item El conjunto $B$ de probabilidades de emisión de observaciones (probabildes de observar una A en un exón)
+      \end{itemize}
+El modelo de Markov oculto dado,
+trata de capturar las diferencias estadísticas en exones e intrones. El modelo tiene
+cuatro estados, donde $E_1$, $E_2$, y $E_3$ se utilizan para modelar las propiedades estadísticas básicas en los exones. Cada estado $E_i$ utiliza un conjunto de probabilidades de
+emisión diferentes para reflejar el símbolo en la posición i de un codón(secuencia de 3 nuecleótidos ej: ATC). El estado $I$
+se utiliza para modelizar los intrones.
+\begin{figure}[H]
+      \centering
+      \begin{minipage}{.48\textwidth}
+          \centering
+          \includegraphics[width=1\linewidth]{assets/Img/modelo oculto modelizar procariotas.png}
+          \caption{modelo de Markov}
+          \label{fig:Modelo de markov para modelizar genes de procariotas}
+    \end{minipage}%
+
+  \end{figure}
+  El modelo construido  se utiliza ahora para analizar nuevas secuencias observadas. Por ejemplo, supongamos que tenemos una nueva secuencia de ADN $X =
+x_1, . . . , x_19 = ATGCGACTGCATAGCACTT$. ¿Cómo podemos saber si esta secuencia de ADN es la región codificada de un gen o no? 
+Podemos responder a la  pregunta calculando la probabilidad observada de X basada en el modelo dado, que modeliza
+genes codificantes. Si esta probabilidad es alta, implica que esta secuencia de ADN
+es probablemente la de la región codificada de un gen (porción de adn que codifíca la proteina).
+\subsection*{Aplicación del algoritmo}
+\begin{itemize}
+      \item Inicialización:
+      \begin{itemize}
+            \item Se inicializa una matriz para almacenar las probabilidades de la secuencia más probable que termina en cada estado, para cada posición en la secuencia de ADN.
+            \item Se inicializa otra matriz para realizar un seguimiento de los estados previos.
+      \end{itemize}
+      \item Recursión:
+      \begin{itemize}
+            \item Para cada posición en la secuencia de ADN y para cada estado, se calcula la probabilidad de que la secuencia más probable termine en ese estado en esa posición. Esto se hace usando las probabilidades de transición y de emisión.
+            \item Se actualizan las matrices de probabilidades y de estados previos.
+            \item Se selecciona el estado que maximiza esta probabilidad.
+      \end{itemize}
+      \item Terminación:
+      \begin{itemize}
+            \item Una vez que se llega al final de la secuencia de ADN, se selecciona el estado con la probabilidad más alta en la última posición de la matriz de probabilidades.
+            \item Se realiza un seguimiento hacia atrás usando la matriz de estados previos para determinar la secuencia de estados más probable.
+      \end{itemize}
+      \item Reconstrucción de la  Predicción de Genes:
+      \begin{itemize}
+            \item La secuencia de estados obtenida se traduce en regiones codificantes (exones) e intrones.
+            \item Las predicciones se ajustan y se anotan en la secuencia de ADN.
+
+      \end{itemize}
+\end{itemize}
+\begin{figure}[H]
+\centering
+\begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{assets/Img/dibujomarkov.png}
+    \caption{Cálculo para una procariota}
+    \label{fig:Uso del HMM}
+\end{minipage}%
+\end{figure}
+
+\subsection*{Integración en el software}
+
+Existen varias herramientas bioinformáticas que implementan el algoritmo de Viterbi para la predicción de genes como 
+GeneMark que utiliza Cadenas Ocultas de markov para identificar genes en células procariotas y eucariotas . Glimmer es otra herramienta que utiliza el algoritmo de Viterbi para la predicción de genes en 
+genomas bacterianos .Estos programas suelen integrar datos adicionales y heurísticas para mejorar la precisión de la predicción, adaptándose a las características específicas del genoma en estudio.
+En resumen, el algoritmo de Viterbi es una técnica poderosa para la predicción de genes, aprovechando su capacidad para manejar secuencias y estados ocultos en un contexto biológico complejo ya que muchas 
+veces se necesita modelizar el comportamiento futuro del ADN para detectar genes y regiones codificantes y así poder detectar enfermedades genéticas y tratarlas a tiempo.
+
+
+\section{Corrección de errores en receptores SDR(Software Defined Radio)}
+Es una tecnología para comunicaciones inalámbricas que se enfoca en la especificación en software de los 
+elementos de un sistema de comunicación. Una de las características de una SDR, es la detección y correción de errores, que nos permite
+un uso eficiente del ancho de banda asignado, pudiendo así aumentar el número de usuarios que el sistema puede soportar.
+
+\subsection*{Descripción del problema}
+En general, en sistemas de comunicación inalámbrica, la correción de errores es 
+esencial para asegurar la integridad de los datos transmitidos. La radio definida
+por software(SDR) permite diseñar terminales móviles reconfigurables que
+operan  bajo múltiples estándares de comunicación, como GSM(Global System Mobile) y 
+DCS(Digital System Communication). Estos sistemas utilizan la codificación
+convencional para la detección y correción de errores, y el algoritmo de  
+Viterbi se utiliza para la decodificación eficiente de estos códigos
+
+\subsection*{Elementos del modelo oculto de Markov (HMM)}
+
+Primero definimos los elementos del modelo oculto de Markov:
+\begin{itemize}
+      \item El conjunto $Q$ de estados ocultos (las posibles combinaciones de bits en el codificador)
+      \item El conjunto $V$ de estados observables (datos codificados recibidos)
+      \item El conjunto $A$ de probabilidades de transición entre estados (probabilidades de transición entre estados, generados por la combinación de los distintos bits)
+      \item El conjunto $B$ de probabilidades de emisión de observaciones (probabildes 
+      de que una observación (bit recibido) sea emitida desde un estado particular,es decir, la 
+      probabilidad de recibir una secuencia de bits dados los estados del codificador)
+      
+\end{itemize}
+
+\subsection*{Aplicación del algoritmo}
+El algoritmo de Viterbi se utiliza para encontrar la secuencia más probable de 
+estados ocultos (bits originales) dada una secuencia de observaciones (bits 
+recibidos). A continuación, se describe el proceso detallado:
+
+\begin{itemize}
+      \item Inicialización:
+      \begin{itemize}
+            \item Definir los estados ocultos: Los estados son las poibles combinaciones de bits que el codificador puede generar .
+            \item Por ejemplo, en un codificador con N = 4 bits, hay $2^{N}= 16 $ estados posibles.
+            \item Definir las probabilidades iniciales: Asignamos una probabilidad inicial a cada estado oculto.
+            \item Por ejemplo, es probable que el estado inicial sea 0000.
+      \end{itemize}
+
+      \item Recursión:
+      \begin{itemize}
+            \item Cálculo métrico de la rama (Branch Metrics): Para cada bit recibido, calculamos la distancia Hamming(métrica utilizada para comparar dos secuencias
+            de simboles del mismo tamaño, determinando cuántas posiciones en las secuencias difieren entre sí) entre los bits recibidos 
+            y las posibles secuencias de bits generadas por las transiciones de estado.
+            \item Por ejemplo, para una secuencia recibida "11", calculamos la distancia Hamming con todas las transiciones posibles
+            \item Selección de transiciones sobrevivientes: Determinamos las transiciones con la menor métrica acumulada en cada pasos.
+            \item Por ejemplo, tomando la secuencia anterior, calculamos P(00|11)· P(11|estado) para todas las categorias posibles.
+            \item Actualizar métricas: Acumulamos las métricas de distancia para cada posible trayectoria(aquí es donde toma relevancia la programación dinámica).
+      \end{itemize}
+
+      \item Terminación:
+      \begin{itemize}
+            \item Una vez procesados todos los bits recibidos,seleccionamos la secuencia de estados(bits originales) que maximiza la probabilidad total
+            \item Esta secuencia representará los bits originales más probables
+      \end{itemize}
+      \item Reconstrucción de la secuencia de estados:
+      \begin{itemize}
+            \item Utilizamo las probabilidades calculadas para reconstruir la secuencia  de bits originales
+            \item Por ejemplo, si la secuencia más probable de estados es 10 01 00 11 , esta es la secuencia de bits original decodificada
+      \end{itemize}
+\end{itemize}
+
+Una vez visto la aplicación del algoritmo más detallada, podemos decir que el algoritmo de Viterbi para la corrección de errores
+se basa en: dada una secuencia de bits recibida(la cual puede contener ruido, además de estar codificada), el algoritmo de Viterbi 
+calcula las métricas de rama (distancai Hamming) y selecciona las transiciones con menor métrica acumulada. Finalmente, reconstruye
+la secuencia de bits originales más probable
+
+
+\chapter{Conclusión}
+Esta práctica nos proporciona un acercamiento al algoritmo Viterbi, sobre todo en el ámbito de la programación dinámica visto a través
+de diferentes ejemplos. Podemos destacar de dicho algoritmo que puede resolver eficientemete problemas complejos de secuenciación en 
+diversos ámbitos. De este modo, conseguimos que el lector de dicha memoria, en este caso para alumnos, no solo comprenda el funcionamiento del algoritmo,
+sino que también vea de una forma más cercana sus aplicaciones en problemas reales.
+
+Este análisis teorico y desarrollo de ejemplos prácticos refuerzan la importancia de la programación dinámica
+como herramienta esencial en la resolución de problemas de optimización y secuenciación, mostranto como puede 
+ser de gran utilidad en diversos campos de la ciencia e ingeniería.
 
 \end{document}
