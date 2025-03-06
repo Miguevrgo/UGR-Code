@@ -99,6 +99,9 @@ En este apartado modificaremos la configuración por defecto de Rocky Linux para
 - **RAID 1**: Duplica datos entre discos para redundancia total, sacrificando capacidad.
 - **RAID 5**: Requiere 3+ discos, combina velocidad (*striping*) y redundancia con paridad distribuida. Menos recomendado hoy por alternativas modernas.
 
+Diferenciamos además entre RAID Hardware y Software. En el hardware, hay un controlador físico que gestiona el RAID, es más rápido gracias a la controladora independiente y transparente al SO, que ve un único disco conjunto (ej. con 4 discos en RAID 5, el SO detecta uno solo). En cuanto al software, la gestión la realiza el sistema operativo o un programa, sin hardware dedicado. Depende de la CPU, lo que puede reducir rendimiento, pero es más económico y flexible.
+
+
 ## Administración del Sistema de Archivos
 
 ### systemd
