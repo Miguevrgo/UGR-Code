@@ -122,6 +122,9 @@ En este apartado modificaremos la configuración por defecto de Rocky Linux para
 ### Sistemas de archivos
 - **ext4**: El más usado, rápido y robusto, con soporte para volúmenes y archivos grandes.
 - **btrfs**: Basado en árboles B, usa *copy-on-write* para mayor integridad, pero es más lento.
+Para manejar y consultar cómodamente los montajes y discos conectados podemos usar las siguientes herramientas:
+- lsblk: Para ver las distintas particiones y discos conectados
+- df -h: Disk free, nos da el espacio disponible en disco, -h se usa para el formato humano
 
 ### /etc/fstab
 Archivo que facilita montar/desmontar sistemas de archivos, su estructura se compone de varias columnas para cada sistema, con las siguientes correspondencias y orden:
