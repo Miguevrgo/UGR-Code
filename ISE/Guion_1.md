@@ -125,6 +125,7 @@ Diferenciamos además entre RAID Hardware y Software. En el hardware, hay un con
 ### Sistemas de archivos
 - **ext4**: El más usado, rápido y robusto, con soporte para volúmenes y archivos grandes.
 - **btrfs**: Basado en árboles B, usa *copy-on-write* para mayor integridad, pero es más lento.
+
 Para manejar y consultar cómodamente los montajes y discos conectados podemos usar las siguientes herramientas:
 - lsblk: Para ver las distintas particiones y discos conectados
 - df -h: Disk free, nos da el espacio disponible en disco, -h se usa para el formato humano
