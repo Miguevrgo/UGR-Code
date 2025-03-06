@@ -62,6 +62,16 @@ El demonio **sshd** gestiona conexiones SSH, proporcionando comunicación segura
 6. Configura las redes en VirtualBox:
  - Adaptador 1: **NAT**.
  - Adaptador 2: **Host-Only Adapter**, con "Cable Connected" activado.
+7. Para la ip estática
+ - vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
+ - Añadir:
+ ```
+DEVICE=enp0s8
+BOOTPRO=none
+ONBOOT=yes
+IPADDR=192.168.56.12
+NETMASK=255.255.255.0
+```
 7. Guarda y crea un **snapshot** desde el menú de snapshots como estado de referencia.
 8. Verifica el funcionamiento:
  - Ping desde el anfitrión a la VM y viceversa.
