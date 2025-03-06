@@ -55,11 +55,14 @@ El demonio **sshd** gestiona conexiones SSH, proporcionando comunicación segura
 4. Tras instalar, verifica en la terminal:
  - `systemctl status sshd` (comprueba que sshd esté activo).
  - Confirma que el usuario tiene privilegios de superusuario.
-5. Configura las redes en VirtualBox:
+5. Configurar el prompt:
+ - (1) Edita el fichero .bashrc
+ - (2) Añade una linea para modificar el prompt (por ejemplo): PS1='\[\e[1;32m\]\u@\h \[\e[1;37m\]\t \w\[\e[0m\]$ '
+6. Configura las redes en VirtualBox:
  - Adaptador 1: **NAT**.
  - Adaptador 2: **Host-Only Adapter**, con "Cable Connected" activado.
-6. Guarda y crea un **snapshot** desde el menú de snapshots como estado de referencia.
-7. Verifica el funcionamiento:
+7. Guarda y crea un **snapshot** desde el menú de snapshots como estado de referencia.
+8. Verifica el funcionamiento:
  - Ping desde el anfitrión a la VM y viceversa.
  - Conéctate por SSH desde el anfitrión.
  - Haz ping a internet desde la VM (ejemplo: `ping 1.1.1.1`).
