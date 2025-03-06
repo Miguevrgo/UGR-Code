@@ -150,7 +150,7 @@ Partiendo de un servidor básico configurado según el apartado 2 (Rocky Linux e
 ## Diseño del Sistema de Almacenamiento
 
 ### Requisitos y Solución Propuesta
-1. **Crecimiento del almacenamiento**: Usaremos **LVM** (Logical Volume Manager) para permitir la expansión dinámica del espacio, añadiendo discos según sea necesario sin interrumpir el servicio.
+1. **Crecimiento del almacenamiento**: Usaremos **LVM** (Logical Volume Manager) para permitir la expansión dinámica del espacio, añadiendo discos según sea necesario sin interrumpir el servicio, (por ejemplo podríamos llevarnos el directorio /var a otro volumen lógico) (No se puede alojar a un volume group ya que al poder estar formado de varios discos, puede ser que perdamos garantías de RAID o tengamos un comportamiento no deseado)
 2. **Redundancia ante fallos**: Implementaremos **RAID 1** (mirroring) para duplicar los datos entre dos discos, asegurando que un fallo en uno no comprometa la información. (RAID 5 también sería válido)
 3. **Sistema de archivos**: Optaremos por **ext4** por su rendimiento, estabilidad y soporte amplio en Linux, aunque se considerará **btrfs** como alternativa por su capacidad de snapshots y mayor integridad de datos.
 4. **Disponibilidad**: La combinación de LVM y RAID 1, junto con copias de seguridad regulares, maximizará el tiempo de actividad y la recuperación ante desastres.
