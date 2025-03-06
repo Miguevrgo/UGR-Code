@@ -57,7 +57,8 @@ El demonio **sshd** gestiona conexiones SSH, proporcionando comunicación segura
  - Confirma que el usuario tiene privilegios de superusuario.
 5. Configurar el prompt:
  - (1) Edita el fichero .bashrc
- - (2) Añade una linea para modificar el prompt (por ejemplo): PS1='\[\e[1;32m\]\u@\h \[\e[1;37m\]\t \w\[\e[0m\]$ '
+ - (2) Añade una linea para modificar el prompt (por ejemplo): PS1='\[\u@\h \W\] \[\e[0;32m\]\t \W>\[\e[1;37m\]'
+ - (3) Aplica los cambios a la sesión actual con source .bashrc
 6. Configura las redes en VirtualBox:
  - Adaptador 1: **NAT**.
  - Adaptador 2: **Host-Only Adapter**, con "Cable Connected" activado.
