@@ -243,3 +243,75 @@ firewall-cmd --zone=public --remove-service=ssh
 ### Nota
 Si pierdes acceso, reinicia el servidor desde el panel de control del VPS y ajusta la configuración. Guarda cambios con `--runtime-to-permanent` solo tras probar.
 
+### Nmap
+Nmap es una herramienta que permite explorar redes y hacer auditorías de seguridad. Está diseñado para escanear rápidamente redes grandes, tiene muchas posibilidades y configuraciones así que vamos a dar algunos comandos que pueden resultar útiles en nuestro caso de uso:
+
+```
+sudo nmap -v direccion.es
+nmap -sS xxx.xxx.xxx.xxx/24
+```
+La primera activa el modo verbose para escanear puertos reservados (TCP) en la máquina dada y el segundo lanza un escaneo SYN hacia las 256 IPs de la red dada
+
+## Ejercicio Opcional
+
+### Nginx 
+Nginx es un servidor que podemos usar para montar un servidor web o un reverse proxy.
+
+Para instalar Nginx en Rocky Linux, ejecutaremos el siguiente comando que usa el gestor de paquetes dnf (recomendable hacer update antes)
+```
+sudo dnf install nginx
+```
+
+Una vez instalado, ejecutaremos el siguiente comando para empezar el servidor web:
+
+```
+sudo systemctl enable nginx
+sudo systemctl start nginx
+```
+Con esta configuración ya se iniciará nginx cada vez que reiniciemos la máquina virtual, deberemos tener en cuenta en el firewall este servicio:
+
+```
+sudo firewall-cmd --permanent --add-service=http 
+sudo firewall-cmd --permanent --list-all
+```
+Que deberá incluir en la linea services: http. Además deberemos recargar la configuración para hacer el servidor accesible a visitantes externos
+```
+sudo firewall-cmd --reload
+```
+Además se sugiere el siguiente comando para saber nuestra ip publica y accediendo al servidor:
+```
+curl -4 icanhazip.com
+```
+### Apache
+
+Veamos ahora la configuración equivalente para un servidor en apache:
+```
+sudo dnf -y install httpd
+mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf.org
+vi /etc/httpd/conf/httpd.conf
+```
+Ahora cambiaremos las siguientes líneas:
+
+- ServerAdmin (Pondremos el correo del administrador)
+- ServerName (Pondremos el nombew o dirección del servidor)
+- Options (Quitaremos los índices)
+- AllowOverride (All)
+- DirectoryIndex (index.html index.php index.cgi (Según lo queramos configurar nosotros))
+
+```
+systemctl enable --now httpd
+```
+Ahora el firewall igual que antes:
+```
+sudo firewall-cmd --permanent --add-service=http 
+sudo firewall-cmd --permanent --list-all
+```
+
+Podemos probarlo ahora creando una página web en /var/www/html/index.html 
+
+## Ejercicio opcional
+Eligiremos uno de anteriores programas, ejecutaremos el procedimiento dado para iniciar el servidor y editaremos el archivo index.html para que muestre:
+
+Bienvenidos a la Web de <Nombre y Apellido> en Prácticas ISE
+
+Para comprobar que está bien realizado, podemos tanto entrar a la página web como escanear los puertos sobre el servidor y comprobar que muestra ssh y el de http
