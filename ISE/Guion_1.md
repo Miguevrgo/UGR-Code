@@ -304,10 +304,19 @@ systemctl enable --now httpd
 Ahora el firewall igual que antes:
 ```
 sudo firewall-cmd --permanent --add-service=http 
+sudo firewall-cmd --reload
 sudo firewall-cmd --permanent --list-all
 ```
 
 Podemos probarlo ahora creando una página web en /var/www/html/index.html 
+```
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Bienvenidos a la Web de [Tu Nombre y Apellido] en Prácticas ISE</h1>
+    </body>
+</html>
+```
 
 ## Ejercicio opcional
 Eligiremos uno de anteriores programas, ejecutaremos el procedimiento dado para iniciar el servidor y editaremos el archivo index.html para que muestre:
@@ -315,3 +324,61 @@ Eligiremos uno de anteriores programas, ejecutaremos el procedimiento dado para 
 Bienvenidos a la Web de <Nombre y Apellido> en Prácticas ISE
 
 Para comprobar que está bien realizado, podemos tanto entrar a la página web como escanear los puertos sobre el servidor y comprobar que muestra ssh y el de http
+
+## SSH
+
+Como ya hemos mencionado, SSH es un término ambiguo porque puede referirse tanto al cliente como al servicio. Para diferenciarlos, en algunos sistemas se usa `sshd` para indicar el demonio. OpenSSH es la herramienta principal y segura para acceder remotamente a otros ordenadores mediante tráfico cifrado. Debemos saber configurarlo para:
+
+- Limitar el acceso por contraseña al usuario `root`.
+- Cambiar el puerto por defecto (actualizando también la configuración de `firewalld`).
+- Automatizar la ejecución remota de comandos usando claves simétricas y asimétricas.
+
+**Servicios incluidos en OpenSSH:**
+- Operaciones remotas: `ssh`, `scp`, `sftp`.
+- Gestión de claves: `ssh-add`, `ssh-keysign`, `ssh-keyscan`, `ssh-keygen`.
+- Lado del servidor: `sshd`, `sftp-server`, `ssh-agent`.
+
+En el siguiente ejercicio aplicaremos estos conceptos.
+
+## Ejercicio opcional
+
+### Cambiar el puerto de SSH
+Editamos el archivo de configuración de `sshd`:
+```
+sudo vi /etc/ssh/sshd_config
+```
+- Buscamos la línea `Port 22` y la sustituimos por un puerto mayor a 1024, por ejemplo, `2025`:
+- Verificamos en `/etc/services` que el puerto no esté en uso por otra aplicación.
+
+Actualizamos el firewall:
+```
+sudo firewall-cmd --permanent --remove-service=ssh
+sudo firewall-cmd --permanent --add-port=2025/tcp
+sudo firewall-cmd --reload
+sudo systemctl restart sshd
+```
+### Configurar acceso por clave pública
+Generamos un par de claves en el cliente usando RSA (Podríamos haber usado cualquier otro método, por ejemplo para GitHub se suele usar ed25519)
+```
+ssh-keygen -t rsa -b 4096
+ssh-copy-id -p 2025 usuario@<IP-del-servidor>
+```
+- Sustituye `usuario` por el nombre del usuario remoto y `<IP-del-servidor>` por la dirección IP real.
+
+### Validación
+Comprobamos la configuración ejecutando un comando remoto:
+```
+ssh -p 2025 usuario@<IP-del-servidor> "ls -la /"
+```
+- Esto debería mostrar el contenido completo del directorio raíz (`/`) sin pedir contraseña.
+
+### Seguridad adicional (opcional)
+Para limitar el acceso por contraseña y al usuario `root`, editamos `/etc/ssh/sshd_config`:
+```
+PermitRootLogin no
+PasswordAuthentication no
+```
+Reiniciando el servicio podremos comprobar que ya no se puede acceder mediante contraseña.
+
+## Ansible
+Ansible es una herramienta que automatiza la gestión remota de sistemas y controla su estado deseado.
