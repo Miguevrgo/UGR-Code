@@ -62,16 +62,14 @@ El demonio **sshd** gestiona conexiones SSH, proporcionando comunicación segura
 6. Configura las redes en VirtualBox:
  - Adaptador 1: **NAT**.
  - Adaptador 2: **Host-Only Adapter**, con "Cable Connected" activado.
-7. Para la ip estática
- - vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
- - Añadir:
+7. Para la ip estática, usaremos la herramienta nmcli, en nuestro caso particular ejecutaremos:
  ```
-DEVICE=enp0s8
-BOOTPRO=none
-ONBOOT=yes
-IPADDR=192.168.56.12
-NETMASK=255.255.255.0
-```
+sudo nmcli connection modify "Wired connection 1" ipv4.addresses 192.168.56.69/24 # Para asignar la ip deseada
+sudo nmcli connection modify "Wired connection 1" ipv4.gateway 192.168.56.1 # Configuración del gateway
+sudo nmcli connection modify "Wired connection 1" ipv4.dns "8.8.8.8,8.8.4.4" # DNS 
+sudo nmcli connection modify "Wired connection 1" ipv4.method manual
+sudo nmcli connection up "Wired connection 1"
+ ```
 7. Guarda y crea un **snapshot** desde el menú de snapshots como estado de referencia.
 8. Verifica el funcionamiento:
  - Ping desde el anfitrión a la VM y viceversa.
