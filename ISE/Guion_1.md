@@ -408,6 +408,10 @@ Con esta configuración ya se iniciará nginx cada vez que reiniciemos la máqui
 sudo firewall-cmd --permanent --add-service=http 
 sudo firewall-cmd --permanent --list-all
 ```
+De otra forma podemos hacer que la configuración actual sea permanente mediante:
+```
+sudo firewall-cmd --runtime-to-permanent
+```
 Que deberá incluir en la linea services: http. Además deberemos recargar la configuración para hacer el servidor accesible a visitantes externos
 ```
 sudo firewall-cmd --reload
