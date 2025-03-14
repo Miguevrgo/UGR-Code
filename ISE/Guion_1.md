@@ -102,16 +102,139 @@ El **Logical Volume Manager (LVM)** abstrae el almacenamiento físico, permitien
 
 En este apartado modificaremos la configuración por defecto de Rocky Linux para usar LVM.
 
+### Comandos útiles
+- `pvdisplay`, `vgdisplay`, `lvdisplay`: Muestran detalles de PVs, VGs y LVs.
+- `vgextend`: Añade un nuevo PV a un VG existente.
+- `lvextend`/`lvreduce`: Aumenta o reduce el tamaño de un LV.
+- `resize2fs`: Ajusta el sistema de archivos tras redimensionar un LV (para `ext4`).
+
+Sin LVM, si `/` (root) ocupa todo el disco y un usuario llena el espacio (ej. en `/var` o `/home`), el sistema puede fallar, incluso impidiendo el arranque. Por ello, es común separar directorios críticos como `/boot` (con los archivos de arranque) o `/var` (con datos variables como logs) en particiones o volúmenes distintos.
+
 ## RAID
 
-**RAID** (Redundant Array of Independent/Inexpensive Disks) agrupa dispositivos de almacenamiento en un dispositivo virtual con características específicas. Nos centraremos en tres niveles:
+**RAID** (Redundant Array of Independent/Inexpensive Disks) es una tecnología que agrupa dispositivos de almacenamiento en un disco virtual con características específicas, como redundancia o mayor rendimiento, a un costo potencialmente menor al combinar discos económicos. Nos centraremos en tres niveles principales: RAID 0, RAID 1 y RAID 5, además de diferenciar entre implementaciones hardware y software.
 
-- **RAID 0**: Combina discos con *striping* para mayor velocidad, pero sin redundancia. Usado en HDD, no en SSD (puede ralentizar).
-- **RAID 1**: Duplica datos entre discos para redundancia total, sacrificando capacidad.
-- **RAID 5**: Requiere 3+ discos, combina velocidad (*striping*) y redundancia con paridad distribuida. Menos recomendado hoy por alternativas modernas.
+- **RAID 0** (Striping)
+    - Combina varios discos en un único volumen virtual cuya capacidad es la suma de los discos individuales. Utiliza striping (segmentación), distribuyendo sectores contiguos entre discos distintos para permitir acceso paralelo y aumentar la velocidad de lectura/escritura.
+    - Antes era común en sistemas donde la velocidad era crítica (ej. HDD en servidores antiguos).
+    - No ofrece redundancia. Si un disco falla, se pierde toda la información del arreglo, lo que lo hace muy sensible a errores físicos. Por esta razón, hoy se usa poco o nada en entornos críticos.
+
+- **RAID 1** (Mirroring)
+
+    - Copia idénticamente toda la información en todos los discos que forman el "espejo", proporcionando redundancia total. La capacidad útil se reduce a la del disco más pequeño en el arreglo.
+    - Alta tolerancia a fallos; si un disco muere, los datos persisten en los demás. Al leer un bloque, puede comparar datos entre discos para detectar errores, y algunas implementaciones permiten lectura en paralelo para mejorar el rendimiento.
+    - Para evitar retrasos en escritura, los discos suelen conectarse a buses distintos (ej. canales SATA separados).
+    -  Ideal para datos críticos donde la integridad es prioritaria sobre la capacidad (ej. sistemas operativos, configuraciones clave).
+
+- **RAID 5**
+
+    - Mejora de RAID 1 en términos de costo y eficiencia. Requiere al menos tres discos: usa striping como RAID 0 para los datos y reserva un disco virtual equivalente para almacenar información de paridad (recuperación). Si un disco falla, los datos se reconstruyen usando la paridad y los bloques restantes.
+    - Ofrece robustez a un costo razonable (solo se "pierde" la capacidad de un disco para paridad). Soporta la caída de un disco sin pérdida de datos.
+    - Las operaciones de escritura son más lentas debido al cálculo de paridad, y la reconstrucción tras un fallo reduce aún más las prestaciones. En centros de datos grandes, donde la caída de discos es común, esto puede ser un cuello de botella.
+    - Adecuado para logs del sistema, bases de datos no críticas o entornos donde el balance entre costo y redundancia es clave.
 
 Diferenciamos además entre RAID Hardware y Software. En el hardware, hay un controlador físico que gestiona el RAID, es más rápido gracias a la controladora independiente y transparente al SO, que ve un único disco conjunto (ej. con 4 discos en RAID 5, el SO detecta uno solo). En cuanto al software, la gestión la realiza el sistema operativo o un programa, sin hardware dedicado. Depende de la CPU, lo que puede reducir rendimiento, pero es más económico y flexible.
 
+## Configuración de RAID en VirtualBox
+
+ - En VirtualBox, ve a Configuración > Almacenamiento > Controladora SATA.
+        Añade discos virtuales nuevos (ej. dos discos de 10 GB cada uno: /dev/sdb y /dev/sdc).
+ - Crear un RAID con mdadm:
+        Crea un RAID 1:
+```
+sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc
+```
+Los arreglos RAID se nombran como /dev/mdX (multidisk). Por ello, si escribimos ($ echo 1 > /dev/md0) se escribira en ambos discos mientras que si lo hacemos sobre /dev/sdb romperemos la integridad.
+## Integración de LVM con RAID
+
+LVM y RAID pueden combinarse para obtener redundancia (RAID) y flexibilidad (LVM). Por ejemplo, un RAID 1 puede usarse como base para un PV, asegurando que los datos estén duplicados antes de gestionarlos con LVM. Sin embargo, hay que tener cuidado al integrar RAIDs en Volume Groups con discos sin RAID, ya que no se garantiza que los datos aprovechen la redundancia del RAID si el VG mezcla discos con capacidades o configuraciones distintas. Por ello, una práctica recomendada es separar los discos en VGs según su tipo: SSD, HDD o RAIDs (y dentro de RAIDs, usar el mismo nivel, como RAID 1).
+
+### Configuración práctica: Mover /var a un volumen lógico sobre RAID 1
+A continuación, detallamos cómo mover el directorio `/var` (que crece con el tiempo por logs y datos variables) a un volumen lógico basado en un RAID 1 creado con `mdadm`. Este proceso asegura redundancia y flexibilidad para el almacenamiento.
+
+#### 1. Crear el RAID 1
+- Añade dos discos virtuales en VirtualBox (ej. `/dev/sdb` y `/dev/sdc`, 10 GB cada uno).
+- Crea el arreglo RAID:
+```
+sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc
+```
+
+#### 2. Inicializar LVM sobre RAID
+
+- Crea un Physical Volume (PV) en el RAID:
+```
+sudo pvcreate /dev/md0
+```
+Esto añade metadatos de LVM al inicio del dispositivo RAID.
+- Crea un Volume Group (VG) llamado `raid1`:
+```
+sudo vgcreate raid1 /dev/md0
+sudo vgdisplay raid1
+```
+- Crea un Logical Volume (LV) llamado `rvar` de 10 GB:
+```
+sudo lvcreate -L 10G -n rvar raid1
+```
+- Verifica el LV:
+
+```
+sudo lvdisplay /dev/raid1/rvar
+```
+Nota: Los LVs tienen dos nombres equivalentes:
+- `/dev/raid1/rvar`
+- `/dev/mapper/raid1-rvar`
+
+#### 3. Formatear y montar temporalmente
+- Formatea el LV con el sistema de archivos `ext4`:
+```
+sudo mkfs -t ext4 /dev/raid1/rvar # mkfs.ext4 /dev/raid1/rvar
+```
+- Monta el LV en `/mnt` para pruebas:
+```
+sudo mount /dev/mapper/raid1-rvar /mnt
+```
+
+#### 4. Copiar /var en modo mantenimiento
+Dado que `/var` está en uso constante por el sistema (logs, servicios activos), una copia directa como `cp -a /var/* /mnt` podría perder datos escritos durante el proceso. Para evitarlo, cambiamos al modo mantenimiento (single-user), que expulsa a todos los usuarios y detiene procesos no esenciales:
+- Cambia al modo single-user:
+```
+sudo systemctl isolate runlevel1.targekt
+```
+Podemos comprobarlo con systemctl status, una vez comprobado y con todo correcto:
+```
+cp -a /var/* /mnt/
+ls /mnt
+```
+
+#### 5. Reubicar /var
+- Desmonta el volumen lógico de `/mnt`:
+```
+sudo umount /mnt
+```
+- Renombra el `/var` original como respaldo (por seguridad):
+- Crea un nuevo directorio `/var`:
+```
+sudo mkdir /var
+sudo mount /dev/raid1/rvar /var
+```
+- Verifica el espacio y montaje:
+```
+df -h
+```
+#### 6. Hacer el montaje permanente
+Los montajes con mount son temporales y se pierden al reiniciar, para hacerlo permanente, podemos editar /etc/fstab y añadir la linea:
+```
+/dev/raid1/rvar  /var  ext4  defaults  0  0
+```
+
+Para probarlo todo:
+```
+sudo systemctl daemon-reload # Recargar el demonio
+sudo mount -a # Monta todo lo definido en /etc/fstab
+df -h
+```
+Ahora tras reiniciar todo (desmontar /var antes) debería mantenerse como lo hemos definido. Lo podremos comprobar con df y con lsblk
+Estos últimos pasos vienen explicados con más detenimiento a continuación.
 
 ## Administración del Sistema de Archivos
 
