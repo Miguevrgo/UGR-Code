@@ -495,7 +495,74 @@ sudo firewall-cmd --permanent --add-port=2025/tcp
 sudo firewall-cmd --reload
 sudo systemctl restart sshd
 ```
-### Configurar acceso por clave pública
+## Repaso rápido de criptografía y seguridad
+
+### Algoritmos más comunes
+
+#### Llave simétrica
+- **Definición**: Utiliza un secreto compartido entre las partes.
+- **Características**:
+  - Computacionalmente muy eficiente.
+  - Ideal para ciertas circunstancias.
+- **Algoritmo más usado**: DES (Data Encryption Standard).
+- **Principal problema**: 
+  - Escalabilidad limitada.
+  - Solución parcial: Usar llaves entre pares (en lugar de una única llave), pero sigue escalando mal.
+- **Solución**: Esto dio origen a los algoritmos de llave asimétrica.
+
+#### Llave asimétrica (clave pública - privada)
+- **Definición**: Cada persona tiene dos llaves:
+  - **Pública**: Se comparte con todos.
+  - **Privada**: Se mantiene en secreto.
+- **Problema**: Es necesario obtener las llaves públicas de las personas con las que se desea comunicar. 
+  - Sin embargo, al ser públicas, se pueden recuperar cuando sea necesario.
+- **Algoritmo principal**: RSA.
+- **Desventaja**: Son algoritmos computacionalmente costosos.
+
+#### Hash
+- **Definición**: Algoritmo que genera un valor único (hash) a partir de datos.
+- **Ejemplo**: Familia de algoritmos SHA (Secure Hash Algorithm).
+- **Características de un buen algoritmo de hash**:
+  - Un cambio pequeño en los datos genera un hash completamente diferente.
+  - No es reversible (unidireccional).
+
+#### Identidad y firma digital
+- **Cómo se garantiza**: Mediante la firma digital.
+- **Proceso**:
+  1. Se toma la información y se calcula su hash.
+  2. El hash se cifra con la llave privada del emisor.
+- **Verificación por el destinatario**:
+  1. Descifra la firma con la llave pública del emisor.
+  2. Compara el hash recibido con el hash calculado del contenido.
+  - **Resultado**: Confirma que el contenido no ha sido alterado y proviene del origen legítimo.
+
+#### Autoridades de certificación
+- **Función**: Verifican que una llave pública/privada pertenece a una persona o entidad.
+- **Ejemplo práctico (en España)**:
+  1. Una web genera un par de llaves: pública y privada.
+  2. La llave pública se envía a la FNMT (Fábrica Nacional de Moneda y Timbre).
+  3. Se genera un documento que el usuario presenta ante un funcionario.
+  4. El funcionario valida la identidad y la FNMT emite un certificado.
+- **Contenido de un certificado**:
+  - Datos personales.
+  - Información adicional.
+  - Firmado con el hash y la llave privada de la FNMT.
+- **Formato más usado**: X.509.
+
+#### Cadena de certificación
+- **Funcionamiento**:
+  - Una autoridad de certificación firma la llave pública de la FNMT.
+  - Este proceso es recursivo hasta llegar a los certificados raíz.
+  - Si se encuentra un certificado raíz desconocido, se produce un error de certificación.
+- **Confianza**:
+  - Depende de llaves públicas preinstaladas en el software, en las que el fabricante confía.
+- **Visualización en navegadores**:
+  1. Hacer clic en el candado de la página web.
+  2. Seleccionar "Más información".
+  3. Buscar quién generó el certificado y seguir la cadena hasta el certificado raíz.
+  - Los certificados raíz están configurados en: Configuración > Certificados.
+
+## Configurar acceso por clave pública
 Generamos un par de claves en el cliente usando RSA (Podríamos haber usado cualquier otro método, por ejemplo para GitHub se suele usar ed25519)
 ```
 ssh-keygen -t rsa -b 4096
