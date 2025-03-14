@@ -1,16 +1,29 @@
 # Introducción
 
-En este documento, exploraremos la instalación de un software de máquinas virtuales (denominado aquí como **VMSW**), que crea una capa de abstracción sobre el hardware, permitiendo ejecutar varias máquinas virtuales simultáneamente en un mismo servidor. Una alternativa moderna a esta tecnología es el uso de contenedores (como Docker), que comparten recursos entre los contenedores y el anfitrión. En este primer bloque nos centraremos en la **virtualización**, instalando un software como **VirtualBox**, aunque también mencionaremos otra alternativa popular.
+En este documento, exploraremos la instalación de un software de máquinas virtuales (denominado aquí como **VMSW**), que crea una capa de abstracción sobre el hardware, permitiendo ejecutar varias máquinas virtuales simultáneamente en un mismo servidor. Este enfoque, conocido como **virtualización completa**, implica que el sistema operativo invitado no requiere modificaciones para operar sobre el hardware virtualizado, a diferencia de la virtualización parcial. Una alternativa moderna a esta tecnología es el uso de **contenedores** (como Docker), que comparten recursos del kernel del anfitrión con los contenedores, optimizando el uso de recursos pero sacrificando aislamiento completo.
+
+Nos centraremos en la instalación de **VirtualBox** como ejemplo de VMSW, un hipervisor de tipo 2 gratuito y de código abierto, aunque también mencionaremos alternativas como **VMware** y compararemos con hipervisores de tipo 1 como **Hyper-V**.
 
 ### Diferencia entre Hyper-V y VirtualBox
 
-- **Hyper-V**: Es un hipervisor de tipo 1 desarrollado por Microsoft, integrado en Windows. Opera directamente sobre el hardware, ofreciendo mejor rendimiento en entornos Windows y soporte nativo para sistemas Microsoft. Sin embargo, requiere un sistema operativo compatible y no es tan flexible para usuarios de Linux o macOS.
-- **VirtualBox**: Es un hipervisor de tipo 2 de Oracle, que se ejecuta sobre un sistema operativo anfitrión. Es gratuito, de código abierto y más versátil, permitiendo una amplia compatibilidad con diferentes sistemas operativos invitados, aunque puede tener un rendimiento ligeramente inferior al depender del anfitrión.
+- **Hyper-V**: Hipervisor de tipo 1 desarrollado por Microsoft, integrado en Windows Professional y superiores. Opera directamente sobre el hardware sin depender de un sistema operativo anfitrión, lo que mejora el rendimiento, especialmente en entornos Windows. Es ideal para servidores y sistemas Microsoft, pero su compatibilidad está limitada a hardware soportado por Windows y no es tan flexible en entornos Linux o macOS.
+- **VirtualBox**: Hipervisor de tipo 2 de Oracle, ejecutado como una aplicación sobre un sistema operativo anfitrión (Windows, Linux, macOS). Su diseño lo hace más versátil y compatible con una amplia gama de sistemas invitados, incluyendo distribuciones Linux poco comunes. Sin embargo, al depender del anfitrión, puede tener un rendimiento inferior en escenarios de alta carga.
+
+**Ventajas de la virtualización** (aplicables a ambos):
+- Ejecución de plataformas distintas a la del anfitrión.
+- Mayor seguridad mediante aislamiento.
+- Uniformización de entornos para desarrollo o pruebas.
+- Amortización de recursos físicos al consolidar servidores.
+- Aprovisionamiento a demanda, base del **cloud computing**, donde los recursos pasan de ser activos fijos a servicios bajo demanda.
+
+**Desventajas**: En el modelo de servicio (cloud), si un proyecto falla, los costos no se amortizan como con activos físicos, y un servicio prolongado puede superar el costo de adquirir hardware.
+
+---
 
 ## Realización
 
 ### Instalación de VirtualBox
-- **Enlace de descarga**: [VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads)
+- **Enlace de descarga**: [VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads).
 - **Para Arch Linux**:
  ```
 sudo pacman -S virtualbox
