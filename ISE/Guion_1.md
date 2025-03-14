@@ -463,19 +463,132 @@ Bienvenidos a la Web de <Nombre y Apellido> en Prácticas ISE
 
 Para comprobar que está bien realizado, podemos tanto entrar a la página web como escanear los puertos sobre el servidor y comprobar que muestra ssh y el de http
 
+# SSH y Criptografía
+
 ## SSH
 
-Como ya hemos mencionado, SSH es un término ambiguo porque puede referirse tanto al cliente como al servicio. Para diferenciarlos, en algunos sistemas se usa `sshd` para indicar el demonio. OpenSSH es la herramienta principal y segura para acceder remotamente a otros ordenadores mediante tráfico cifrado. Debemos saber configurarlo para:
+SSH (Secure Shell) es una aplicación de terminal remoto seguro que reemplaza soluciones antiguas como Telnet, donde tanto el inicio de sesión como la sesión se transmitían en texto plano, sin cifrado. En SSH, tanto el proceso de autenticación como la sesión están protegidos mediante cifrado.
 
+- **Uso básico**: `ssh usuario@ip/nombreDominio`.
+- **Ventaja**: Utiliza varias técnicas criptográficas para garantizar seguridad.
+- **Nota**: El término SSH puede referirse tanto al cliente como al servicio. Para el servicio, a menudo se usa `sshd` (demonio de SSH). OpenSSH es la implementación más común y segura.
+
+### Servicios incluidos en OpenSSH
+- **Operaciones remotas**: `ssh` (conexión), `scp` (copia segura), `sftp` (transferencia de archivos segura).
+- **Gestión de claves**: `ssh-add`, `ssh-keysign`, `ssh-keyscan`, `ssh-keygen`.
+- **Lado del servidor**: `sshd`, `sftp-server`, `ssh-agent`.
+
+### Configuración recomendada
 - Limitar el acceso por contraseña al usuario `root`.
-- Cambiar el puerto por defecto (actualizando también la configuración de `firewalld`).
-- Automatizar la ejecución remota de comandos usando claves simétricas y asimétricas.
+- Cambiar el puerto por defecto (por ejemplo, de 22 a otro mayor a 1024).
+- Actualizar la configuración del firewall (`firewalld`) tras cambiar el puerto.
+- Automatizar comandos remotos usando claves simétricas y asimétricas.
 
-**Servicios incluidos en OpenSSH:**
-- Operaciones remotas: `ssh`, `scp`, `sftp`.
-- Gestión de claves: `ssh-add`, `ssh-keysign`, `ssh-keyscan`, `ssh-keygen`.
-- Lado del servidor: `sshd`, `sftp-server`, `ssh-agent`.
+---
 
+## Repaso rápido de criptografía y seguridad
+
+### Algoritmos más comunes
+
+#### Llave simétrica
+- **Definición**: Usa un secreto compartido entre las partes.
+- **Características**:
+  - Muy eficiente computacionalmente.
+  - Ideal para ciertas circunstancias.
+- **Algoritmo más usado**: DES (Data Encryption Standard), aunque hoy se considera obsoleto; AES (Advanced Encryption Standard) lo ha reemplazado ampliamente.
+- **Problema**: 
+  - Escalabilidad limitada.
+  - Solución parcial: Llaves por pares, pero sigue siendo ineficiente a gran escala.
+- **Solución**: Esto motivó el desarrollo de algoritmos de llave asimétrica.
+
+#### Llave asimétrica (clave pública - privada)
+- **Definición**: Cada entidad tiene dos claves:
+  - **Pública**: Compartida con todos.
+  - **Privada**: Secreta y personal.
+- **Problema**: Requiere obtener las claves públicas de los interlocutores, pero al ser públicas, esto es manejable.
+- **Algoritmo principal**: RSA.
+- **Desventaja**: Alto costo computacional.
+
+#### Hash
+- **Definición**: Genera un valor único (hash) a partir de datos.
+- **Ejemplo**: Familia SHA (Secure Hash Algorithm), como SHA-256.
+- **Características de un buen hash**:
+  - Un pequeño cambio en los datos produce un hash completamente diferente.
+  - No es reversible (unidireccional).
+
+### Identidad y firma digital
+- **Garantía**: Mediante firma digital.
+- **Proceso**:
+  1. Calcular el hash de la información.
+  2. Cifrar el hash con la clave privada del emisor.
+- **Verificación**:
+  1. El receptor descifra la firma con la clave pública del emisor.
+  2. Compara el hash recibido con el calculado.
+  - **Resultado**: Confirma integridad y autenticidad.
+
+### Autoridades de certificación
+- **Función**: Validan la correspondencia entre claves y personas/entidades.
+- **Ejemplo (España)**:
+  1. Generación de claves pública y privada.
+  2. Envío de la clave pública a la FNMT.
+  3. Validación presencial ante un funcionario.
+  4. Emisión de un certificado por la FNMT.
+- **Contenido del certificado**:
+  - Datos personales.
+  - Información adicional.
+  - Firmado con hash y clave privada de la FNMT.
+- **Formato común**: X.509.
+
+### Cadena de certificación
+- **Funcionamiento**: Certificados firmados recursivamente hasta un certificado raíz.
+- **Confianza**: Basada en claves públicas preinstaladas en el software.
+- **Visualización**:
+  1. Clic en el candado del navegador.
+  2. "Más información" > Ver certificado.
+  3. Seguir la cadena hasta el raíz (Configuración > Certificados).
+
+---
+
+## Cómo funciona SSH
+
+SSH combina criptografía simétrica y asimétrica para garantizar confidencialidad y autenticación.
+
+### 1. Confidencialidad de la comunicación
+- **Proceso**:
+  1. El cliente inicia `ssh usuario@ip`.
+  2. El servidor envía su clave pública.
+  3. El cliente cifra la contraseña con esa clave pública y la envía.
+  4. El servidor verifica la contraseña en su base de datos y responde.
+- Al aceptar, la clave se guarda en `~/.ssh/known_hosts` para futuras conexiones.
+
+- **Cifrado de la sesión**:
+1. El servidor envía su clave pública.
+2. El cliente genera una clave de sesión (secreto simétrico), la cifra con la clave pública del servidor y la envía.
+3. Ambos usan esta clave simétrica para el resto de la comunicación, reduciendo el costo computacional.
+
+- **Nota**: La criptografía asimétrica se usa solo para autenticación e intercambio inicial; luego se pasa a simétrica por eficiencia.
+
+### 2. Acceso sin contraseña (autenticación por claves)
+- **Proceso**:
+1. El servidor tiene una base de datos de claves públicas en `~/.ssh/authorized_keys`.
+2. Al conectar, el servidor envía un "challenge" (mensaje aleatorio).
+3. El cliente firma el challenge con su clave privada y lo devuelve.
+4. El servidor verifica la firma con la clave pública del usuario y, si es correcta, permite el acceso.
+
+- **Generación de claves**:
+```
+ssh-keygen -t rsa -b 4096
+```
+- Genera `id_rsa` (privada) y `id_rsa.pub` (pública) en `~/.ssh/`.
+- Se recomienda proteger la clave privada con contraseña.
+
+- **Envío de clave pública al servidor**:
+```
+ssh-copy-id usuario@ip
+```
+- Añade la clave pública a `~/.ssh/authorized_keys` en el servidor tras ingresar la contraseña por última vez.
+
+- **Uso**: Ahora se puede conectar sin contraseña:
 En el siguiente ejercicio aplicaremos estos conceptos.
 
 ## Ejercicio opcional
@@ -495,73 +608,6 @@ sudo firewall-cmd --permanent --add-port=2025/tcp
 sudo firewall-cmd --reload
 sudo systemctl restart sshd
 ```
-## Repaso rápido de criptografía y seguridad
-
-### Algoritmos más comunes
-
-#### Llave simétrica
-- **Definición**: Utiliza un secreto compartido entre las partes.
-- **Características**:
-  - Computacionalmente muy eficiente.
-  - Ideal para ciertas circunstancias.
-- **Algoritmo más usado**: DES (Data Encryption Standard).
-- **Principal problema**: 
-  - Escalabilidad limitada.
-  - Solución parcial: Usar llaves entre pares (en lugar de una única llave), pero sigue escalando mal.
-- **Solución**: Esto dio origen a los algoritmos de llave asimétrica.
-
-#### Llave asimétrica (clave pública - privada)
-- **Definición**: Cada persona tiene dos llaves:
-  - **Pública**: Se comparte con todos.
-  - **Privada**: Se mantiene en secreto.
-- **Problema**: Es necesario obtener las llaves públicas de las personas con las que se desea comunicar. 
-  - Sin embargo, al ser públicas, se pueden recuperar cuando sea necesario.
-- **Algoritmo principal**: RSA.
-- **Desventaja**: Son algoritmos computacionalmente costosos.
-
-#### Hash
-- **Definición**: Algoritmo que genera un valor único (hash) a partir de datos.
-- **Ejemplo**: Familia de algoritmos SHA (Secure Hash Algorithm).
-- **Características de un buen algoritmo de hash**:
-  - Un cambio pequeño en los datos genera un hash completamente diferente.
-  - No es reversible (unidireccional).
-
-#### Identidad y firma digital
-- **Cómo se garantiza**: Mediante la firma digital.
-- **Proceso**:
-  1. Se toma la información y se calcula su hash.
-  2. El hash se cifra con la llave privada del emisor.
-- **Verificación por el destinatario**:
-  1. Descifra la firma con la llave pública del emisor.
-  2. Compara el hash recibido con el hash calculado del contenido.
-  - **Resultado**: Confirma que el contenido no ha sido alterado y proviene del origen legítimo.
-
-#### Autoridades de certificación
-- **Función**: Verifican que una llave pública/privada pertenece a una persona o entidad.
-- **Ejemplo práctico (en España)**:
-  1. Una web genera un par de llaves: pública y privada.
-  2. La llave pública se envía a la FNMT (Fábrica Nacional de Moneda y Timbre).
-  3. Se genera un documento que el usuario presenta ante un funcionario.
-  4. El funcionario valida la identidad y la FNMT emite un certificado.
-- **Contenido de un certificado**:
-  - Datos personales.
-  - Información adicional.
-  - Firmado con el hash y la llave privada de la FNMT.
-- **Formato más usado**: X.509.
-
-#### Cadena de certificación
-- **Funcionamiento**:
-  - Una autoridad de certificación firma la llave pública de la FNMT.
-  - Este proceso es recursivo hasta llegar a los certificados raíz.
-  - Si se encuentra un certificado raíz desconocido, se produce un error de certificación.
-- **Confianza**:
-  - Depende de llaves públicas preinstaladas en el software, en las que el fabricante confía.
-- **Visualización en navegadores**:
-  1. Hacer clic en el candado de la página web.
-  2. Seleccionar "Más información".
-  3. Buscar quién generó el certificado y seguir la cadena hasta el certificado raíz.
-  - Los certificados raíz están configurados en: Configuración > Certificados.
-
 ## Configurar acceso por clave pública
 Generamos un par de claves en el cliente usando RSA (Podríamos haber usado cualquier otro método, por ejemplo para GitHub se suele usar ed25519)
 ```
